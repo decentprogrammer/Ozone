@@ -78,13 +78,13 @@ namespace Ozone.UI.Pages.Dashboard
             }
         }
 
-        public void UserDetails()
+        public async Task UserDetails()
         {
             var uId = _userManager.GetUserId(User);
             var fullName = _user.GetUserFullNameByUserAndId(uId, User);
             userFullName = fullName;
 
-            unitName = _user.GetUserUnitName(uId, User);
+            unitName = await _user.GetUserUnitName(uId, User);
             unitId = _user.GetUserUnitId(uId, User);
         }
 

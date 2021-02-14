@@ -151,7 +151,7 @@ namespace Ozone.DAL.Repositories
             {
                 await _db.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 if (!UnitModelExists(UnitModel.Id))
                 {

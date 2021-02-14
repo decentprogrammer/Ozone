@@ -11,6 +11,6 @@ namespace Ozone.DAL.Repositories
         bool GetUserRoleByUser(ClaimsPrincipal user, string role);
         Task<List<ApplicationUserModel>> GetUsers();
         int GetUserUnitId(string UserId, ClaimsPrincipal user);
-        string GetUserUnitName(string UserId, ClaimsPrincipal user);
+        Task<string> GetUserUnitName(string UserId, ClaimsPrincipal user);
     }
 }

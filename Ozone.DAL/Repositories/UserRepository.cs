@@ -59,14 +59,14 @@ namespace Ozone.DAL.Repositories
 
 
 
-        public string GetUserUnitName(string UserId, ClaimsPrincipal user)
+        public async Task<string> GetUserUnitName(string UserId, ClaimsPrincipal user)
         {
             try
             {
                 var userId = _userManager.GetUserId(user);
 
                 var unitId = _db.ApplicationUsersTable.Where(c => c.Id == UserId).FirstOrDefault().UnitId;
-                var unitName = _unit.GetUnitSingleRecordByUnitId(unitId);
+                var unitName = await _unit.GetUnitById(unitId);
 
                 return unitName.EnglishName;
             }
