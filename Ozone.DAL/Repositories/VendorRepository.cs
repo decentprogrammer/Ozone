@@ -30,11 +30,11 @@ namespace Ozone.DAL.Repositories
             }
         }
 
-        public int GetVendorIdByName(string vendorName)
+        public async Task<int> GetVendorIdByName(string vendorName)
         {
             try
             {
-                var vendorId = _db.VendorsDictionaryTable.Where(c => c.VendorName == vendorName).FirstOrDefault().Id;
+                var vendorId = (await _db.VendorsDictionaryTable.Where(c => c.VendorName == vendorName).FirstOrDefaultAsync()).Id;
                 return vendorId;
             }
             catch (Exception ex)

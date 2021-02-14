@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Ozone.BLL;
 using Ozone.DAL.Repositories;
 using Ozone.Models;
 
@@ -14,18 +15,18 @@ namespace Ozone.UI.Pages.Manage
     {
 
         private readonly IChecklistRepository _checklist;
-        private readonly IUserRepository _user;
+        private readonly IUserService _userService;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IVendorRepository _vendor;
+        private readonly IVendorService _vendorService;
 
         public int userUnitId { get; set; }
 
-        public IndexModel(IChecklistRepository checklist, IUserRepository user, UserManager<IdentityUser> userManager, IVendorRepository vendor)
+        public IndexModel(IChecklistRepository checklist, IUserService userService, UserManager<IdentityUser> userManager, IVendorService vendor)
         {
             _checklist = checklist;
-            _user = user;
+            _userService = userService;
             _userManager = userManager;
-            _vendor = vendor;
+            _vendorService = vendor;
         }
 
         public IActionResult OnGet()
@@ -35,11 +36,11 @@ namespace Ozone.UI.Pages.Manage
             return Page();
         }
 
-        private void GetUserUnitId()
+        private async Task GetUserUnitId()
         {
             var userId = _userManager.GetUserId(User);
 
-            userUnitId = _user.GetUserUnitId(userId, User);
+            userUnitId = await _userService.GetUserUnitId(userId, User);
         }
 
 
@@ -158,7 +159,7 @@ namespace Ozone.UI.Pages.Manage
         public async Task<JsonResult> OnGetGetSingleElementByIdAsync(Guid elementId)
         {
 
-            var vendorName = await _vendor.GetVendors();
+            var vendorName = await _vendorService.GetVendors();
 
             var elementModel = await _checklist.GetSingleElementByIdAsync(elementId);
 
@@ -193,13 +194,13 @@ namespace Ozone.UI.Pages.Manage
 
         public async Task<JsonResult> OnGetAllVendorsNamsListAsync()
         {
-            var vendorsNames = await _vendor.GetVendors();
+            var vendorsNames = await _vendorService.GetVendors();
             return new JsonResult(vendorsNames);
         }
 
-        public JsonResult OnGetGetVendorId(string vendorName)
+        public async Task<JsonResult> OnGetGetVendorId(string vendorName)
         {
-            var vendorId = _vendor.GetVendorIdByName(vendorName);
+            var vendorId = await _vendorService.GetVendorIdByName(vendorName);
             return new JsonResult(vendorId);
         }
 

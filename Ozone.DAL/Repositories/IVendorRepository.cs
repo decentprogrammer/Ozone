@@ -6,7 +6,7 @@ namespace Ozone.DAL.Repositories
 {
     public interface IVendorRepository
     {
+        Task<int> GetVendorIdByName(string vendorName);
         Task<List<VendorDictionaryModel>> GetVendors();
-        int GetVendorIdByName(string vendorName);
     }
 }

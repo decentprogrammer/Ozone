@@ -80,7 +80,7 @@ namespace Ozone.UI.Areas.Identity.Pages.Account
             {
                 if (ModelState.IsValid)
                 {
-                    //throw new Exception("this is new exception");
+                    // throw new Exception("this is new exception");
                     // This doesn't count login failures towards account lockout
                     // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                     var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
@@ -110,11 +110,11 @@ namespace Ozone.UI.Areas.Identity.Pages.Account
             }
             catch (OzoneException ex)
             {
-                return RedirectToPage("Identity/Account/Error", ex.Message);
+                return RedirectToPage("/Error", ex.Message);
             }
             catch (Exception ex)
             {
-                return RedirectToPage("Identity/Account/Error", ex.Message);
+                return RedirectToPage("/Error", ex.Message);
             }
             
         }

@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ozone.BLL\Ozone.BLL.csproj" />
     <ProjectReference Include="..\Ozone.DAL\Ozone.DAL.csproj" />
     <ProjectReference Include="..\Ozone.Models\Ozone.Models.csproj" />
   </ItemGroup>

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Ozone.BLL;
 using Ozone.DAL;
 using Ozone.DAL.Hubs;
 using Ozone.DAL.Repositories;
@@ -46,14 +47,19 @@ namespace Ozone.UI
             .AddRazorRuntimeCompilation();
             services.AddSignalR();
 
-
+            #region Register Repositories
             services.AddTransient<IUnitRepository, UnitRepository>();
             services.AddTransient<IChecklistRepository, ChecklistRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IVendorRepository, VendorRepository>();
+            #endregion
+
+            #region Register Services
+            services.AddTransient<IVendorService, VendorService>();
+            services.AddTransient<IUserService, UserService>();
+            #endregion
 
             services.AddScoped<UserWidgetsDetails>();
-
             services.AddSingleton<ApplicationUserModel>();
             services.AddSingleton<EditUnitModel>();
             services.AddSingleton<ChecklistBuilderModel>();

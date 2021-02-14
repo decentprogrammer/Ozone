@@ -48,10 +48,10 @@ namespace Ozone.UI.Pages.Dashboard
             _userWidgetsDetails = userWidgetsDetails;
         }
 
-        public void OnGet()
+        public async Task OnGet()
         {
             UserDetails();
-            WidgetList = _userWidgetsDetails.UserWidgetSubscription(User);
+            WidgetList = await _userWidgetsDetails.UserWidgetSubscription(User);
         }
 
         public void UserAuthorizationByRole()
@@ -85,7 +85,7 @@ namespace Ozone.UI.Pages.Dashboard
             userFullName = fullName;
 
             unitName = await _user.GetUserUnitName(uId, User);
-            unitId = _user.GetUserUnitId(uId, User);
+            unitId = await _user.GetUserUnitId(uId, User);
         }
 
         public PartialViewResult OnGetChecklistModal()
@@ -126,7 +126,7 @@ namespace Ozone.UI.Pages.Dashboard
             await _checklist.UpdateChecklistElementDatailsAsync(ChecklistElementDetailsModel);
 
             UserDetails();
-            WidgetList = _userWidgetsDetails.UserWidgetSubscription(User);
+            WidgetList = await _userWidgetsDetails.UserWidgetSubscription(User);
             return new JsonResult(finalStatus);
         }
 
