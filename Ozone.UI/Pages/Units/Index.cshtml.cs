@@ -57,7 +57,7 @@ namespace Ozone.UI.Pages.Units
 
         private async Task FillAllUnitsAsync()
         {
-            unitsList = await _unit.GetAllUnitsAsync();
+            unitsList = await _unit.GetUnits();
         }
 
         public IActionResult OnGetUpdatePage()
@@ -81,14 +81,14 @@ namespace Ozone.UI.Pages.Units
             var unitCategoryId = Request.Form["unitCategoryId"];
 
             unitDataModel.ParentId = int.Parse(unitParentId);
-            unitDataModel.ParentName = _unit.GetUnitSingleRecordByUnitId(int.Parse(unitParentId)).EnglishName;
+            unitDataModel.ParentName = (await _unit.GetUnitById(Convert.ToInt32(unitParentId))).EnglishName;
             unitDataModel.UnitGuId = Guid.NewGuid();
 
             unitDataModel.Category = _unit.GetUnitCategorySingleRecordByCategoryId(int.Parse(unitCategoryId)).CategoryName;
 
-            await _unit.CreateNewUnitAsync(unitDataModel);
+            await _unit.CreateUnit(unitDataModel);
 
-            unitsList = await _unit.GetAllUnitsAsync();
+            unitsList = await _unit.GetUnits();
 
             await FillUnitCategoriesAsync();
         }
@@ -115,7 +115,7 @@ namespace Ozone.UI.Pages.Units
 
         public async Task<JsonResult> OnGetDetailsAsync(int unitId)
         {
-            unitDataModel = await _unit.GetUnitSingleRecordByUnitIdAsync(unitId);
+            unitDataModel = await _unit.GetUnitById(unitId);
 
             if (unitDataModel == null)
             {
@@ -134,7 +134,7 @@ namespace Ozone.UI.Pages.Units
         public async Task<PartialViewResult> OnGetUpdateUnitDataModelAsync(int unitId)
         {
             var path = "/Pages/Units/UnitsPartials/_Edit.cshtml";
-            unitSingleModel = await _unit.GetUnitSingleRecordByUnitIdAsync(unitId);
+            unitSingleModel = await _unit.GetUnitById(unitId);
 
             _inputToEditModel.Unit = unitSingleModel;
             _inputToEditModel.UnitCategories = unitCategories;

@@ -22,7 +22,7 @@ namespace Ozone.UI.Pages.Users
 
         public async Task<IActionResult> OnGet()
         {
-            applicationUsersList = await _user.GetUsersListAsync();
+            applicationUsersList = await _user.GetUsers();
 
             return Page();
         }

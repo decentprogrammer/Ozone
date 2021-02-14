@@ -27,7 +27,7 @@ namespace Ozone.UI.Pages.GeneralHandlers
 
         public async Task<JsonResult> OnGetGetAllUnitsAsync()
         {
-            var units = await _unit.GetAllUnitsAsync();
+            var units = await _unit.GetUnits();
 
             return new JsonResult(units);
         }
