@@ -1,0 +1,129 @@
+﻿@page
+@model Ozone.UI.Pages.Dashboard.IndexModel
+@*@inject IAntiforgery antiforgery
+    @{
+        var token = antiforgery.GetAndStoreTokens(HttpContext).RequestToken;
+    }*@
+@{
+    Layout = "_DashboardLayout";
+}
+
+
+<input hidden id="userUnitId" value="@Model.unitId" />
+<div class="dashboard-container w-container">
+    <div class="task-bar">
+        <div class="logo-box">
+            <a href="Index">
+                <img src="~/wf/images/Ozone-Logo-2.svg" width="100" alt="">
+            </a>
+        </div>
+        <div class="task-bar-add-button">
+            <a data-w-id="853122f1-0e7d-98fd-af31-d2946c85242a" href="#" id="addButton" class="add-button w-button">Add</a>
+        </div>
+        <div class="profile-name">
+            <div data-hover="" data-delay="0" class="profile-name-dropdown w-dropdown">
+                <div class="dropdown-toggle w-dropdown-toggle">
+                    <div class="w-icon-dropdown-toggle"></div>
+                    <div>@Model.userFullName</div>
+                </div>
+                <nav class="w-dropdown-list">
+                    <a href="#" class="w-dropdown-link">Link 1</a>
+                    <a href="#" class="w-dropdown-link">Link 2</a>
+                    <a href="#" class="w-dropdown-link">Link 3</a>
+                </nav>
+            </div>
+        </div>
+        <div class="notification-count">
+            <div class="notification-text">0</div>
+        </div>
+        <div class="notification">
+            <img src="~/wf/images/notifications-white-18dp.svg" width="30" height="" alt="">
+        </div>
+        <div class="profile-photo">
+            <img src="~/wf/images/Profile.svg" alt="">
+        </div>
+    </div>
+    <div class="dashboard-components-container">
+        @*Here is the workspace*@
+        @await Html.PartialAsync("./Widgets/_ChecklistWidget.cshtml");
+
+        <div>
+            <script src="~/p5/sketch/sketch.js" type="text/javascript"></script>
+        </div>
+    </div>
+
+    <div id="cards-modal" style="opacity:0" class="ozone-modal">
+        <div data-w-id="85af71b6-8377-cd55-6a78-3271f990766d" class="modal-close-bg"></div>
+        <div id="cards-container" class="ozone-modal-container widget-panel">
+            <a data-w-id="c6b6dd4e-5d4d-4f49-a37b-9922a00e0f16" href="#" class="close-modal-dash-button">×</a>
+            @{ if (Model.WidgetList.FirstOrDefault().ChecklistWidget == false)
+                {
+                    Model.Message = "Create";
+                    Model.Action = "gotoCreateChecklist()";
+                    @await Html.PartialAsync("./Cards/_ChecklistCard.cshtml");
+                }
+                else
+                {
+                    Model.Message = "Add";
+                    Model.Action = "";
+                    @await Html.PartialAsync("./Cards/_ChecklistCard.cshtml");
+                }
+            }
+        </div>
+    </div>
+    <div id="checklist-modal" style="opacity:0" class="ozone-modal-chcklist">
+        <div data-w-id="7c68f6a4-f298-268c-c581-b84eac8dce9e" class="modal-close-bg"></div>
+        @await Html.PartialAsync("./DashboardPartials/_DashChecklist.cshtml", Model.ChecklistElementDetailsModel);
+    </div>
+
+
+    @*<div class="ozone-modal" style="display:none;" id="ozoneModal">
+            <div data-w-id="85af71b6-8377-cd55-6a78-3271f990766d" class="modal-close-bg" onclick="hideOzoneModal()" id="modalCloseBg"></div>
+
+            <div class="ozone-modal-container  widget-panel" id="ozoneModalContainter">
+                @{ if (Model.WidgetList.FirstOrDefault().ChecklistWidget == false)
+                    {
+                        Model.Message = "Create";
+                        Model.Action = "gotoCreateChecklist()";
+                        @await Html.PartialAsync("./Cards/_ChecklistCard.cshtml");
+                    }
+                    else
+                    {
+                        Model.Message = "Add";
+                        Model.Action = "";
+                        @await Html.PartialAsync("./Cards/_ChecklistCard.cshtml");
+                    }
+
+                }
+
+            </div>
+
+        </div>*@
+
+
+
+    @*<div style="opacity:0; display:none;" id="ozoneChecklistModal" class="ozone-modal">
+
+        </div>*@
+
+</div>
+
+@*Special Code for Modal start Here*@
+
+<div id="AcceptModal" class="modal">
+    <span onclick="document.getElementById('AcceptModal').style.display='none'" class="close" title="Close Modal">×</span>
+    <form class="modal-content" action="/action_page.php">
+        <div class="container">
+            <h1>Close Fault Case</h1>
+            <p>Are you sure you want to close fault case?</p>
+            <br/>
+
+            <div class="clearfix">
+                <button type="button" onclick="document.getElementById('AcceptModal').style.display='none'" class="cancelbtn">Cancel</button>
+                <button type="button" onclick="document.getElementById('AcceptModal').style.display='none'" class="deletebtn">Yes</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

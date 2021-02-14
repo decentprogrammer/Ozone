@@ -1,0 +1,106 @@
+﻿@page
+@model Ozone.UI.Pages.Units.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>UnitModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.EnglishName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.EnglishName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.ArabicName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.ArabicName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.NameAbbreviation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.NameAbbreviation)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.Location)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.ResponsibleName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.ResponsibleName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.Telephone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.Telephone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.InternalTel_1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.InternalTel_1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.InternalTel_2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.InternalTel_2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.Mobile)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.Mobile)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.Fax)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.Fax)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.PersonToCantact)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.PersonToCantact)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UnitModel.ParentId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UnitModel.ParentId)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="UnitModel.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

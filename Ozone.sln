@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Domain Models", "1. Domain Models", "{C84D8336-21E9-4D21-B83B-6E23F14D86A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Data Access Layer", "2. Data Access Layer", "{7FD32C54-AA11-4791-85EF-94B10CD6883D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Business Logic Layer", "3. Business Logic Layer", "{DF3E3802-8147-4B90-857E-6ADF956F133F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. User Interface", "4. User Interface", "{02E8E80E-A2A9-458B-8790-DC9D0FCCDFD1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ozone.Models", "Ozone.Models\Ozone.Models.csproj", "{3A5B64D0-B5DF-4CE5-9A2C-7505503A6203}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ozone.DAL", "Ozone.DAL\Ozone.DAL.csproj", "{043A3BD2-FD1C-4E6C-9B87-22CDC94A8F0B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ozone.UI", "Ozone.UI\Ozone.UI.csproj", "{69F57C15-3AB4-4354-A305-810D219BDB6A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ozone.BLL", "Ozone.BLL\Ozone.BLL.csproj", "{740E1C95-21A4-4D13-B8CB-BB3BF4D72FB7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3A5B64D0-B5DF-4CE5-9A2C-7505503A6203}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A5B64D0-B5DF-4CE5-9A2C-7505503A6203}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A5B64D0-B5DF-4CE5-9A2C-7505503A6203}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A5B64D0-B5DF-4CE5-9A2C-7505503A6203}.Release|Any CPU.Build.0 = Release|Any CPU
+		{043A3BD2-FD1C-4E6C-9B87-22CDC94A8F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{043A3BD2-FD1C-4E6C-9B87-22CDC94A8F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{043A3BD2-FD1C-4E6C-9B87-22CDC94A8F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{043A3BD2-FD1C-4E6C-9B87-22CDC94A8F0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69F57C15-3AB4-4354-A305-810D219BDB6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69F57C15-3AB4-4354-A305-810D219BDB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69F57C15-3AB4-4354-A305-810D219BDB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69F57C15-3AB4-4354-A305-810D219BDB6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{740E1C95-21A4-4D13-B8CB-BB3BF4D72FB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{740E1C95-21A4-4D13-B8CB-BB3BF4D72FB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{740E1C95-21A4-4D13-B8CB-BB3BF4D72FB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{740E1C95-21A4-4D13-B8CB-BB3BF4D72FB7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3A5B64D0-B5DF-4CE5-9A2C-7505503A6203} = {C84D8336-21E9-4D21-B83B-6E23F14D86A1}
+		{043A3BD2-FD1C-4E6C-9B87-22CDC94A8F0B} = {7FD32C54-AA11-4791-85EF-94B10CD6883D}
+		{69F57C15-3AB4-4354-A305-810D219BDB6A} = {02E8E80E-A2A9-458B-8790-DC9D0FCCDFD1}
+		{740E1C95-21A4-4D13-B8CB-BB3BF4D72FB7} = {DF3E3802-8147-4B90-857E-6ADF956F133F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {052A86F0-BB48-4FCD-9938-351317DD5C4F}
+	EndGlobalSection
+EndGlobal

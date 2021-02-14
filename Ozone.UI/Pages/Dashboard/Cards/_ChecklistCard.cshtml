@@ -1,0 +1,22 @@
+﻿@model Ozone.UI.Pages.Dashboard.IndexModel
+@{
+    Layout = "_DashboardLayout";
+}
+<div class="ozone-widget-card-container">
+    <div class="widget-card-columns w-row">
+        <div class="widget-card-title-column w-col w-col-6">
+            <div class="text-block-4">CHECKLIST</div>
+            <div class="widget-icon">
+                <img src="~/wf/images/ChecklistIcon.svg" width="80" alt="" class="image-5">
+            </div>
+        </div>
+        <div class="widget-card-description-column w-col w-col-6">
+            <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis</p>
+        </div>
+    </div>
+    <div class="ozone-add-wedget-card-button">
+
+        <div onclick="@Model.Action" class="text-block-3">@Model.Message</div>
+
+    </div>
+</div>

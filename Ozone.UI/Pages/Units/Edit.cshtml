@@ -1,0 +1,100 @@
+﻿@page
+@model Ozone.UI.Pages.Units.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>UnitModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UnitModel.Id" />
+            <div class="form-group">
+                <label asp-for="UnitModel.EnglishName" class="control-label"></label>
+                <input asp-for="UnitModel.EnglishName" class="form-control" />
+                <span asp-validation-for="UnitModel.EnglishName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.ArabicName" class="control-label"></label>
+                <input asp-for="UnitModel.ArabicName" class="form-control" />
+                <span asp-validation-for="UnitModel.ArabicName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.NameAbbreviation" class="control-label"></label>
+                <input asp-for="UnitModel.NameAbbreviation" class="form-control" />
+                <span asp-validation-for="UnitModel.NameAbbreviation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.Location" class="control-label"></label>
+                <input asp-for="UnitModel.Location" class="form-control" />
+                <span asp-validation-for="UnitModel.Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.ResponsibleName" class="control-label"></label>
+                <input asp-for="UnitModel.ResponsibleName" class="form-control" />
+                <span asp-validation-for="UnitModel.ResponsibleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.Description" class="control-label"></label>
+                <input asp-for="UnitModel.Description" class="form-control" />
+                <span asp-validation-for="UnitModel.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.Email" class="control-label"></label>
+                <input asp-for="UnitModel.Email" class="form-control" />
+                <span asp-validation-for="UnitModel.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.Telephone" class="control-label"></label>
+                <input asp-for="UnitModel.Telephone" class="form-control" />
+                <span asp-validation-for="UnitModel.Telephone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.InternalTel_1" class="control-label"></label>
+                <input asp-for="UnitModel.InternalTel_1" class="form-control" />
+                <span asp-validation-for="UnitModel.InternalTel_1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.InternalTel_2" class="control-label"></label>
+                <input asp-for="UnitModel.InternalTel_2" class="form-control" />
+                <span asp-validation-for="UnitModel.InternalTel_2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.Mobile" class="control-label"></label>
+                <input asp-for="UnitModel.Mobile" class="form-control" />
+                <span asp-validation-for="UnitModel.Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.Fax" class="control-label"></label>
+                <input asp-for="UnitModel.Fax" class="form-control" />
+                <span asp-validation-for="UnitModel.Fax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.PersonToCantact" class="control-label"></label>
+                <input asp-for="UnitModel.PersonToCantact" class="form-control" />
+                <span asp-validation-for="UnitModel.PersonToCantact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitModel.ParentId" class="control-label"></label>
+                <input asp-for="UnitModel.ParentId" class="form-control" />
+                <span asp-validation-for="UnitModel.ParentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

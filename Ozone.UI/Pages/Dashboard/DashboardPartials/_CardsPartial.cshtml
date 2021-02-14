@@ -1,0 +1,18 @@
+﻿@model Ozone.UI.Pages.Dashboard.IndexModel
+<div class="ozone-modal-container  widget-panel" id="ozoneModalContainter">
+    @{ if (Model.WidgetList.FirstOrDefault().ChecklistWidget == false)
+        {
+            Model.Message = "Create";
+            Model.Action = "gotoCreateChecklist()";
+            @await Html.PartialAsync("./Cards/_ChecklistCard.cshtml");
+        }
+        else
+        {
+            Model.Message = "Add";
+            Model.Action = "";
+            @await Html.PartialAsync("./Cards/_ChecklistCard.cshtml");
+        }
+
+    }
+
+</div>

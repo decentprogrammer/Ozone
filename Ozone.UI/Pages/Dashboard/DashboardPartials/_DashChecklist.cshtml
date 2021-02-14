@@ -1,0 +1,383 @@
+﻿@model Ozone.Models.ChecklistElementDetailModel
+
+<div id="checklist-container" class="ozone-modal-checklist-container">
+    <a data-w-id="39843ca6-40a6-ca9b-09a2-67d9617eed69" href="#" class="close-modal-dash-button">×</a>
+    <div class="caregory-element-components-container">
+        <div class="main-checklist-components-body">
+            <div id="categoriesComponentsContainer" class="accordian-wrapper">
+                <div id="categoryItem" class="accordian-item">
+                    <div id="categoryComponent" class="accordian-item-trigger">
+                        <div id="CategoryComponent" class="component-body-2 category-component-body-margin">
+                            <div id="categoryCompTitle" class="category-title-container">
+                                <div class="category-text-block">Category title</div>
+                            </div>
+                            <div class="category-expand-button">
+                                <div class="text-block">Elements</div><img src="~/wf/images/details-white-18dp.svg" alt="" class="expand-icon">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="elementsComponentsContainer" class="accordian-content">
+                        <div id="elementComponent" class="element-component-body element-component-body-margin">
+                            <div class="element-category-title-container">
+                                <div id="elementCompTitle" class="element-title">Element Name Pascal Case</div>
+                                <div id="elementCompLocation" class="element-location">Element Location Pascal Case</div>
+                            </div>
+                            <div class="element-buttons-wraper">
+                                <div class="element-expand-button-2">
+                                    <div class="text-block">Details</div>
+                                    <input type="button" value="Details" class="text-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="category-children-container-2">
+        <div class="element-element-details-container">
+            <div class="element-element-details-tabs">
+                <div data-duration-in="300" data-duration-out="100" class="element-tabs w-tabs">
+                    <div class="element-tabs-menu w-tab-menu">
+                        <a data-w-tab="Tab 1" class="tab-link-2 w-inline-block w-tab-link w--current">
+                            <div class="element-text-block">Status</div>
+                        </a>
+                        <a data-w-tab="Tab 2" class="tab-link-2 w-inline-block w-tab-link">
+                            <div class="element-text-block">Fault</div>
+                        </a>
+                        <a data-w-tab="Tab 3" class="tab-link-2 w-inline-block w-tab-link">
+                            <div class="element-text-block element-position">Action</div>
+                        </a>
+                        <a data-w-tab="Tab 4" class="tab-link-2 w-inline-block w-tab-link">
+                            <div class="element-text-block">Details</div>
+                        </a>
+                    </div>
+                    <div class="tabs-content w-tab-content">
+                        <div data-w-tab="Tab 1" class="tab-pane-tab-1 w-tab-pane w--tab-active">
+                            <div class="element-status-container">
+                                <div id="w-node-66976d18d0b2-1be21589" class="element-status-top-container">
+                                    <div class="element-status-row-container">
+                                        <div class="element-status-title">
+                                            <div class="element-status-header">Category</div>
+                                        </div>
+                                        <div class="element-status-name">
+                                            <div id="categoryName" class="element-status-header">Category Name</div>
+                                        </div>
+                                    </div>
+                                    <div class="element-status-row-container">
+                                        <div class="element-status-title">
+                                            <div class="element-status-header">Element</div>
+                                        </div>
+                                        <div class="element-status-name">
+                                            <div id="elementName" class="element-status-header">Element Name</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="element-status-mid-container">
+                                    <div class="element-status-small-row-container">
+                                        <div class="element-status-title">
+                                            <div class="element-status-header">Status</div>
+                                        </div>
+                                        <div class="element-status-name">
+                                            <div id="elementStatus" class="element-status-indicator-text"></div>
+                                        </div>
+                                    </div>
+                                    <div class="element-status-small-row-container">
+                                        <div class="element-status-title">
+                                            <div class="element-status-header">Last Update</div>
+                                        </div>
+                                        <div class="element-status-name">
+                                            <div id="elementLastUpdate" class="element-status-indicator-text">8-8-2020</div>
+                                        </div>
+                                    </div>
+                                    <div class="element-status-small-row-container">
+                                        <div class="element-status-title">
+                                            <div class="element-status-header">Last MINT</div>
+                                        </div>
+                                        <div class="element-status-name">
+                                            <div id="elementLastMint" class="element-status-indicator-text">8-8-2020</div>
+                                        </div>
+                                    </div>
+                                    <div class="element-status-small-row-container">
+                                        <div class="element-status-title">
+                                            <div class="element-status-header">Next MINT</div>
+                                        </div>
+                                        <div class="element-status-name">
+                                            <div id="elementNexttMint" class="element-status-indicator-text">8-8-2020</div>
+                                        </div>
+                                    </div>
+                                    <div class="element-status-small-row-container">
+                                        <div class="element-status-title">
+                                            <div class="element-status-header">Installed</div>
+                                        </div>
+                                        <div class="element-status-name">
+                                            <div id="elementInstalled" class="element-status-indicator-text">8-8-2020</div>
+                                        </div>
+                                    </div>
+                                    <div class="element-status-small-row-container">
+                                        <div class="element-status-title">
+                                            <div class="element-status-header">Replace</div>
+                                        </div>
+                                        <div class="element-status-name">
+                                            <div id="elementReplace" class="element-status-indicator-text">8-8-2020</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="element-status-bottom-container">
+                                    <div class="element-status-graph-container"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-w-tab="Tab 2" class="tab-pane-tab-2 w-tab-pane">
+                            <div class="element-fault-container">
+                                <div class="w-form">
+                                    <form id="FaultForm" method="post" name="email-form" data-name="Email Form" class="form-3 w-clearfix">
+                                        <input type="hidden" asp-for="@Model.ElementId" id="ElementId" value="" />
+                                        <input type="hidden" asp-for="@Model.GuidId" id="ElementDetailsId" value="" />
+                                        <div class="element-status-row-container">
+                                            <div class="element-status-title">
+                                                <div class="element-status-header">Fault Type</div>
+                                            </div>
+                                            <div class="element-status-name">
+                                                <select asp-for="@Model.FaultType" id="FaultSelect" data-name="Fault Select" required="" class="select-field w-select">
+                                                    <option value="" selected disabled>Rank...</option>
+                                                    <option value="Power Outage">Power Outage</option>
+                                                    <option value="Disconnection">Disconnection</option>
+                                                    <option value="Hardware Failure">Hardware Failure</option>
+                                                    <option value="Software Failure">Software Failure</option>
+                                                    <option value="Network Failure">Network Failure</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="element-status-row-container">
+                                            <div class="element-status-title">
+                                                <div class="element-status-header">Other</div>
+                                            </div>
+                                            <div class="element-status-name">
+                                                <input type="text" asp-for="@Model.FaultOther" class="text-field w-input" required="" maxlength="256" data-name="FaultOther" placeholder="Other" id="FaultOther">
+                                            </div>
+                                        </div>
+                                        <div class="element-status-mid-container fault">
+                                            <div class="element-status-sm">
+                                                <div class="element-status-title">
+                                                    <div class="element-status-header">Start Date</div>
+                                                </div>
+                                                <div class="element-status-name">
+                                                    <input type="date" asp-for="@Model.StartEventDate" class="text-field w-input" required="" maxlength="200" data-name="Start Date" placeholder="Start Date" id="StartEventDate">
+                                                </div>
+                                            </div>
+                                            <div class="element-status-sm">
+                                                <div class="element-status-title">
+                                                    <div class="element-status-header">End Date</div>
+                                                </div>
+                                                <div class="element-status-name">
+                                                    <input type="date" asp-for="@Model.EndEventDate" onchange="closeFualtCase()" class="text-field w-input" maxlength="200" data-name="End Date" placeholder="End Date" id="FaultEndDate">
+                                                </div>
+                                            </div>
+                                            <div class="element-status-sm">
+                                                <div class="element-status-title">
+                                                    <div class="element-status-header">Start Time</div>
+                                                </div>
+                                                <div class="element-status-name">
+                                                    <input type="time" asp-for="@Model.StartEventHour" required="" class="text-field w-input" maxlength="200" data-name="Start Time" placeholder="Start Time" id="FaultStartTime">
+                                                </div>
+                                            </div>
+                                            <div class="element-status-sm">
+                                                <div class="element-status-title">
+                                                    <div class="element-status-header">End Time</div>
+                                                </div>
+                                                <div class="element-status-name">
+                                                    <input type="time" asp-for="@Model.EndEventHour" onchange="closeFualtCase()" class="text-field w-input" maxlength="200" data-name="End Time" placeholder="End Time" id="FaultEndTime">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="element-status-row-container">
+                                            <div class="element-status-title">
+                                                <div class="element-status-header">Desc</div>
+                                            </div>
+                                            <div class="element-status-name description-size">
+                                                <textarea asp-for="@Model.FaultDescription" required="" placeholder="Description" maxlength="5000" id="FaultDescription" data-name="Description" class="textarea w-input"></textarea>
+                                            </div>
+                                        </div>
+                                        <input onclick="addElementFaultDetails()" type="submit" value="Add" data-wait="Please wait..." class="fault-submit-button margin-top mar w-button" id="AddButton">
+                                        <div class="element-status-mid-container fault">
+                                            <div class="element-status-sm">
+                                                <div class="element-status-title">
+                                                    <div class="element-status-header">Public</div>
+                                                </div>
+                                                <div class="element-status-name">
+                                                    <label class="w-checkbox checkbox-field">
+                                                        <input type="checkbox" asp-for="@Model.PublicVisible" id="PublicCheckbox" data-name="Checkbox" class="w-checkbox-input"><span class="checkbox-label w-form-label">Visible</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    @*<div class="w-form-done">
+                                            <div>Thank you! Your submission has been received!</div>
+                                        </div>
+                                        <div class="w-form-fail">
+                                            <div>Oops! Something went wrong while submitting the form.</div>
+                                        </div>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div data-w-tab="Tab 3" class="tab-pane-tab-3 w-tab-pane">
+                            <div class="element-fault-container">
+                                <div class="w-form">
+                                    <form id="ActionForm" name="email-form" data-name="Email Form" class="form-3 w-clearfix">
+                                        @*<input type="hidden" asp-for="@Model.ElementId" id="ActionElementId" />*@
+
+                                        <input type="hidden" asp-for="@Model.FinalStatus" id="FinalStatus" value="" />
+                                        <div class="element-status-row-container">
+                                            <div class="element-status-title">
+                                                <div class="element-status-header">Action</div>
+                                            </div>
+                                            <div class="element-status-name">
+                                                <select asp-for="@Model.ActionType" id="ActionSelect" data-name="Action Select" required="" class="select-field w-select">
+                                                    <option value="" selected disabled>Action...</option>
+                                                    <option value="Repair">Repair</option>
+                                                    <option value="Replace">Replace</option>
+                                                    <option value="Other">Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="element-status-row-container">
+                                            <div class="element-status-title">
+                                                <div class="element-status-header">Other</div>
+                                            </div>
+                                            <div class="element-status-name">
+                                                <input type="text" asp-for="@Model.ActionOther" class="text-field w-input" maxlength="256" data-name="Fault Other 2" placeholder="Other" id="ActionOther">
+                                            </div>
+                                        </div>
+                                        <div class="element-status-row-container">
+                                            <div class="element-status-title">
+                                                <div class="element-status-header">Status</div>
+                                            </div>
+                                            <div class="element-status-name">
+                                                <select id="ActionStatusSelect" asp-for="@Model.Status" onchange="closeFualtCase()" data-name="Action Select 2" required="" class="select-field w-select">
+                                                    <option value="" selected disabled>Rank...</option>
+                                                    <option value="Pending">Pending</option>
+                                                    <option value="In Progress">In Progress</option>
+                                                    <option value="Great">Great</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="element-status-row-container">
+                                            <div class="element-status-title">
+                                                <div class="element-status-header">Desc</div>
+                                            </div>
+                                            <div class="element-status-name description-size">
+                                                <textarea asp-for="@Model.ResponseDescription" placeholder="Description" maxlength="5000" id="ActionDescription" data-name="Description 2" class="textarea w-input"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="element-status-row-container">
+                                            <div class="element-status-title">
+                                                <div class="element-status-header">Employees</div>
+                                            </div>
+                                            <div class="element-status-name">
+                                                <select id="ActionEmployessSelect" asp-for="@Model.EmployeesInvolved" data-name="Employess Select" required="" class="select-field w-select">
+                                                    <option value="">Select one...</option>
+                                                    <option value="First">First Choice</option>
+                                                    <option value="Second">Second Choice</option>
+                                                    <option value="Third">Third Choice</option>
+                                                </select>
+                                            </div>
+                                        </div><input type="submit" value="Update" onclick="updateElementFaultDetails()" data-wait="Please wait..." class="fault-submit-button margin-top w-button" id="UpdateButton">
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div data-w-tab="Tab 4" class="tab-pane-tab-4 w-tab-pane">
+                            <div class="element-fault-container">
+                                <div class="w-form">
+                                    <form id="ElementDetailsForm" name="email-form" data-name="Email Form" class="form-3">
+                                        <div class="element-status-row-container">
+                                            <div class="element-status-title">
+                                                <div class="element-status-header">Brand</div>
+                                            </div>
+                                            <div class="element-status-name">
+                                                <input type="text" class="text-field w-input" maxlength="256" name="Brand-Name" data-name="Brand Name" placeholder="Brand Name" id="BrandName">
+                                            </div>
+                                        </div>
+                                        <div class="element-status-row-container">
+                                            <div class="element-status-title">
+                                                <div class="element-status-header">Vendor</div>
+                                            </div>
+                                            <div class="element-status-name">
+                                                <input type="text" class="text-field w-input" maxlength="256" name="Vendor-Name" data-name="Vendor Name" placeholder="Vendor Name" id="Vendor-Name">
+                                            </div>
+                                        </div>
+                                        <div class="element-status-row-container">
+                                            <div class="element-status-title">
+                                                <div class="element-status-header">Email</div>
+                                            </div>
+                                            <div class="element-status-name">
+                                                <input type="text" class="text-field w-input" maxlength="256" name="FaultOther-2" data-name="Fault Other 2" placeholder="Other" id="VendorEmail">
+                                            </div>
+                                        </div>
+                                        <div class="element-status-mid-container fault">
+                                            <div class="element-status-sm">
+                                                <div class="element-status-title">
+                                                    <div class="element-status-header">Tel.</div>
+                                                </div>
+                                                <div class="element-status-name">
+                                                    <input type="text" class="text-field w-input" maxlength="256" name="Tel" data-name="Tel" placeholder="Tel" id="VendorTel">
+                                                </div>
+                                            </div>
+                                            <div class="element-status-sm">
+                                                <div class="element-status-title">
+                                                    <div class="element-status-header">Mobile</div>
+                                                </div>
+                                                <div class="element-status-name">
+                                                    <input type="text" class="text-field w-input" maxlength="256" name="Mobile" data-name="Mobile" placeholder="Mobile" id="VendorMobile">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="element-status-row-container">
+                                            <div class="element-status-title">
+                                                <div class="element-status-header">Details</div>
+                                            </div>
+                                            <div class="element-status-name description-size">
+                                                <textarea data-name="Element Details" maxlength="5000" id="ElementDetails" name="Element-Details" placeholder="Details" class="textarea w-input"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="element-last-row w-clearfix">
+                                            <input type="submit" value="Submit" data-wait="Please wait..." class="fault-submit-button w-button">
+                                        </div>
+                                    </form>
+                                    @*<div class="w-form-done">
+                                            <div>Thank you! Your submission has been received!</div>
+                                        </div>
+                                        <div class="w-form-fail">
+                                            <div>Oops! Something went wrong while submitting the form.</div>
+                                        </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="element-crud-panel">
+                <div onclick="resetFroms()" class="element-crud-button-2 element-save-button-round-sorner">
+                    <div class="element-button-text" onclick="resetFroms()">New</div>
+                </div>
+                <div class="element-crud-button-2">
+                    <div class="element-button-text">History</div>
+                </div>
+                <div class="element-crud-button-2">
+                    <div class="element-button-text">Map</div>
+                </div>
+                <div class="element-crud-button-2 element-last-round-corner">
+                    <div class="element-button-text">Help</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

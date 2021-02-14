@@ -1,0 +1,200 @@
+﻿@model Ozone.Models.UnitModel
+
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Unit Details</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <!--Body-->
+
+        <ul class="nav nav-tabs nav-justified md-tabs indigo" id="myTabJust" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="info-tab-just" data-toggle="tab" href="#info-just" role="tab" aria-controls="info-just"
+                   aria-selected="true">Unit info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="description-tab-just" data-toggle="tab" href="#description-just" role="tab" aria-controls="description-just"
+                   aria-selected="false">Description</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contact-tab-just" data-toggle="tab" href="#contact-just" role="tab" aria-controls="contact-just"
+                   aria-selected="false">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="location-tab-just" data-toggle="tab" href="#location-just" role="tab" aria-controls="location-just"
+                   aria-selected="false">Location</a>
+            </li>
+        </ul>
+        <div class="tab-content card pt-5" id="myTabContentJust">
+            <div class="tab-pane fade show active" id="info-just" role="tabpanel" aria-labelledby="info-tab-just">
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Info</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableDetailsBody">
+                            <tr id="tableTrDetails">
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="description-just" role="tabpanel" aria-labelledby="description-tab-just">
+                <p id="unitDesc">
+                   
+                </p>
+            </div>
+            <div class="tab-pane fade" id="contact-just" role="tabpanel" aria-labelledby="contact-tab-just">
+                <div class="container my-5 py-5 z-depth-1">
+
+                    <!--Section: Content-->
+                    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+
+                        <h3 class="font-weight-bold">Contact the Unit</h3>
+
+                        <p class="text-muted">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente
+                            molestiae <br>
+                            numquam quas, voluptates omnis nulla ea odio quia similique corrupti magnam, doloremque laborum.
+                        </p>
+
+                        <hr class="my-5">
+
+                        <!--Grid row-->
+                        <div class="row">
+
+                            <!--Grid column-->
+                            <div class="col-lg-5 col-md-12 mb-0 mb-md-0">
+
+                                <h4 class="font-weight-bold">Call or email</h4>
+
+                                <p class="text-muted mb-4">
+                                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente
+                                    molestiae.
+                                </p>
+
+                                <p class="font-weight-bold">Support:</p>
+
+                                <p class="mb-2">+ 800 123 456</p>
+
+                                <p class="mb-2"><a href="#">Contact support</a></p>
+
+                                <p class="mb-4">Our technical support is available by phone or email from 11am to 11pm.</p>
+
+                                <p class="font-weight-bold">Sales:</p>
+
+                                <p class="mb-2">+ 900 123 456</p>
+
+                                <p class="mb-2"><a href="#">Contact sales</a></p>
+
+                                <p class="mb-4">Our sales team is available by phone or email from 11am to 11pm.</p>
+
+                                <p class="font-weight-bold">General inquiries:</p>
+
+                                <p class="mb-2"><a href="#">info@mycompany.com</a></p>
+
+
+                            </div>
+                            <!--Grid column-->
+                            <!--Grid column-->
+                            <div class="col-lg-7 col-md-12 mb-4 mb-md-0">
+
+                                <!--Grid row-->
+                                <div class="row">
+
+                                    <!--Grid column-->
+                                    <div class="col-md-6">
+
+                                        <!-- Material outline input -->
+                                        <div class="md-form md-outline mb-0">
+                                            <input type="text" id="form-first-name" class="form-control">
+                                            <label for="form-first-name">First name</label>
+                                        </div>
+
+                                    </div>
+                                    <!--Grid column-->
+                                    <!--Grid column-->
+                                    <div class="col-md-6">
+
+                                        <!-- Material outline input -->
+                                        <div class="md-form md-outline mb-0">
+                                            <input type="text" id="form-last-name" class="form-control">
+                                            <label for="form-last-name">Last name</label>
+                                        </div>
+
+                                    </div>
+                                    <!--Grid column-->
+
+                                </div>
+                                <!--Grid row-->
+                                <!-- Material outline input -->
+                                <div class="md-form md-outline mt-3">
+                                    <input type="text" id="form-company" class="form-control">
+                                    <label for="form-company">Company name</label>
+                                </div>
+
+                                <!-- Material outline input -->
+                                <div class="md-form md-outline mt-3">
+                                    <input type="email" id="form-email" class="form-control">
+                                    <label for="form-email">E-mail</label>
+                                </div>
+
+                                <!-- Material outline input -->
+                                <div class="md-form md-outline mt-3">
+                                    <input type="number" id="form-number" class="form-control">
+                                    <label for="form-number">Phone</label>
+                                </div>
+
+                                <select class="browser-default custom-select" style="color: #757575bd">
+                                    <option selected>Select department</option>
+                                    <option value="1">Support</option>
+                                    <option value="2">Sales</option>
+                                    <option value="3">General</option>
+                                </select>
+
+                                <!-- Material outline input -->
+                                <div class="md-form md-outline">
+                                    <input type="text" id="form-subject" class="form-control">
+                                    <label for="form-subject">Subject</label>
+                                </div>
+
+                                <!--Material textarea-->
+                                <div class="md-form md-outline mb-3">
+                                    <textarea id="form-message" class="md-textarea form-control" rows="3"></textarea>
+                                    <label for="form-message">How we can help?</label>
+                                </div>
+
+                                <button type="submit" class="btn btn-info btn-sm ml-0">Submit<i class="far fa-paper-plane ml-2"></i></button>
+
+                            </div>
+                            <!--Grid column-->
+                        </div>
+                        <!--Grid row-->
+                    </section>
+                    <!--Section: Content-->
+                </div>
+            </div>
+            <div class="tab-pane fade" id="location-just" role="tabpanel" aria-labelledby="location-tab-just">
+                <p>
+                    Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro
+                    fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone
+                    skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings
+                    gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork
+                    biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl
+                    craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--Modal Footer-->
+    <div class="modal-footer">
+        <button type="button" class="btn btn-deep-purple btn-block" data-dismiss="modal">Close</button>
+    </div>
+</div>

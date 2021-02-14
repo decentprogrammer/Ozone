@@ -1,0 +1,83 @@
+﻿@page
+@model Ozone.UI.Pages.Units.CreateModel
+
+<div style="height: 130vh">
+    <div class="flex-center flex-column">
+
+        <h4>Create New Unit</h4>
+
+        <form method="post" id="createUnitForm" class="text-center border border-light p-5 needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="UnitModel.ArabicName" class="form-control" placeholder="Unit Arabic Name" required/>
+            </div>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <input asp-for="UnitModel.EnglishName" class="form-control" placeholder="Unit English Name" required />
+                </div>
+                <div class="col">
+                    <input asp-for="UnitModel.NameAbbreviation" class="form-control" placeholder="Unit Name Abbreviation" />
+                </div>
+            </div>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <input asp-for="UnitModel.ResponsibleName" class="form-control" placeholder="Unit Responsible Name" required />
+                </div>
+                <div class="col">
+                    <input asp-for="UnitModel.PersonToCantact" class="form-control" placeholder="Contact Person" />
+                </div>
+            </div>
+            <div class="md-form pb-3">
+                <input type="search" asp-for="UnitModel.Location" class="form-control mdb-autocomplete" id="location-autocomplete" placeholder="Unit Location" required/>
+                <button class="mdb-autocomplete-clear">
+                    <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="https://www.w3.org/2000/svg">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                        <path d="M0 0h24v24H0z" fill="none" />
+                    </svg>
+                </button>
+            </div>
+            <div class="form-group">
+                <textarea asp-for="UnitModel.Description" class="form-control" placeholder="Unit Description" required></textarea>
+            </div>
+            <div class="form-group">
+                <input type="email" asp-for="UnitModel.Email" class="form-control" placeholder="E-mail" required/>
+            </div>
+            <div class="form-group">
+                <input asp-for="UnitModel.Telephone" class="form-control" placeholder="Phone Number" />
+            </div>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <input asp-for="UnitModel.InternalTel_1" class="form-control" placeholder="Internal Phone (1)" />
+                </div>
+                <div class="col">
+                    <input asp-for="UnitModel.InternalTel_2" class="form-control" placeholder="Internal Phone (2)" />
+                </div>
+            </div>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <input asp-for="UnitModel.Mobile" class="form-control" placeholder="Mobile" />
+                </div>
+                <div class="col">
+                    <input asp-for="UnitModel.Fax" class="form-control" placeholder="Fax" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="UnitModel.ParentId" class="form-control" placeholder="Unit Parent Name" required/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-info btn-block" id="btnCreateUnit" />
+            </div>
+        </form>
+        <br />
+        <div>
+            <a asp-page="Index" class="btn btn-info btn-block">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

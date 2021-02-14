@@ -1,0 +1,65 @@
+﻿@model ChecklistCategoryModel
+
+
+<div class="category-panels-wraper-2">
+    <div class="description-panel">
+        <div class="element-panel-title-container">
+            <h1 class="element-panel-title">Create Categories</h1>
+        </div>
+        <div class="create-element-description">
+            <p class="element-panel-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+        </div>
+        <div class="element-panel-create-catgegory-container">
+            <a data-w-id="045df75c-bcc5-4745-73a9-37c1e159724e" href="#" class="form-button create-categories-button w-button">Create Elements</a>
+        </div>
+    </div>
+    <div class="form-container">
+        <div class="element-form w-form">
+            <form id="wf-form-Category-Form" name="wf-form-Category-Form" data-name="Category Form" method="post" class="form">
+                @Html.AntiForgeryToken()
+                <input asp-for="Id" type="hidden" id="categoryId" />
+                <div class="row">
+                    <span asp-validation-for="Name" class="text-danger smaller" style="color:red"></span>
+                    <input asp-for="Name" type="text" class="form-textbox w-input" placeholder="Category Name" />
+                </div>
+                <div class="row">
+                    <select id="Categories-Select-2" onchange="getSingleCategory(this)" data-name="Categories Select 2" required="" class="form-textbox select-style w-select">
+                        <option value="" disabled selected>Added Categories...</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <span asp-validation-for="PublicVisible" class="red-re text-danger small" style="color:red"></span>
+                    <div class=" form-wraper">
+                        <select asp-for="PublicVisible" data-name="Visibility" id="Visibility" required="" class="form-textbox select-style rank w-select">
+                            <option value="">Visibility...</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <span asp-validation-for="Description" class="red-re text-danger small" style="color:red"></span>
+                    <textarea asp-for="Description" maxlength="5000" id="Category-Description" placeholder="Category Description" required="" data-name="Category Description" class="form-textbox text-area-style w-input"></textarea>
+                </div>
+                <div class="crud-wraper">
+                    <button id="createCategory" class="form-button crud-button w-button">Save</button>
+
+                    <input type="button" id="editCategoryBtn" onclick="updateCategory()" class="form-button crud-button w-button" value="Edit" disabled />
+                    <input type="button" id="deleteCategoryBtn" onclick="deleteCategory()" class="form-button crud-button w-button" value="Delete" disabled />
+                </div>
+            </form>
+            <div class="w-form-done">
+                <div>Thank you! Your submission has been received!</div>
+            </div>
+            <div class="w-form-fail">
+                <div>Oops! Something went wrong while submitting the form.</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="~/js/jquery.js"></script>
+<script src="~/js/jquery.validate.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.js"></script>

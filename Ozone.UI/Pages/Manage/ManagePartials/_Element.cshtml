@@ -1,0 +1,110 @@
+﻿@model ChecklistElementModel
+
+<div class="element-panels-wraper-2">
+    <div class="description-panel">
+        <div class="element-panel-title-container">
+            <h1 class="element-panel-title">Create Elements</h1>
+        </div>
+        <div class="create-element-description">
+            <p class="element-panel-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere.</p>
+        </div>
+        <div class="element-panel-create-catgegory-container">
+            <a data-w-id="78ec9768-5a20-1168-366f-29b327f7b482" href="#" class="form-button create-categories-button w-button">
+                <span>Create Categories</span>
+            </a>
+            <a onclick="openCategoriesModal()" id="openChecklistModal" data-w-id="045df75c-bcc5-4745-73a9-37c1e159726e" href="#" class="form-button create-categories-button w-button">Preview</a>
+        </div>
+    </div>
+    <div class="form-container">
+        <form id="wf-form-Element-Form" name="wf-form-Element-Form" data-name="Element Form" method="post" class="create-element-form">
+            <input type="hidden" id="elementId" asp-for="Id" />
+            <input type="hidden" id="vendorId" asp-for="VendorId" />
+            <div class="row">
+                <span asp-validation-for="Name" class="text-danger smaller" style="color:red"></span>
+                <input type="text" asp-for="Name" id="elementNameTextbox" class="form-textbox w-input" maxlength="256" data-name="Element Name Textbox 2" placeholder="Element Name" required />
+            </div>
+            <div class="row">
+                <span asp-validation-for="VendorName" class="text-danger smaller" style="color:red"></span>
+                <input type="text" asp-for="VendorName" id="vendorName" class="form-textbox w-input" autofocus data-name="Vendor Name" placeholder="Vendor Name" required />
+            </div>
+            <div class="row">
+                <span asp-validation-for="BrandName" class="text-danger smaller" style="color:red"></span>
+                <input type="text" asp-for="BrandName" class="form-textbox w-input" autofocus maxlength="256" data-name="BrandName" placeholder="Brand Name" id="BrandName" required />
+            </div>
+            <div class="form-wraper">
+                <div class="row">
+                    <span asp-validation-for="Installed" class="text-danger smaller" style="color:red"></span>
+                    <input type="date" asp-for="Installed" class="form-textbox no-marigin w-input" autofocus maxlength="256" data-name="Element Installed" placeholder="Install Date" id="ElementInstalled" required="">
+                </div>
+                <div class="row">
+                    <span asp-validation-for="Replace" class="text-danger smaller" style="color:red"></span>
+                    <input type="date" asp-for="Replace" class="form-textbox no-marigin w-input" autofocus maxlength="256" data-name="Element Replace" placeholder="Replace Date" id="ElementReplace" required="">
+                </div>
+            </div>
+            <div class="form-wraper">
+                <div class="row">
+                    <span asp-validation-for="Location" class="text-danger smaller" style="color:red"></span>
+                    <select asp-for="Location" id="elementLocation" data-name="Element Location" required="" class="form-textbox select-style rank w-node-9a2c4cd8db4e-eb269b6a w-select">
+                        <option value="" selected disabled>Location...</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <span asp-validation-for="RoomNumber" class="text-danger smaller" style="color:red"></span>
+                    <input asp-for="RoomNumber" type="text" id="elementRoomTextbox" class="form-textbox no-marigin w-input" maxlength="256" data-name="Element Room Textbox" placeholder="Room Number" required="">
+                </div>
+            </div>
+            <div class="form-wraper">
+                <div class="row">
+                    <span asp-validation-for="CartegoryId" class="text-danger smaller" style="color:red"></span>
+                    <select asp-for="CartegoryId" onchange="getAddedElementsList(this)" id="elementCategory" data-name="Categories Select 2" required="" class="form-textbox select-style w-select no-margins">
+                        <option value="" selected disabled>Select Category...</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <span asp-validation-for="Name" class="text-danger smaller" style="color:red"></span>
+                    <select onchange="getSingleElement(this)" asp-for="Name" id="elementAdded" data-name="Categories Select 2" required="" class="form-textbox select-style w-select no-margins">
+                        <option value="" selected disabled>Added Elements...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-wraper">
+                <div class="row">
+                    <span asp-validation-for="ElementRank" class="text-danger smaller" style="color:red"></span>
+                    <select asp-for="ElementRank" id="elementRank" data-name="Element Rank 2" required="" class="form-textbox select-style rank w-select">
+                        <option value="" selected disabled>Rank...</option>
+                        <option value="1">First</option>
+                        <option value="2">Second</option>
+                        <option value="3">Third</option>
+                        <option value="4">Fourth</option>
+                        <option value="5">Fifth</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <span asp-validation-for="PublicVisible" class="text-danger smaller" style="color:red"></span>
+                    <select asp-for="PublicVisible" id="elementVisibility" data-name="Visibility" required="" class="form-textbox select-style rank w-select">
+                        <option value="" selected disabled>Visibility...</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+            </div>
+            <textarea asp-for="Description" maxlength="5000" id="elementDescription" placeholder="Element Description" required="" autofocus data-name="Field 2" class="form-textbox text-area-style w-input"></textarea>
+            <div class="crud-wraper">
+                <button id="createCategory" class="form-button crud-button w-button" onclick="saveElement()">Save</button>
+                <a onclick="updateElement()" class="form-button crud-button w-button">Edit</a>
+                <a onclick="deleteElement()" class="form-button crud-button w-button">Delete</a>
+                <a href="#" class="form-button crud-button w-button">Help</a>
+            </div>
+        </form>
+        <div class="w-form-done">
+            <div>Thank you! Your submission has been received!</div>
+        </div>
+        <div class="w-form-fail">
+            <div>Oops! Something went wrong while submitting the form.</div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/jquery.js"></script>
+<script src="~/js/jquery.validate.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.js"></script>

@@ -1,0 +1,303 @@
+﻿@page
+@model RegisterModel
+<div class="container my-5 py-5 z-depth-1">
+
+
+    <!--Section: Content-->
+    <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
+
+        <h3 class="font-weight-bold">Sign up</h3>
+
+        <p class="text-muted">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente
+            molestiae <br>
+            numquam quas, voluptates omnis nulla ea odio quia similique corrupti magnam, doloremque laborum.
+        </p>
+
+        <hr class="my-5">
+
+        <!--Grid row-->
+        <div class="row">
+
+            <!--Grid column-->
+            <div class="col-lg-5 col-md-12 mb-0 mb-md-0">
+
+                <h4 class="font-weight-bold">Call or email</h4>
+
+                <p class="text-muted mb-4">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id quam sapiente
+                    molestiae.
+                </p>
+
+                <p class="font-weight-bold">Support:</p>
+
+                <p class="mb-2">+ 800 123 456</p>
+
+                <p class="mb-2"><a href="#">Contact support</a></p>
+
+                <p class="mb-4">Our technical support is available by phone or email from 11am to 11pm.</p>
+
+                <p class="font-weight-bold">Sales:</p>
+
+                <p class="mb-2">+ 900 123 456</p>
+
+                <p class="mb-2"><a href="#">Contact sales</a></p>
+
+                <p class="mb-4">Our sales team is available by phone or email from 11am to 11pm.</p>
+
+                <p class="font-weight-bold">General inquiries:</p>
+
+                <p class="mb-2"><a href="#">info@mycompany.com</a></p>
+
+
+            </div>
+            <!--Grid column-->
+            <!--Grid column-->
+            <div class="col-lg-7 col-md-12 mb-4 mb-md-0">
+                <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    @Html.AntiForgeryToken()
+                    <!--Grid row-->
+                    <div class="row">
+
+                        <!--Grid column-->
+                        <div class="col-md-4">
+                            <!-- Material outline input -->
+                            <div class="md-form md-outline mb-0">
+                                <input type="text" asp-for="Input.FirstName" id="form-first-name" class="form-control">
+                                <label for="form-first-name">First name</label>
+                                <span asp-validation-for="Input.FirstName" class="text-danger small"></span>
+                            </div>
+
+                        </div>
+                        <!--Grid column-->
+                        <!--Grid column-->
+                        <div class="col-md-4">
+
+                            <!-- Material outline input -->
+                            <div class="md-form md-outline mb-0">
+                                <input type="text" asp-for="Input.MiddleName" id="form-middle-name" class="form-control">
+                                <label for="form-middle-name">Middle name</label>
+                                <span asp-validation-for="Input.MiddleName" class="text-danger small"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <!-- Material outline input -->
+                            <div class="md-form md-outline mb-0">
+                                <input type="text" asp-for="Input.LastName" id="form-last-name" class="form-control">
+                                <label for="form-last-name">Last name</label>
+                                <span asp-validation-for="Input.LastName" class="text-danger small"></span>
+                            </div>
+
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                    <!--Grid row-->
+                    <!-- Material outline input -->
+                    <div class="md-form md-outline mt-3">
+                        <input type="text" asp-for="Input.CivilId" id="form-civil-id" class="form-control">
+                        <label for="form-civil-id">Civil Id Number</label>
+                        <span asp-validation-for="Input.CivilId" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Material outline input -->
+                    <div id="form-phone-name" class="md-form md-outline mt-3">
+                        <input type="number" asp-for="Input.Phone" id="form-phone" class="form-control">
+                        <label for="form-phone">Phone</label>
+                        <span asp-validation-for="Input.Phone" class="text-danger small"></span>
+                    </div>
+
+                    <select asp-for="Input.OrgzCategoryId" id="form-organization-name" onchange="displayOrganizationCategories(this)" class="browser-default custom-select" style="color: #35a7ff">
+                    </select>
+
+                    <div id="form-organization-select" class="mt-3" style="display:none;">
+
+                        <div id="form-management-name">
+                            <select id="form-management-select" class="browser-default custom-select" style="color: #35a7ff">
+                                <option selected>Select Managment</option>
+                            </select>
+                        </div>
+                        <div id="form-sector-name" class="mt-3">
+                            <select id="form-sector-select" onchange="getAllUnitsByParentName(this)" class="browser-default custom-select" style="color: #35a7ff">
+                                <option selected>Select Sector</option>
+                            </select>
+                        </div>
+                        <div id="form-department-name" class="mt-3">
+                            <select id="form-department-select" onchange="getAllUnitsByParentName(this)" class="browser-default custom-select" style="color: #35a7ff">
+                                <option selected>Select Department</option>
+                            </select>
+                        </div>
+                        <div id="form-superintendence-name" class="mt-3">
+                            <select id="form-superintendence-select" onchange="getAllUnitsByParentName(this)" class="browser-default custom-select" style="color: #35a7ff">
+                                <option selected>Select Superintendence</option>
+                            </select>
+                        </div>
+                        <div id="form-section-name" class="mt-3">
+                            <select id="form-section-select" class="browser-default custom-select" style="color: #35a7ff">
+                                <option selected>Select Section</option>
+                            </select>
+                        </div>
+                        <div id="form-workteam-name" class="mt-3">
+                            <select id="form-workteam-select" class="browser-default custom-select" style="color: #35a7ff">
+                            </select>
+                        </div>
+                        <div id="form-committee-name" class="mt-3">
+                            <select id="form-committee-select" class="browser-default custom-select" style="color: #35a7ff">
+                            </select>
+                        </div>
+                        <div id="form-airline-name" class="mt-3">
+                            <select id="form-airline-select" class="browser-default custom-select" style="color: #35a7ff">
+                            </select>
+                        </div>
+                        <div id="form-Consultant-name" class="mt-3">
+                            <select id="form-Consultant-select" class="browser-default custom-select" style="color: #35a7ff">
+                            </select>
+                        </div>
+                        <div id="form-other-name" class="mt-3">
+                            <select id="form-other-select" class="browser-default custom-select" style="color: #35a7ff">
+                            </select>
+                        </div>
+                        <div id="form-unit-name" class="mt-3">
+                            <select asp-for="Input.UnitId" id="form-unit-select" class="browser-default custom-select" style="color: #35a7ff">
+                            </select>
+                        </div>
+                        <div id="form-role-name" class="mt-3">
+                            <select asp-for="Input.Role" id="form-role-select" class="browser-default custom-select" style="color: #35a7ff">
+                                <option selected disabled>Select Role</option>
+                                <option value="Head">Unit Head</option>
+                                <option value="Member">Unit Member</option>
+                            </select>
+                        </div>
+                        <div id="form-active-name" class="mt-3">
+                            <select asp-for="Input.Active" id="form-active-select" class="browser-default custom-select" style="color: #35a7ff">
+                                <option selected disabled>Select Activation Status</option>
+                                <option value="true">Active</option>
+                                <option style="color: #e63946" value="false">Inactive</option>
+                            </select>
+                        </div>
+                        <div id="form-auth-name" class="mt-3">
+                            <select asp-for="@Model.Authorization" id="form-auth-select" class="browser-default custom-select" style="color: #35a7ff">
+                                <option selected disabled>Select Authorization</option>
+                                <option value="Administrator">Administrator</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Manager">Manager</option>
+                                <option value="User">User</option>
+                                <option value="Guest">Guest</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    @*<div id="form-other-categories" style="display:none;">
+            <div id="form-other-name" class="md-form md-outline mt-3">
+                <input type="text" id="form-other" class="form-control">
+                <label for="form-othere">Other</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+        </div>*@
+
+                    <!-- Material outline input -->
+                    <div class="md-form md-outline mt-3">
+                        <input type="email" asp-for="Input.Email" id="form-email" class="form-control">
+                        <label for="form-email">E-mail</label>
+                        <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Material outline input -->
+                    <div class="md-form md-outline mt-3">
+                        <input type="text" asp-for="Input.Password" id="form-password" class="form-control">
+                        <label for="form-password">Password</label>
+                        <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Material outline input -->
+                    <div class="md-form md-outline mt-3">
+                        <input type="text" asp-for="Input.ConfirmPassword" id="form-confirm-password" class="form-control">
+                        <label for="form-confirm-password">Confirm password</label>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-info btn-sm ml-0">Submit<i class="far fa-paper-plane ml-2"></i></button>
+                </form>
+            </div>
+            <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+
+    </section>
+    <!--Section: Content-->
+
+
+</div>
+
+
+
+@*<div class="row">
+        <div class="col-md-4">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <h4>Create a new account.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+        <div class="col-md-6 col-md-offset-2">
+            <section>
+                <h4>Use another service to register.</h4>
+                <hr />
+                @{
+                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                    {
+                        <div>
+                            <p>
+                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                for details on setting up this ASP.NET application to support logging in via external services.
+                            </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                            <div>
+                                <p>
+                                    @foreach (var provider in Model.ExternalLogins)
+                                    {
+                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                    }
+                                </p>
+                            </div>
+                        </form>
+                    }
+                }
+            </section>
+        </div>
+    </div>*@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/register.js" type="text/javascript"></script>
+}
