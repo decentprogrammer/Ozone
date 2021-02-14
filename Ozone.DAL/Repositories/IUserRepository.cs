@@ -9,7 +9,7 @@ namespace Ozone.DAL.Repositories
     {
         string GetUserFullNameByUserAndId(string UserId, ClaimsPrincipal user);
         bool GetUserRoleByUser(ClaimsPrincipal user, string role);
-        Task<List<ApplicationUserModel>> GetUsersListAsync();
+        Task<List<ApplicationUserModel>> GetUsers();
         int GetUserUnitId(string UserId, ClaimsPrincipal user);
         string GetUserUnitName(string UserId, ClaimsPrincipal user);
     }

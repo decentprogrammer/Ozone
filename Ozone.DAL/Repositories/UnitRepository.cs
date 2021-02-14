@@ -50,7 +50,7 @@ namespace Ozone.DAL.Repositories
             catch (Exception ex)
             {
                 throw new Exception("Error in Getting Units Information", ex);
-            }            
+            }
         }
 
         public IList<UnitModel> GetAllUnits()
@@ -72,7 +72,7 @@ namespace Ozone.DAL.Repositories
             }
         }
 
-        
+
         public async Task<UnitModel> GetUnitById(int Id)
         {
             try

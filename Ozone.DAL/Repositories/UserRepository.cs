@@ -24,11 +24,17 @@ namespace Ozone.DAL.Repositories
             _unit = unit;
         }
 
-        public async Task<List<ApplicationUserModel>> GetUsersListAsync()
+        public async Task<List<ApplicationUserModel>> GetUsers()
         {
-            var users = await _db.ApplicationUsersTable.ToListAsync();
-
-            return users;
+            try
+            {
+                var users = await _db.ApplicationUsersTable.ToListAsync();
+                return users;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in Fetching Users Information from Database", ex);
+            }
         }
 
         public string GetUserFullNameByUserAndId(string UserId, ClaimsPrincipal user)
@@ -47,7 +53,7 @@ namespace Ozone.DAL.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in Getting User Information", ex);
+                throw new Exception("Error in Fetching User Information from Database", ex);
             }
         }
 
@@ -66,7 +72,7 @@ namespace Ozone.DAL.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in Getting User Information", ex);
+                throw new Exception("Error in Fetching User Information", ex);
             }
         }
 
@@ -82,7 +88,7 @@ namespace Ozone.DAL.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in Getting User Information", ex);
+                throw new Exception("Error in Fetching User Information", ex);
             }
         }
 
@@ -98,7 +104,7 @@ namespace Ozone.DAL.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in Getting User Information", ex);
+                throw new Exception("Error in Fetching User Information", ex);
             }
         }
 

@@ -10,17 +10,15 @@ namespace Ozone.DAL.Repositories
         IList<UnitModel> UnitListModel { get; set; }
         UnitModel UnitModel { get; set; }
 
-        void CreateNewUnit(UnitModel unitModel);
-        Task CreateNewUnitAsync(UnitModel unitModel);
+        Task<bool> CreateUnit(UnitModel unitModel);
         Task<List<UnitModel>> GetAllUnitByCategoryNameAsync(string categoryName);
         IList<UnitCategoryModel> GetAllUnitCategories();
         Task<IList<UnitCategoryModel>> GetAllUnitCategoriesAsync();
         IList<UnitModel> GetAllUnits();
-        Task<IList<UnitModel>> GetAllUnitsAsync();
         Task<List<UnitModel>> GetAllUnitsByParentNameAsync(string parentName);
+        Task<UnitModel> GetUnitById(int Id);
         UnitCategoryModel GetUnitCategorySingleRecordByCategoryId(int Id);
-        UnitModel GetUnitSingleRecordByUnitId(int Id);
-        Task<UnitModel> GetUnitSingleRecordByUnitIdAsync(int Id);
+        Task<IList<UnitModel>> GetUnits();
         Task UnitUpdateAsync(int Id, UnitModel unitModel);
     }
 }
