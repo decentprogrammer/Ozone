@@ -57,6 +57,8 @@ namespace Ozone.UI
             #region Register Services
             services.AddTransient<IVendorService, VendorService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUnitService, UnitService>();
+            services.AddTransient<IChecklistService, ChecklistService>();
             #endregion
 
             services.AddScoped<UserWidgetsDetails>();
