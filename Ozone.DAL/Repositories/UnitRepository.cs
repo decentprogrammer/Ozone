@@ -16,14 +16,16 @@ namespace Ozone.DAL.Repositories
 
         Task<bool> CreateUnit(UnitModel unitModel);
         Task<List<UnitModel>> GetAllUnitByCategoryNameAsync(string categoryName);
-        IList<UnitCategoryModel> GetAllUnitCategories();
+        Task<IList<UnitCategoryModel>> GetAllUnitCategories();
         Task<IList<UnitCategoryModel>> GetAllUnitCategoriesAsync();
-        IList<UnitModel> GetAllUnits();
+        Task<IList<UnitModel>> GetAllUnits();
         Task<List<UnitModel>> GetAllUnitsByParentNameAsync(string parentName);
         Task<UnitModel> GetUnitById(int Id);
-        UnitCategoryModel GetUnitCategorySingleRecordByCategoryId(int Id);
+        Task<UnitCategoryModel> GetUnitCategorySingleRecordByCategoryId(int Id);
         Task<IList<UnitModel>> GetUnits();
-        Task UnitUpdateAsync(int Id, UnitModel unitModel);
+        Task<bool> UnitUpdateAsync(int Id, UnitModel unitModel);
+        Task<bool> UnitModelExists(int id);
+        Task<bool> RemoveUnit(int? id);
     }
     public class UnitRepository : IUnitRepository
     {
@@ -47,7 +49,21 @@ namespace Ozone.DAL.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in New Unit Creation", ex);
+                throw new Exception("Error in New UnitModel Creation", ex);
+            }
+        }
+
+        public async Task<bool> RemoveUnit(int? id)
+        {
+            try
+            {
+                var unit = await GetUnitById(Convert.ToInt32(id));
+                _db.UnitsTable.Remove(unit);
+                return await _db.SaveChangesAsync() > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in New UnitModel Creation", ex);
             }
         }
 
@@ -70,7 +86,7 @@ namespace Ozone.DAL.Repositories
             }
         }
 
-        public IList<UnitModel> GetAllUnits()
+        public async Task<IList<UnitModel>> GetAllUnits()
         {
             try
             {
@@ -78,7 +94,7 @@ namespace Ozone.DAL.Repositories
 
                 if (unitCount > 0)
                 {
-                    UnitListModel = _db.UnitsTable.ToList();
+                    UnitListModel = await _db.UnitsTable.ToListAsync();
                 }
 
                 return UnitListModel;
@@ -100,15 +116,15 @@ namespace Ozone.DAL.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in Getting Unit Information", ex);
+                throw new Exception("Error in Getting UnitModel Information", ex);
             }
         }
 
-        public UnitCategoryModel GetUnitCategorySingleRecordByCategoryId(int Id)
+        public async Task<UnitCategoryModel> GetUnitCategorySingleRecordByCategoryId(int Id)
         {
             try
             {
-                var unitCategory = _db.UnitCategoryTable.FirstOrDefault(c => c.Id == Id);
+                var unitCategory = await _db.UnitCategoryTable.FirstOrDefaultAsync(c => c.Id == Id);
                 return unitCategory;
             }
             catch (Exception ex)
@@ -130,11 +146,11 @@ namespace Ozone.DAL.Repositories
             }
         }
 
-        public IList<UnitCategoryModel> GetAllUnitCategories()
+        public async Task<IList<UnitCategoryModel>> GetAllUnitCategories()
         {
             try
             {
-                UnitCategories = _db.UnitCategoryTable.ToList();
+                UnitCategories = await _db.UnitCategoryTable.ToListAsync();
                 return UnitCategories;
             }
             catch (Exception ex)
@@ -143,54 +159,52 @@ namespace Ozone.DAL.Repositories
             }
         }
 
-        public async Task UnitUpdateAsync(int Id, UnitModel unitModel)
+        public async Task<bool> UnitUpdateAsync(int Id, UnitModel unitModel)
         {
-            var UnitToEdit = await _db.UnitsTable.FirstOrDefaultAsync(c => c.Id == Id);
-
-            UnitToEdit.ArabicName = unitModel.ArabicName;
-            UnitToEdit.EnglishName = unitModel.EnglishName;
-            UnitToEdit.NameAbbreviation = unitModel.NameAbbreviation;
-            UnitToEdit.Description = unitModel.Description;
-            UnitToEdit.Email = unitModel.Email;
-            UnitToEdit.Mobile = unitModel.Mobile;
-            UnitToEdit.Telephone = unitModel.Telephone;
-            UnitToEdit.Fax = unitModel.Fax;
-            UnitToEdit.InternalTel_1 = unitModel.InternalTel_1;
-            UnitToEdit.InternalTel_2 = unitModel.InternalTel_2;
-            UnitToEdit.Category = unitModel.Category;
-            UnitToEdit.Location = unitModel.Location;
-            UnitToEdit.ParentId = unitModel.ParentId;
-            UnitToEdit.ParentName = unitModel.ParentName;
-            UnitToEdit.PersonToCantact = unitModel.PersonToCantact;
-            UnitToEdit.ResponsibleName = unitModel.ResponsibleName;
-
+            bool status = false;
             try
             {
-                await _db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                if (!UnitModelExists(UnitModel.Id))
-                {
-                    //return NotFound();
-                }
-                else
-                {
-                    throw new Exception("Error in Updating Unit Data", ex);
-                }
-            }
+                var UnitToEdit = await _db.UnitsTable.FirstOrDefaultAsync(c => c.Id == Id);
 
-        }
+                UnitToEdit.ArabicName = unitModel.ArabicName;
+                UnitToEdit.EnglishName = unitModel.EnglishName;
+                UnitToEdit.NameAbbreviation = unitModel.NameAbbreviation;
+                UnitToEdit.Description = unitModel.Description;
+                UnitToEdit.Email = unitModel.Email;
+                UnitToEdit.Mobile = unitModel.Mobile;
+                UnitToEdit.Telephone = unitModel.Telephone;
+                UnitToEdit.Fax = unitModel.Fax;
+                UnitToEdit.InternalTel_1 = unitModel.InternalTel_1;
+                UnitToEdit.InternalTel_2 = unitModel.InternalTel_2;
+                UnitToEdit.Category = unitModel.Category;
+                UnitToEdit.Location = unitModel.Location;
+                UnitToEdit.ParentId = unitModel.ParentId;
+                UnitToEdit.ParentName = unitModel.ParentName;
+                UnitToEdit.PersonToCantact = unitModel.PersonToCantact;
+                UnitToEdit.ResponsibleName = unitModel.ResponsibleName;
 
-        private bool UnitModelExists(int id)
-        {
-            try
-            {
-                return _db.UnitsTable.Any(e => e.Id == id);
+
+                status = (await _db.SaveChangesAsync() > 0);
+                return status;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in Getting Unit Information", ex);
+                throw new Exception("Error in Updating UnitModel Data", ex);
+            }
+
+            
+
+        }
+
+        public async Task<bool> UnitModelExists(int id)
+        {
+            try
+            {
+                return (await _db.UnitsTable.AnyAsync(e => e.Id == id));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in Getting UnitModel Information", ex);
             }
         }
 

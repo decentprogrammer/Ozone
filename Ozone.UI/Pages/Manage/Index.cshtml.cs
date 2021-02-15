@@ -14,16 +14,16 @@ namespace Ozone.UI.Pages.Manage
     public class IndexModel : PageModel
     {
 
-        private readonly IChecklistRepository _checklist;
+        private readonly IChecklistService _checklistService;
         private readonly IUserService _userService;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IVendorService _vendorService;
 
         public int userUnitId { get; set; }
 
-        public IndexModel(IChecklistRepository checklist, IUserService userService, UserManager<IdentityUser> userManager, IVendorService vendor)
+        public IndexModel(IChecklistService checklistService, IUserService userService, UserManager<IdentityUser> userManager, IVendorService vendor)
         {
-            _checklist = checklist;
+            _checklistService = checklistService;
             _userService = userService;
             _userManager = userManager;
             _vendorService = vendor;
@@ -65,41 +65,43 @@ namespace Ozone.UI.Pages.Manage
 
             var catModel = categoryModel;
 
-            await _checklist.CreateNewChecklistCategoryAsync(catModel, uid);
+            await _checklistService.CreateNewChecklistCategoryAsync(catModel, uid);
 
         }
 
-        public async Task OnPostDeleteCategoryAsync(int categoryId)
+        public async Task<bool> OnPostDeleteCategoryAsync(int categoryId)
         {
-            await _checklist.DeleteChecklistCategoryById(categoryId);
+            var status = await _checklistService.DeleteChecklistCategoryById(categoryId);
+            return status;
         }
 
-        public async Task OnPostUpdateCategoryAsync()
+        public async Task<bool> OnPostUpdateCategoryAsync()
         {
-            await _checklist.UpdateChecklistCategory(categoryModel);
+           var status = await _checklistService.UpdateChecklistCategory(categoryModel);
+            return status;
         }
 
         public async Task<JsonResult> OnGetGetSingleCategoryAsync(int categoryId)
         {
-            var category = await _checklist.GetSingleChecklistCategoryByIdAsync(categoryId);
+            var category = await _checklistService.GetSingleChecklistCategoryByIdAsync(categoryId);
             return new JsonResult(category);
         }
 
         public async Task<JsonResult> OnGetAllUnitCategoriesAsync(int unitId)
         {
-            categoriesList = await _checklist.GetAllChecklistCategoriesByUnitIdAsync(unitId);
+            categoriesList = await _checklistService.GetAllChecklistCategoriesByUnitIdAsync(unitId);
             return new JsonResult(categoriesList);
         }
 
         public async Task<JsonResult> OnGetAllUnitCategoriesForChecklistModalAsync(int unitId)
         {
-            categoriesList = await _checklist.GetAllChecklistCategoriesByUnitIdAsync(unitId);
+            categoriesList = await _checklistService.GetAllChecklistCategoriesByUnitIdAsync(unitId);
 
             List<ChecklistCategoryModel> categoryModelsList = new List<ChecklistCategoryModel>();
 
             foreach (var cat in categoriesList)
             {
-                var elements = await _checklist.GetAllChecklistElementsByCategoryIdAsync(cat.Id);
+                var elements = await _checklistService.GetAllChecklistElementsByCategoryIdAsync(cat.Id);
 
                 if (elements.Count > 0)
                 {
@@ -119,7 +121,7 @@ namespace Ozone.UI.Pages.Manage
         [BindProperty]
         public ChecklistElementModel elementModel { get; set; }
 
-        public async Task OnPostCreateElementAsync()
+        public async Task<bool> OnPostCreateElementAsync()
         {
 
             Guid guId = Guid.NewGuid();
@@ -134,13 +136,14 @@ namespace Ozone.UI.Pages.Manage
 
             elmntModel.Id = 0;
 
-            await _checklist.CreateNewChecklistElementAsync(elmntModel);
+            var status = await _checklistService.CreateNewChecklistElementAsync(elmntModel);
+            return status;
 
         }
 
 
 
-        public async Task OnPostUpdateElementAsync()
+        public async Task<bool> OnPostUpdateElementAsync()
         {
             DateTime instDate = Convert.ToDateTime(Request.Form["Element-Installed"]);
             DateTime rplcDate = Convert.ToDateTime(Request.Form["Element-Replace"]);
@@ -148,12 +151,14 @@ namespace Ozone.UI.Pages.Manage
             elementModel.Installed = instDate;
             elementModel.Replace = rplcDate;
 
-            await _checklist.UpdateChecklistElement(elementModel);
+            var status = await _checklistService.UpdateChecklistElement(elementModel);
+            return status;
         }
 
-        public async Task OnPostDeleteElementAsync(int elementId)
+        public async Task<bool> OnPostDeleteElementAsync(int elementId)
         {
-            await _checklist.DeleteElementByIdAsync(elementId);
+            var status = await _checklistService.DeleteElementByIdAsync(elementId);
+            return status;
         }
 
         public async Task<JsonResult> OnGetGetSingleElementByIdAsync(Guid elementId)
@@ -161,7 +166,7 @@ namespace Ozone.UI.Pages.Manage
 
             var vendorName = await _vendorService.GetVendors();
 
-            var elementModel = await _checklist.GetSingleElementByIdAsync(elementId);
+            var elementModel = await _checklistService.GetSingleElementByIdAsync(elementId);
 
             var name = vendorName.Where(c => c.Id == elementModel.VendorId).FirstOrDefault().VendorName;
             elementModel.VendorName = name;
@@ -171,7 +176,7 @@ namespace Ozone.UI.Pages.Manage
 
         public async Task<JsonResult> OnGetAllElementsByCategoryIdAsync(int categoryId)
         {
-            var elementsList = await _checklist.GetAllChecklistElementsByCategoryIdAsync(categoryId);
+            var elementsList = await _checklistService.GetAllChecklistElementsByCategoryIdAsync(categoryId);
 
             return new JsonResult(elementsList);
         }
@@ -180,7 +185,7 @@ namespace Ozone.UI.Pages.Manage
         {
 
 
-            var elementsList = await _checklist.GetAllUnitCategoriesAndSubElementsAsync(userUnitId);
+            var elementsList = await _checklistService.GetAllUnitCategoriesAndSubElementsAsync(userUnitId);
 
             return new JsonResult(elementsList);
         }
@@ -188,7 +193,7 @@ namespace Ozone.UI.Pages.Manage
 
         public async Task<JsonResult> OnGetElementDetailsIdAsync(Guid elementId)
         {
-            var elementDetails = await _checklist.GetSingleElementDetailsAsync();
+            var elementDetails = await _checklistService.GetSingleElementDetailsAsync();
             return new JsonResult(elementDetails);
         }
 

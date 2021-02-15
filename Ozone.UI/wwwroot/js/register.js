@@ -47,7 +47,7 @@
 
     //            $('#form-unit-name').empty();
 
-    //            $('#form-unit-name').append('<option value=' + "" + ' disabled selected >' + "Select Unit Name" + '</option>');
+    //            $('#form-unit-name').append('<option value=' + "" + ' disabled selected >' + "Select UnitModel Name" + '</option>');
 
     //            for (var i = 0; i < response.length; i++) {
     //                $('#form-unit-name').append('<option value=' + response[i].id + '>' + response[i].englishName + '</option>');
@@ -315,7 +315,7 @@ function getAllUnitsByParentName(selectObject) {
                     "<option value=" +
                     "" +
                     " disabled selected >" +
-                    "Select Department Unit" +
+                    "Select Department UnitModel" +
                     "</option>"
                 );
 
@@ -342,7 +342,7 @@ function getAllUnitsByParentName(selectObject) {
                         "<option value=" +
                         "" +
                         " disabled selected >" +
-                        "Select Superintendence Unit" +
+                        "Select Superintendence UnitModel" +
                         "</option>"
                     );
 
@@ -366,7 +366,7 @@ function getAllUnitsByParentName(selectObject) {
                         "<option value=" +
                         "" +
                         " disabled selected >" +
-                        "Select Superintendence Unit" +
+                        "Select Superintendence UnitModel" +
                         "</option>"
                     );
 
@@ -390,7 +390,7 @@ function getAllUnitsByParentName(selectObject) {
                     "<option value=" +
                     "" +
                     " disabled selected >" +
-                    "Select Section Unit" +
+                    "Select Section UnitModel" +
                     "</option>"
                 );
 

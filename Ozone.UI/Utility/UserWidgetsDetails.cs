@@ -7,32 +7,34 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using Ozone.DAL.Repositories;
+using Ozone.BLL;
 
-namespace Ozone.DAL.Utility
+namespace Ozone.UI.Utility
 {
     public class UserWidgetsDetails
     {
-        private readonly IChecklistRepository _checklist;
+        private readonly IChecklistService _checklistService;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserRepository _user;
+        private readonly IUserService _userService;
+
         //public ClaimsPrincipal User;
 
         //public bool ChecklistWidget;
 
-        public UserWidgetsDetails(IChecklistRepository checklist, UserManager<IdentityUser> userManager, IUserRepository user)
+        public UserWidgetsDetails(IChecklistService checklistService, UserManager<IdentityUser> userManager, IUserService userService)
         {
-            _checklist = checklist;
+            _checklistService = checklistService;
             _userManager = userManager;
-            _user = user;
+            _userService = userService;
         }
 
 
         public async Task<List<Widget>> UserWidgetSubscription(ClaimsPrincipal user)
         {
             var userId = _userManager.GetUserId(user);
-            var unitId = await _user.GetUserUnitId(userId, user);
+            var unitId = await _userService.GetUserUnitId(userId, user);
 
-            var checklistWidget = _checklist.CheckIfChecklistExistByUnitId(unitId);
+            var checklistWidget = await _checklistService.CheckIfChecklistExistByUnitId(unitId);
 
             var widget = new List<Widget>() {
             new Widget{ChecklistWidget = checklistWidget}

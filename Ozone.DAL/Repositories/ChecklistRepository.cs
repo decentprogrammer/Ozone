@@ -21,30 +21,31 @@ namespace Ozone.DAL.Repositories
         UnitChecklistModel unitChecklistModel { get; set; }
 
         Task AddUnitChecklist(int unitId);
-        bool CheckIfChecklistExistByUnitId(int unitId);
+        Task<bool> CheckIfChecklistExistByUnitId(int unitId);
         Task CreateNewChecklistCategoryAsync(ChecklistCategoryModel checklistCategory, int unitId);
         Task<Guid> CreateNewChecklistDetailsElementAsync(ChecklistElementDetailModel checklistElementDetails);
-        Task CreateNewChecklistElementAsync(ChecklistElementModel checklistElement);
-        Task CreateNewChecklistElementDetailAsync(ChecklistElementDetailModel checklistElementDetail, Guid elementGuid);
-        Task DeleteChecklistCategoryById(int categoryId);
-        Task DeleteElementByIdAsync(int elementId);
-        Task DeleteElementDetailsByIdAsync(Guid elementDetailsGuid);
+        Task<bool> CreateNewChecklistElementAsync(ChecklistElementModel checklistElement);
+        Task<bool> CreateNewChecklistElementDetailAsync(ChecklistElementDetailModel checklistElementDetail, Guid elementGuid);
+        Task<bool> DeleteChecklistCategoryById(int categoryId);
+        Task<bool> DeleteElementByIdAsync(int elementId);
+        Task<bool> DeleteElementDetailsByIdAsync(Guid elementDetailsGuid);
         Task DeleteUnitChecklist(int unitId);
         Task<IList<ChecklistCategoryModel>> GetAllChecklistCategoriesAsync();
-        IList<ChecklistCategoryModel> GetAllChecklistCategoriesByUnitId(int unitId);
+        Task<IList<ChecklistCategoryModel>> GetAllChecklistCategoriesByUnitId(int unitId);
         Task<IList<ChecklistCategoryModel>> GetAllChecklistCategoriesByUnitIdAsync(int unitId);
         Task<IList<ChecklistElementDetailModel>> GetAllChecklistElementDetailsAsync();
         Task<IList<ChecklistElementModel>> GetAllChecklistElementsAsync();
         Task<IList<ChecklistElementModel>> GetAllChecklistElementsByCategoryIdAsync(int categoryId);
-        List<ChecklistElementDetailModel> GetAllElementDetailsListAsync(Guid unitId);
+        Task<List<ChecklistElementDetailModel>> GetAllElementDetailsListAsync(Guid unitId);
         Task<List<ChecklistBuilderModel>> GetAllUnitCategoriesAndSubElementsAsync(int unitId);
         Task<ChecklistCategoryModel> GetSingleChecklistCategoryByIdAsync(int Id);
         Task<ChecklistElementModel> GetSingleElementByIdAsync(Guid elementGuid);
         Task<ChecklistElementDetailModel> GetSingleElementDetailsAsync();
-        Task UpdateChecklistCategory(ChecklistCategoryModel CategoryModel);
-        Task UpdateChecklistElement(ChecklistElementModel elementModel);
-        Task UpdateChecklistElementDatailsAsync(ChecklistElementDetailModel elementDetailsModel);
-        Task UpdateUnitChecklist(int unitId);
+        Task<bool> UpdateChecklistCategory(ChecklistCategoryModel CategoryModel);
+        Task<bool> UpdateChecklistElement(ChecklistElementModel elementModel);
+        Task<bool> UpdateChecklistElementDatailsAsync(ChecklistElementDetailModel elementDetailsModel);
+        Task<bool> UpdateUnitChecklist(int unitId);
+        
     }
 
     public class ChecklistRepository : IChecklistRepository
@@ -72,7 +73,7 @@ namespace Ozone.DAL.Repositories
 
         // Checklist update dashboard
 
-        public List<ChecklistElementDetailModel> GetAllElementDetailsListAsync(Guid unitId)
+        public async Task<List<ChecklistElementDetailModel>> GetAllElementDetailsListAsync(Guid unitId)
         {
             try
             {
@@ -92,7 +93,7 @@ namespace Ozone.DAL.Repositories
 
                     dependency.OnChange += new OnChangeEventHandler(dbChangeNotification);
 
-                    var reader = cmd.ExecuteReader();
+                    var reader = await cmd.ExecuteReaderAsync();
 
                     while (reader.Read())
                     {
@@ -175,11 +176,11 @@ namespace Ozone.DAL.Repositories
             }
         }
 
-        public IList<ChecklistCategoryModel> GetAllChecklistCategoriesByUnitId(int unitId)
+        public async Task<IList<ChecklistCategoryModel>> GetAllChecklistCategoriesByUnitId(int unitId)
         {
             try
             {
-                var checklistCategories = _db.ChecklistCategoriesTable.Where(c => c.UnitChecklistId == unitId).ToList();
+                var checklistCategories = await _db.ChecklistCategoriesTable.Where(c => c.UnitChecklistId == unitId).ToListAsync();
                 return checklistCategories;
             }
             catch (Exception ex)
@@ -188,7 +189,7 @@ namespace Ozone.DAL.Repositories
             }
         }
 
-        public async Task UpdateChecklistCategory(ChecklistCategoryModel CategoryModel)
+        public async Task<bool> UpdateChecklistCategory(ChecklistCategoryModel CategoryModel)
         {
             try
             {
@@ -197,7 +198,7 @@ namespace Ozone.DAL.Repositories
                 checklistCategoryModel.Name = CategoryModel.Name;
                 checklistCategoryModel.PublicVisible = CategoryModel.PublicVisible;
                 checklistCategoryModel.Description = CategoryModel.Description;
-                await _db.SaveChangesAsync();
+                return (await _db.SaveChangesAsync() > 0);
             }
             catch (Exception ex)
             {
@@ -205,8 +206,9 @@ namespace Ozone.DAL.Repositories
             }
         }
 
-        public async Task DeleteChecklistCategoryById(int categoryId)
+        public async Task<bool> DeleteChecklistCategoryById(int categoryId)
         {
+            bool status = false;
             try
             {
                 checklistCategoryModel = await _db.ChecklistCategoriesTable.FindAsync(categoryId);
@@ -221,23 +223,26 @@ namespace Ozone.DAL.Repositories
                 if (checklistCategoryModel != null)
                 {
                     _db.ChecklistCategoriesTable.Remove(checklistCategoryModel);
-                    await _db.SaveChangesAsync();
+                    status = await _db.SaveChangesAsync() > 0;
                 }
+                return status;
             }
             catch (Exception ex)
             {
                 throw new Exception("Error in Deleting Checklist data from Database", ex);
-            }            
+            }
         }
 
         // Checklist Elements Section
 
-        public async Task CreateNewChecklistElementAsync(ChecklistElementModel checklistElement)
+        public async Task<bool> CreateNewChecklistElementAsync(ChecklistElementModel checklistElement)
         {
+            bool status = false;
             try
             {
                 await _db.ChecklistElementsTable.AddAsync(checklistElement);
-                await _db.SaveChangesAsync();
+                status = await _db.SaveChangesAsync() > 0;
+                return status;
             }
             catch (Exception ex)
             {
@@ -258,17 +263,19 @@ namespace Ozone.DAL.Repositories
             }
         }
 
-        public async Task DeleteElementByIdAsync(int elementId)
+        public async Task<bool> DeleteElementByIdAsync(int elementId)
         {
             try
             {
+                bool status = false;
                 var checklistElement = await _db.ChecklistElementsTable.FindAsync(elementId);
 
                 if (checklistElement != null)
                 {
                     _db.ChecklistElementsTable.Remove(checklistElement);
-                    await _db.SaveChangesAsync();
+                    status = await _db.SaveChangesAsync() > 0;                    
                 }
+                return status;
             }
             catch (Exception ex)
             {
@@ -302,7 +309,7 @@ namespace Ozone.DAL.Repositories
             }
         }
 
-        public async Task UpdateChecklistElement(ChecklistElementModel elementModel)
+        public async Task<bool> UpdateChecklistElement(ChecklistElementModel elementModel)
         {
             try
             {
@@ -320,7 +327,7 @@ namespace Ozone.DAL.Repositories
                 checklistElementModel.Installed = elementModel.Installed;
                 checklistElementModel.Replace = elementModel.Replace;
 
-                await _db.SaveChangesAsync();
+                return (await _db.SaveChangesAsync() > 0);
             }
             catch (Exception ex)
             {
@@ -337,13 +344,14 @@ namespace Ozone.DAL.Repositories
         //    await _db.SaveChangesAsync();
         //}
 
-        public async Task CreateNewChecklistElementDetailAsync(ChecklistElementDetailModel checklistElementDetail, Guid elementGuid)
+        public async Task<bool> CreateNewChecklistElementDetailAsync(ChecklistElementDetailModel checklistElementDetail, Guid elementGuid)
         {
             try
             {
                 checklistElementDetail.GuidId = elementGuid;
                 await _db.ChecklistElementDetailsTable.AddAsync(checklistElementDetail);
-                await _db.SaveChangesAsync();
+                var status = await _db.SaveChangesAsync() > 0;
+                return status;
             }
             catch (Exception ex)
             {
@@ -436,10 +444,10 @@ namespace Ozone.DAL.Repositories
             catch (Exception ex)
             {
                 throw new Exception("Error in Fetching Data from Database", ex);
-            }           
+            }
         }
 
-        public async Task UpdateChecklistElementDatailsAsync(ChecklistElementDetailModel elementDetailsModel)
+        public async Task<bool> UpdateChecklistElementDatailsAsync(ChecklistElementDetailModel elementDetailsModel)
         {
             try
             {
@@ -479,7 +487,7 @@ namespace Ozone.DAL.Repositories
                 checklistElementDetailModel.ElementId = elementDetailsModel.ElementId;
 
 
-                await _db.SaveChangesAsync();
+                return (await _db.SaveChangesAsync() > 0);
             }
             catch (Exception ex)
             {
@@ -522,25 +530,27 @@ namespace Ozone.DAL.Repositories
         //    }
         //}
 
-        public async Task DeleteElementDetailsByIdAsync(Guid elementDetailsGuid)
+        public async Task<bool> DeleteElementDetailsByIdAsync(Guid elementDetailsGuid)
         {
             try
             {
+                bool status = false;
                 var checklistElementDetail = await _db.ChecklistElementDetailsTable.FindAsync(elementDetailsGuid);
 
                 if (checklistElementDetail != null)
                 {
                     _db.ChecklistElementDetailsTable.Remove(checklistElementDetail);
-                    await _db.SaveChangesAsync();
+                    status = await _db.SaveChangesAsync() > 0;
                 }
+                return status;
             }
             catch (Exception ex)
             {
-                throw new Exception("", ex);
+                throw new Exception("Error in Deleting Element Details", ex);
             }
         }
 
-        // Unit Checklist
+        // UnitModel Checklist
 
         public UnitChecklistModel unitChecklistModel { get; set; }
 
@@ -563,7 +573,7 @@ namespace Ozone.DAL.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("Error in Adding Unit Checklist", ex);
+                throw new Exception("Error in Adding UnitModel Checklist", ex);
             }
         }
 
@@ -572,18 +582,18 @@ namespace Ozone.DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public Task UpdateUnitChecklist(int unitId)
+        public Task<bool> UpdateUnitChecklist(int unitId)
         {
             throw new NotImplementedException();
         }
 
-        public bool CheckIfChecklistExistByUnitId(int unitId)
+        public async Task<bool> CheckIfChecklistExistByUnitId(int unitId)
         {
             try
             {
                 bool exist = false;
 
-                var checklist = _db.UnitChecklistTable.FirstOrDefault(u => u.UnitID == unitId);
+                var checklist = await _db.UnitChecklistTable.FirstOrDefaultAsync(u => u.UnitID == unitId);
 
                 if (checklist != null)
                 {

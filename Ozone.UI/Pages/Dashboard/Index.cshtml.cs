@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Ozone.Models;
 using System.Security.Claims;
-using static Ozone.DAL.Utility.UserWidgetsDetails;
-using Ozone.DAL.Utility;
 using Ozone.DAL.Repositories;
+using Ozone.UI.Utility;
+using static Ozone.UI.Utility.UserWidgetsDetails;
 
 namespace Ozone.UI.Pages.Dashboard
 {

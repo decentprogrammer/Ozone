@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Ozone.BLL;
 using Ozone.DAL;
 using Ozone.Models;
 
@@ -12,11 +13,11 @@ namespace Ozone.UI.Pages.Units
 {
     public class DetailsModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private IUnitService _unitService;
 
-        public DetailsModel(ApplicationDbContext context)
+        public DetailsModel(IUnitService unitService)
         {
-            _context = context;
+            _unitService = unitService;
         }
 
         public UnitModel UnitModel { get; set; }
@@ -28,7 +29,8 @@ namespace Ozone.UI.Pages.Units
                 return NotFound();
             }
 
-            UnitModel = await _context.UnitsTable.FirstOrDefaultAsync(m => m.Id == id);
+            //UnitModel = await _context.UnitsTable.FirstOrDefaultAsync(m => m.Id == id);
+            UnitModel = await _unitService.GetUnitById(Convert.ToInt32(id));
 
             if (UnitModel == null)
             {
