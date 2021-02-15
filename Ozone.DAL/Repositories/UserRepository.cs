@@ -11,6 +11,16 @@ using System.Threading.Tasks;
 
 namespace Ozone.DAL.Repositories
 {
+
+    public interface IUserRepository
+    {
+        string GetUserFullNameByUserAndId(string UserId, ClaimsPrincipal user);
+        bool GetUserRoleByUser(ClaimsPrincipal user, string role);
+        Task<List<ApplicationUserModel>> GetUsers();
+        Task<int> GetUserUnitId(string UserId, ClaimsPrincipal user);
+        Task<string> GetUserUnitName(string UserId, ClaimsPrincipal user);
+    }
+
     public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _db;
