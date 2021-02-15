@@ -27,10 +27,10 @@ namespace Ozone.DAL.Utility
         }
 
 
-        public List<Widget> UserWidgetSubscription(ClaimsPrincipal user)
+        public async Task<List<Widget>> UserWidgetSubscription(ClaimsPrincipal user)
         {
             var userId = _userManager.GetUserId(user);
-            var unitId = _user.GetUserUnitId(userId, user);
+            var unitId = await _user.GetUserUnitId(userId, user);
 
             var checklistWidget = _checklist.CheckIfChecklistExistByUnitId(unitId);
 

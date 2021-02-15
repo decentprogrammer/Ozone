@@ -12,11 +12,7 @@ namespace Ozone.UI.Pages
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public class ErrorModel : PageModel
     {
-        public ErrorModel(string message)
-        {
-            ErrorMessage = message;
-        }
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; } = "Test Error Message";
         public IActionResult OnGet()
         {
             return Page();

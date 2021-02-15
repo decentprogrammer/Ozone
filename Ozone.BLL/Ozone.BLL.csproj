@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Ozone.DAL\Ozone.DAL.csproj" />
+    <ProjectReference Include="..\Ozone.Models\Ozone.Models.csproj" />
+  </ItemGroup>
+
 </Project>
