@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using Ozone.BLL;
 using Ozone.DAL;
 using Ozone.Models;
 
@@ -12,11 +13,11 @@ namespace Ozone.UI.Pages.Units
 {
     public class DeleteModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private IUnitService _unitService;
 
-        public DeleteModel(ApplicationDbContext context)
+        public DeleteModel(IUnitService unitService)
         {
-            _context = context;
+            _unitService = unitService;
         }
 
         [BindProperty]
@@ -29,7 +30,7 @@ namespace Ozone.UI.Pages.Units
                 return NotFound();
             }
 
-            UnitModel = await _context.UnitsTable.FirstOrDefaultAsync(m => m.Id == id);
+            UnitModel = await _unitService.GetUnitById(Convert.ToInt32(id));
 
             if (UnitModel == null)
             {
@@ -45,13 +46,7 @@ namespace Ozone.UI.Pages.Units
                 return NotFound();
             }
 
-            UnitModel = await _context.UnitsTable.FindAsync(id);
-
-            if (UnitModel != null)
-            {
-                _context.UnitsTable.Remove(UnitModel);
-                await _context.SaveChangesAsync();
-            }
+            bool status = await _unitService.RemoveUnit(id);
 
             return RedirectToPage("./Index");
         }

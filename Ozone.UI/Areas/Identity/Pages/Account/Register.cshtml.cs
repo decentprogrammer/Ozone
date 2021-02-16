@@ -14,8 +14,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Ozone.DAL;
-using Ozone.DAL.Utility;
 using Ozone.Models;
+using Ozone.UI.Utility;
 
 namespace Ozone.UI.Areas.Identity.Pages.Account
 {

@@ -2076,7 +2076,9 @@
         r = n(70);
     t.exports = function(t) {
         return i((function() {
-            return !!r[t]() || "​᠎" != "​᠎" [t]() || r[t].name !== t
+            return !!r[t]() || "​
+᠎" != "​
+᠎" [t]() || r[t].name !== t
         }))
     }
 }, function(t, e, n) {
@@ -6071,7 +6073,7 @@
                                             b.CSS.setPropertyValue(c, e, s + "%")
                                         })), b.CSS.setPropertyValue(c, "paddingLeft", s + "em"), l.percentToPxWidth = W.lastPercentToPxWidth = (parseFloat(x.getPropertyValue(c, "width", null, !0)) || 1) / s, l.percentToPxHeight = W.lastPercentToPxHeight = (parseFloat(x.getPropertyValue(c, "height", null, !0)) || 1) / s, l.emToPx = W.lastEmToPx = (parseFloat(x.getPropertyValue(c, "paddingLeft")) || 1) / s, t.myParent.removeChild(c)
                                     }
-                                    return null === W.remToPx && (W.remToPx = parseFloat(x.getPropertyValue(n.body, "fontSize")) || 16), null === W.vwToPx && (W.vwToPx = parseFloat(e.innerWidth) / 100, W.vhToPx = parseFloat(e.innerHeight) / 100), l.remToPx = W.remToPx, l.vwToPx = W.vwToPx, l.vhToPx = W.vhToPx, b.debug >= 1 && console.log("Unit ratios: " + JSON.stringify(l), o), l
+                                    return null === W.remToPx && (W.remToPx = parseFloat(x.getPropertyValue(n.body, "fontSize")) || 16), null === W.vwToPx && (W.vwToPx = parseFloat(e.innerWidth) / 100, W.vhToPx = parseFloat(e.innerHeight) / 100), l.remToPx = W.remToPx, l.vwToPx = W.vwToPx, l.vhToPx = W.vhToPx, b.debug >= 1 && console.log("UnitModel ratios: " + JSON.stringify(l), o), l
                                 }
                                 if (s.begin && 0 === C) try {
                                     s.begin.call(g, g)

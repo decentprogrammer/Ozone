@@ -35415,7 +35415,7 @@
               };
 
               /*
-	* Unit vector of x-axis.
+	* UnitModel vector of x-axis.
 	*/
               var xUnitVector = {
                 x: 1,
@@ -35525,7 +35525,7 @@
               };
 
               /*
-	* Unit vector of y-axis.
+	* UnitModel vector of y-axis.
 	*/
               var yUnitVector = {
                 x: 0,

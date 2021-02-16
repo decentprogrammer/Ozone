@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Ozone.BLL;
 using Ozone.DAL.Repositories;
 using Ozone.Models;
 
@@ -12,12 +13,11 @@ namespace Ozone.UI.Pages.Units
 {
     public class CreateModel : PageModel
     {
+        private IUnitService _unitService;
 
-        public IUnitRepository _CreateUnit { get; }
-
-        public CreateModel(IUnitRepository createUnit)
+        public CreateModel(IUnitService unitService)
         {
-            _CreateUnit = createUnit;
+            _unitService = unitService;
         }
 
         public IActionResult OnGet()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Ozone.BLL;
 using Ozone.DAL.Repositories;
 using Ozone.Models;
 
@@ -11,10 +12,11 @@ namespace Ozone.UI.Pages.Users
 {
     public class IndexModel : PageModel
     {
-        private readonly IUserRepository _user;
-        public IndexModel(IUserRepository user)
+        private IUserService _userService;
+
+        public IndexModel(IUserService userService)
         {
-            _user = user;
+            _userService = userService;
         }
 
         [BindProperty]
@@ -22,7 +24,7 @@ namespace Ozone.UI.Pages.Users
 
         public async Task<IActionResult> OnGet()
         {
-            applicationUsersList = await _user.GetUsers();
+            applicationUsersList = await _userService.GetUsers();
 
             return Page();
         }

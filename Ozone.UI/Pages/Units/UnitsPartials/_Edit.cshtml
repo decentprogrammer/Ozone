@@ -2,69 +2,69 @@
 @*<div class="modal-body mx-3">*@
 <form method="post" id="updateUnitModelForm" class="text-center border border-light p-5 needs-validation" novalidate>
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="@Model.Unit.Id" />
+    <input type="hidden" asp-for="@Model.UnitModel.Id" />
 
     <div class="form-group">
-        <label asp-for="@Model.Unit.ArabicName" class="control-label"></label>
-        <input asp-for="@Model.Unit.ArabicName" class="form-control" />
+        <label asp-for="@Model.UnitModel.ArabicName" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.ArabicName" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Unit.EnglishName" class="control-label"></label>
-        <input asp-for="@Model.Unit.EnglishName" class="form-control" />
+        <label asp-for="@Model.UnitModel.EnglishName" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.EnglishName" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Unit.NameAbbreviation" class="control-label"></label>
-        <input asp-for="@Model.Unit.NameAbbreviation" class="form-control" />
+        <label asp-for="@Model.UnitModel.NameAbbreviation" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.NameAbbreviation" class="form-control" />
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Unit.ResponsibleName" class="control-label"></label>
-        <input asp-for="@Model.Unit.ResponsibleName" class="form-control" />
+        <label asp-for="@Model.UnitModel.ResponsibleName" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.ResponsibleName" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Unit.Description" class="control-label"></label>
-        <input asp-for="@Model.Unit.Description" class="form-control" />
+        <label asp-for="@Model.UnitModel.Description" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.Description" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Unit.Email" class="control-label"></label>
-        <input asp-for="@Model.Unit.Email" class="form-control" />
+        <label asp-for="@Model.UnitModel.Email" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.Email" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Unit.Telephone" class="control-label"></label>
-        <input asp-for="@Model.Unit.Telephone" class="form-control" />
+        <label asp-for="@Model.UnitModel.Telephone" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.Telephone" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Unit.InternalTel_1" class="control-label"></label>
-        <input asp-for="@Model.Unit.InternalTel_1" class="form-control" />
+        <label asp-for="@Model.UnitModel.InternalTel_1" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.InternalTel_1" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Unit.InternalTel_2" class="control-label"></label>
-        <input asp-for="@Model.Unit.InternalTel_2" class="form-control" />
+        <label asp-for="@Model.UnitModel.InternalTel_2" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.InternalTel_2" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Unit.Mobile" class="control-label"></label>
-        <input asp-for="@Model.Unit.Mobile" class="form-control" />
+        <label asp-for="@Model.UnitModel.Mobile" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.Mobile" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Unit.Fax" class="control-label"></label>
-        <input asp-for="@Model.Unit.Fax" class="form-control" />
+        <label asp-for="@Model.UnitModel.Fax" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.Fax" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Unit.PersonToCantact" class="control-label"></label>
-        <input asp-for="@Model.Unit.PersonToCantact" class="form-control" />
+        <label asp-for="@Model.UnitModel.PersonToCantact" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.PersonToCantact" class="form-control" />
     </div>
     <div class="form-group">
-        @*<label asp-for="@Model.Unit.Category" class="control-label"></label>*@
+        @*<label asp-for="@Model.UnitModel.Category" class="control-label"></label>*@
         <select name="unitCategoryId" asp-items="@(new SelectList(Model.UnitCategories, "Id", "CategoryName"))" class="validate md-form mdb-select" searchable="Search here..">
             <option value="" disabled selected>Choose unit category</option>
         </select>
     </div>
     <div class="form-group">
-        @*<label asp-for="@Model.Unit.Location" class="control-label"></label>*@
-        <input asp-for="@Model.Unit.Location" class="form-control" />
+        @*<label asp-for="@Model.UnitModel.Location" class="control-label"></label>*@
+        <input asp-for="@Model.UnitModel.Location" class="form-control" />
     </div>
     <div class="md-form pb-3">
-        <input id="location-edit" type="search" asp-for="@Model.Unit.Location" class="form-control mdb-autocomplete location-autocomplete-edit" placeholder="Location" required />
+        <input id="location-edit" type="search" asp-for="@Model.UnitModel.Location" class="form-control mdb-autocomplete location-autocomplete-edit" placeholder="Location" required />
         <button class="mdb-autocomplete-clear">
             <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="https://www.w3.org/2000/svg">
                 <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
@@ -73,21 +73,21 @@
         </button>
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Unit.ParentId" class="control-label"></label>
-        <input asp-for="@Model.Unit.ParentId" class="form-control" />
+        <label asp-for="@Model.UnitModel.ParentId" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.ParentId" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="@Model.Unit.ParentName" class="control-label"></label>
-        <input asp-for="@Model.Unit.ParentName" class="form-control" />
+        <label asp-for="@Model.UnitModel.ParentName" class="control-label"></label>
+        <input asp-for="@Model.UnitModel.ParentName" class="form-control" />
     </div>
     <div class="form-group">
-        @*<label asp-for="@Model.Unit.ParentName" class="control-label"></label>*@
+        @*<label asp-for="@Model.UnitModel.ParentName" class="control-label"></label>*@
         <select name="parentId" asp-items="@(new SelectList(Model.Units, "Id", "EnglishName"))" class="validate mdb-select md-form" searchable="Search here..">
             <option value="" disabled selected>Choose unit parent</option>
         </select>
     </div>
     <div class="form-group">
-        <input type="submit" value="Save" onclick="updateUnit(@Model.Unit.Id)" class="btn btn-primary" />
+        <input type="submit" value="Save" onclick="updateUnit(@Model.UnitModel.Id)" class="btn btn-primary" />
     </div>
 </form>
 @*</div>*@

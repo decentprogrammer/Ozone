@@ -10,12 +10,15 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Ozone.Models;
 using Ozone.DAL.Repositories;
+using Ozone.BLL;
 
 namespace Ozone.UI.Pages.Units
 {
     [Authorize(Roles = "Administrator")]
     public class IndexModel : PageModel
     {
+        private IUnitService _unitService;
+
         //private readonly IUnitRepository _unit;
 
         [BindProperty]
@@ -31,16 +34,16 @@ namespace Ozone.UI.Pages.Units
 
         public IList<UnitCategoryModel> unitCategories { get; set; }
 
-        public IUnitRepository _unit { get; private set; }
+        
 
         public List<SelectListItem> unitParents { get; set; }
 
         [BindProperty]
         public string ParentName { get; set; }
 
-        public IndexModel(IUnitRepository unit, EditUnitModel inputModel)
+        public IndexModel(IUnitService unitService, EditUnitModel inputModel)
         {
-            _unit = unit;
+            _unitService = unitService;
             _inputToEditModel = inputModel;
 
             FillUnitsDataAfterSave();
@@ -57,14 +60,14 @@ namespace Ozone.UI.Pages.Units
 
         private async Task FillAllUnitsAsync()
         {
-            unitsList = await _unit.GetUnits();
+            unitsList = await _unitService.GetUnits();
         }
 
-        public IActionResult OnGetUpdatePage()
+        public async Task<IActionResult> OnGetUpdatePage()
         {
             //if (UnitModel == null)
             //{
-            unitsList = _unit.GetAllUnits();
+            unitsList = await _unitService.GetAllUnits();
             return Page();
 
             //}
@@ -81,41 +84,41 @@ namespace Ozone.UI.Pages.Units
             var unitCategoryId = Request.Form["unitCategoryId"];
 
             unitDataModel.ParentId = int.Parse(unitParentId);
-            unitDataModel.ParentName = (await _unit.GetUnitById(Convert.ToInt32(unitParentId))).EnglishName;
+            unitDataModel.ParentName = (await _unitService.GetUnitById(Convert.ToInt32(unitParentId))).EnglishName;
             unitDataModel.UnitGuId = Guid.NewGuid();
 
-            unitDataModel.Category = _unit.GetUnitCategorySingleRecordByCategoryId(int.Parse(unitCategoryId)).CategoryName;
+            unitDataModel.Category = ( await _unitService.GetUnitCategorySingleRecordByCategoryId(int.Parse(unitCategoryId))).CategoryName;
 
-            await _unit.CreateUnit(unitDataModel);
+            await _unitService.CreateUnit(unitDataModel);
 
-            unitsList = await _unit.GetUnits();
+            unitsList = await _unitService.GetUnits();
 
             await FillUnitCategoriesAsync();
         }
 
       
-        private void FillUnitsDataAfterSave()
+        private async Task FillUnitsDataAfterSave()
         {
             if (unitsList == null)
             {
-                unitsList = _unit.GetAllUnits();
+                unitsList = await _unitService.GetAllUnits();
             }
         }
 
         private async Task FillUnitCategoriesAsync()
         {
-            unitCategories = await _unit.GetAllUnitCategoriesAsync();
+            unitCategories = await _unitService.GetAllUnitCategoriesAsync();
         }
 
-        private void FillUnitCategories()
+        private async Task FillUnitCategories()
         {
-            unitCategories = _unit.GetAllUnitCategories();
+            unitCategories = await _unitService.GetAllUnitCategories();
         }
 
 
         public async Task<JsonResult> OnGetDetailsAsync(int unitId)
         {
-            unitDataModel = await _unit.GetUnitById(unitId);
+            unitDataModel = await _unitService.GetUnitById(unitId);
 
             if (unitDataModel == null)
             {
@@ -134,9 +137,9 @@ namespace Ozone.UI.Pages.Units
         public async Task<PartialViewResult> OnGetUpdateUnitDataModelAsync(int unitId)
         {
             var path = "/Pages/Units/UnitsPartials/_Edit.cshtml";
-            unitSingleModel = await _unit.GetUnitById(unitId);
+            unitSingleModel = await _unitService.GetUnitById(unitId);
 
-            _inputToEditModel.Unit = unitSingleModel;
+            _inputToEditModel.UnitModel = unitSingleModel;
             _inputToEditModel.UnitCategories = unitCategories;
             _inputToEditModel.Units = unitsList;
 
@@ -145,9 +148,9 @@ namespace Ozone.UI.Pages.Units
 
         public async Task OnPostUpdateUnitAsync(int unitId)
         {
-            unitSingleModel = _inputToEditModel.Unit;
+            unitSingleModel = _inputToEditModel.UnitModel;
 
-            await _unit.UnitUpdateAsync(unitId, unitSingleModel);
+            await _unitService.UnitUpdateAsync(unitId, unitSingleModel);
         }
 
 
