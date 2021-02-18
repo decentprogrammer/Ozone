@@ -92,7 +92,7 @@ namespace Ozone.UI.Areas.Identity.Pages.Account
             [Required(AllowEmptyStrings = false, ErrorMessage = "* Required field")]
             public int OrgzCategoryId { get; set; }
             [Required(AllowEmptyStrings = false, ErrorMessage = "* Required field")]
-            public string Role { get; set; }
+            public string Role { get; set; }// = "Member";
             [Required(AllowEmptyStrings = false, ErrorMessage = "* Required field")]
             public int UnitId { get; set; }
 

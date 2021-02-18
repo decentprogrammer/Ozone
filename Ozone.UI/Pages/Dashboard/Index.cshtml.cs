@@ -11,15 +11,16 @@ using System.Security.Claims;
 using Ozone.DAL.Repositories;
 using Ozone.UI.Utility;
 using static Ozone.UI.Utility.UserWidgetsDetails;
+using Ozone.BLL;
 
 namespace Ozone.UI.Pages.Dashboard
 {
     public class IndexModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserRepository _user;
-        private readonly IUnitRepository _unit;
-        private readonly IChecklistRepository _checklist;
+        private readonly IUserService _userService;
+        private readonly IUnitService _unitService;
+        private readonly IChecklistService _checklistService;
         private readonly UserWidgetsDetails _userWidgetsDetails;
 
         [ViewData]
@@ -39,12 +40,12 @@ namespace Ozone.UI.Pages.Dashboard
 
         public List<Widget> WidgetList { get; set; }
 
-        public IndexModel(UserManager<IdentityUser> userManager, IUserRepository user, IUnitRepository unit, IChecklistRepository checklist, UserWidgetsDetails userWidgetsDetails)
+        public IndexModel(UserManager<IdentityUser> userManager, IUserService userService, IUnitService unitService, IChecklistService checklistService, UserWidgetsDetails userWidgetsDetails)
         {
             _userManager = userManager;
-            _user = user;
-            _unit = unit;
-            _checklist = checklist;
+            _userService = userService;
+            _unitService = unitService;
+            _checklistService = checklistService;
             _userWidgetsDetails = userWidgetsDetails;
         }
 
@@ -56,23 +57,23 @@ namespace Ozone.UI.Pages.Dashboard
 
         public void UserAuthorizationByRole()
         {
-            if (_user.GetUserRoleByUser(User, StaticDetails.Administrator))
+            if (_userService.GetUserRoleByUser(User, StaticDetails.Administrator))
             {
                 userRole = StaticDetails.Administrator;
             }
-            else if (_user.GetUserRoleByUser(User, StaticDetails.Admin))
+            else if (_userService.GetUserRoleByUser(User, StaticDetails.Admin))
             {
                 userRole = StaticDetails.Admin;
             }
-            else if (_user.GetUserRoleByUser(User, StaticDetails.Manager))
+            else if (_userService.GetUserRoleByUser(User, StaticDetails.Manager))
             {
                 userRole = StaticDetails.Manager;
             }
-            else if (_user.GetUserRoleByUser(User, StaticDetails.User))
+            else if (_userService.GetUserRoleByUser(User, StaticDetails.User))
             {
                 userRole = StaticDetails.User;
             }
-            else if (_user.GetUserRoleByUser(User, StaticDetails.Guest))
+            else if (_userService.GetUserRoleByUser(User, StaticDetails.Guest))
             {
                 userRole = StaticDetails.Guest;
             }
@@ -81,11 +82,11 @@ namespace Ozone.UI.Pages.Dashboard
         public async Task UserDetails()
         {
             var uId = _userManager.GetUserId(User);
-            var fullName = _user.GetUserFullNameByUserAndId(uId, User);
+            var fullName = _userService.GetUserFullNameByUserAndId(uId, User);
             userFullName = fullName;
 
-            unitName = await _user.GetUserUnitName(uId, User);
-            unitId = await _user.GetUserUnitId(uId, User);
+            unitName = await _userService.GetUserUnitName(uId, User);
+            unitId = await _userService.GetUserUnitId(uId, User);
         }
 
         public PartialViewResult OnGetChecklistModal()
@@ -102,7 +103,7 @@ namespace Ozone.UI.Pages.Dashboard
 
         public async Task<JsonResult> OnPostCreateNewElementDetailAsync()
         {
-            var newGuid = await _checklist.CreateNewChecklistDetailsElementAsync(ChecklistElementDetailsModel);
+            var newGuid = await _checklistService.CreateNewChecklistDetailsElementAsync(ChecklistElementDetailsModel);
             return new JsonResult(newGuid);
         }
 
@@ -123,7 +124,7 @@ namespace Ozone.UI.Pages.Dashboard
             }
 
 
-            await _checklist.UpdateChecklistElementDatailsAsync(ChecklistElementDetailsModel);
+            await _checklistService.UpdateChecklistElementDatailsAsync(ChecklistElementDetailsModel);
 
             UserDetails();
             WidgetList = await _userWidgetsDetails.UserWidgetSubscription(User);
@@ -132,7 +133,7 @@ namespace Ozone.UI.Pages.Dashboard
 
         public async Task<JsonResult> OnGetGetElementDetailsByIdAsync(Guid elmntDetailId)
         {
-            var elementDetails = await _checklist.GetSingleElementDetailsAsync();
+            var elementDetails = await _checklistService.GetSingleElementDetailsAsync();
             return new JsonResult(elementDetails);
         }
     }
