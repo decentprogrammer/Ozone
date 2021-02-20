@@ -41,9 +41,9 @@ namespace Ozone.DAL.Repositories
                 var users = await _db.ApplicationUsersTable.ToListAsync();
                 return users;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Fetching Users Information from Database", ex);
+                throw new OzoneException("Error in Fetching Users Information from Database", ex);
             }
         }
 
@@ -61,9 +61,9 @@ namespace Ozone.DAL.Repositories
 
                 return fullName;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Fetching User Information from Database", ex);
+                throw new OzoneException("Error in Fetching User Information from Database", ex);
             }
         }
 
@@ -80,9 +80,9 @@ namespace Ozone.DAL.Repositories
 
                 return unitName.EnglishName;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Fetching User Information", ex);
+                throw new OzoneException("Error in Fetching User Information", ex);
             }
         }
 
@@ -96,9 +96,9 @@ namespace Ozone.DAL.Repositories
 
                 return unitId;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Fetching User Information", ex);
+                throw new OzoneException("Error in Fetching User Information", ex);
             }
         }
 
@@ -112,9 +112,9 @@ namespace Ozone.DAL.Repositories
 
                 return userRole;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Fetching User Information", ex);
+                throw new OzoneException("Error in Fetching User Information", ex);
             }
         }
 

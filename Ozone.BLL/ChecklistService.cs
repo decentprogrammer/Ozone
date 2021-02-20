@@ -49,9 +49,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllElementDetailsListAsync(unitId);
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -61,9 +61,9 @@ namespace Ozone.BLL
             {
                 await _repository.CreateNewChecklistCategoryAsync(checklistCategory, unitId);
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -74,9 +74,9 @@ namespace Ozone.BLL
                 var item = await _repository.GetSingleChecklistCategoryByIdAsync(Id);
                 return item;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -87,9 +87,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllChecklistCategoriesAsync();
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -100,9 +100,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllChecklistCategoriesByUnitIdAsync(unitId);
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -113,9 +113,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllChecklistCategoriesByUnitId(unitId);
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -127,9 +127,9 @@ namespace Ozone.BLL
                 var status = await _repository.UpdateChecklistCategory(CategoryModel);
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -141,9 +141,9 @@ namespace Ozone.BLL
                 status = await _repository.DeleteChecklistCategoryById(categoryId);
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -155,9 +155,9 @@ namespace Ozone.BLL
                 status = await _repository.CreateNewChecklistElementAsync(checklistElement);
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -168,9 +168,9 @@ namespace Ozone.BLL
                 var item = await _repository.GetSingleElementByIdAsync(elementGuid);
                 return item;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -181,9 +181,9 @@ namespace Ozone.BLL
                 var status = await _repository.DeleteElementByIdAsync(elementId);
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -194,9 +194,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllChecklistElementsAsync();
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -207,9 +207,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllChecklistElementsByCategoryIdAsync(categoryId);
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -220,9 +220,9 @@ namespace Ozone.BLL
                 var status = await _repository.UpdateChecklistElement(elementModel);
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -233,9 +233,9 @@ namespace Ozone.BLL
                 var status = await _repository.CreateNewChecklistElementDetailAsync(checklistElementDetail, elementGuid);
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -246,9 +246,9 @@ namespace Ozone.BLL
                 var item = await _repository.GetSingleElementDetailsAsync();
                 return item;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -259,9 +259,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllChecklistElementDetailsAsync();
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -272,9 +272,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllUnitCategoriesAndSubElementsAsync(unitId);
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -285,9 +285,9 @@ namespace Ozone.BLL
                 var status = await _repository.UpdateChecklistElementDatailsAsync(elementDetailsModel);
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -298,9 +298,9 @@ namespace Ozone.BLL
                 var val = await _repository.CreateNewChecklistDetailsElementAsync(checklistElementDetails);
                 return val;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -312,9 +312,9 @@ namespace Ozone.BLL
                 var status = await _repository.DeleteElementDetailsByIdAsync(elementDetailsGuid);
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -325,9 +325,9 @@ namespace Ozone.BLL
                 var status = await _repository.CheckIfChecklistExistByUnitId(unitId);
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 

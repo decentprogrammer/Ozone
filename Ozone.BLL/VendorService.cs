@@ -29,9 +29,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetVendors();
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -42,9 +42,9 @@ namespace Ozone.BLL
                 var id = await _repository.GetVendorIdByName(vendorName);
                 return id;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 

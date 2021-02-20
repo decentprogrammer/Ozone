@@ -110,9 +110,9 @@ namespace Ozone.DAL.Repositories
 
                 return elemntDetails;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Element Details from Database", ex);
+                throw new OzoneException("Error in Getting Element Details from Database", ex);
             }
         }
 
@@ -131,9 +131,9 @@ namespace Ozone.DAL.Repositories
                 await _db.ChecklistCategoriesTable.AddAsync(checklistCategory);
                 await _db.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Creating New Checklist Category", ex);
+                throw new OzoneException("Error in Creating New Checklist Category", ex);
             }
         }
 
@@ -144,9 +144,9 @@ namespace Ozone.DAL.Repositories
                 checklistCategoryModel = await _db.ChecklistCategoriesTable.FirstOrDefaultAsync(c => c.Id == Id);
                 return (checklistCategoryModel);
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Checklist Data from database", ex);
+                throw new OzoneException("Error in Getting Checklist Data from database", ex);
             }
         }
 
@@ -157,9 +157,9 @@ namespace Ozone.DAL.Repositories
                 var checklistCategories = await _db.ChecklistCategoriesTable.ToListAsync();
                 return (checklistCategories);
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Checklist Data from database", ex);
+                throw new OzoneException("Error in Getting Checklist Data from database", ex);
             }
         }
 
@@ -170,9 +170,9 @@ namespace Ozone.DAL.Repositories
                 var checklistCategories = await _db.ChecklistCategoriesTable.Where(c => c.UnitChecklistId == unitId).ToListAsync();
                 return checklistCategories;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Checklist Data from Database", ex);
+                throw new OzoneException("Error in Getting Checklist Data from Database", ex);
             }
         }
 
@@ -183,9 +183,9 @@ namespace Ozone.DAL.Repositories
                 var checklistCategories = await _db.ChecklistCategoriesTable.Where(c => c.UnitChecklistId == unitId).ToListAsync();
                 return checklistCategories;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Checklist Data from Database", ex);
+                throw new OzoneException("Error in Getting Checklist Data from Database", ex);
             }
         }
 
@@ -200,9 +200,9 @@ namespace Ozone.DAL.Repositories
                 checklistCategoryModel.Description = CategoryModel.Description;
                 return (await _db.SaveChangesAsync() > 0);
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Updating Checklist Data in Database", ex);
+                throw new OzoneException("Error in Updating Checklist Data in Database", ex);
             }
         }
 
@@ -227,9 +227,9 @@ namespace Ozone.DAL.Repositories
                 }
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Deleting Checklist data from Database", ex);
+                throw new OzoneException("Error in Deleting Checklist data from Database", ex);
             }
         }
 
@@ -244,9 +244,9 @@ namespace Ozone.DAL.Repositories
                 status = await _db.SaveChangesAsync() > 0;
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Creating Checklist Data", ex);
+                throw new OzoneException("Error in Creating Checklist Data", ex);
             }
         }
 
@@ -257,9 +257,9 @@ namespace Ozone.DAL.Repositories
                 checklistElementModel = await _db.ChecklistElementsTable.FirstOrDefaultAsync(c => c.GuidId == elementGuid);
                 return (checklistElementModel);
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Element Data from Database", ex);
+                throw new OzoneException("Error in Getting Element Data from Database", ex);
             }
         }
 
@@ -277,9 +277,9 @@ namespace Ozone.DAL.Repositories
                 }
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Deleting Element Data", ex);
+                throw new OzoneException("Error in Deleting Element Data", ex);
             }
         }
 
@@ -290,9 +290,9 @@ namespace Ozone.DAL.Repositories
                 var checklistElements = await _db.ChecklistElementsTable.ToListAsync();
                 return (checklistElements);
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Checklist Elements", ex);
+                throw new OzoneException("Error in Getting Checklist Elements", ex);
             }
         }
 
@@ -303,9 +303,9 @@ namespace Ozone.DAL.Repositories
                 var elementsList = await _db.ChecklistElementsTable.Where(c => c.CartegoryId == categoryId).ToListAsync();
                 return elementsList;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Checklist Elements from Database", ex);
+                throw new OzoneException("Error in Getting Checklist Elements from Database", ex);
             }
         }
 
@@ -329,9 +329,9 @@ namespace Ozone.DAL.Repositories
 
                 return (await _db.SaveChangesAsync() > 0);
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Updating Checklist Element", ex);
+                throw new OzoneException("Error in Updating Checklist Element", ex);
             }
         }
 
@@ -353,9 +353,9 @@ namespace Ozone.DAL.Repositories
                 var status = await _db.SaveChangesAsync() > 0;
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Creating New Checklist Element Detail", ex);
+                throw new OzoneException("Error in Creating New Checklist Element Detail", ex);
             }
         }
 
@@ -382,9 +382,9 @@ namespace Ozone.DAL.Repositories
                 }
                 return (checklistElementDetailModel);
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Element Details from Database", ex);
+                throw new OzoneException("Error in Getting Element Details from Database", ex);
             }
         }
 
@@ -395,9 +395,9 @@ namespace Ozone.DAL.Repositories
                 checklistElementDetailModel = await _db.ChecklistElementDetailsTable.FirstOrDefaultAsync(c => c.GuidId == elementDetailsGuid);
                 return (checklistElementDetailModel);
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Element details from Database", ex);
+                throw new OzoneException("Error in Getting Element details from Database", ex);
             }
         }
 
@@ -408,9 +408,9 @@ namespace Ozone.DAL.Repositories
                 var checklistElementDetails = await _db.ChecklistElementDetailsTable.ToListAsync();
                 return (checklistElementDetails);
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting All Checklist Element Details from Database", ex);
+                throw new OzoneException("Error in Getting All Checklist Element Details from Database", ex);
             }
         }
 
@@ -441,9 +441,9 @@ namespace Ozone.DAL.Repositories
 
                 return checklistBuilderList;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Fetching Data from Database", ex);
+                throw new OzoneException("Error in Fetching Data from Database", ex);
             }
         }
 
@@ -489,9 +489,9 @@ namespace Ozone.DAL.Repositories
 
                 return (await _db.SaveChangesAsync() > 0);
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Updating data in Database", ex);
+                throw new OzoneException("Error in Updating data in Database", ex);
             }
         }
 
@@ -510,9 +510,9 @@ namespace Ozone.DAL.Repositories
 
                 return newElementDetailId;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Data Insertion into Database", ex);
+                throw new OzoneException("Error in Data Insertion into Database", ex);
             }
         }
 
@@ -544,9 +544,9 @@ namespace Ozone.DAL.Repositories
                 }
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Deleting Element Details", ex);
+                throw new OzoneException("Error in Deleting Element Details", ex);
             }
         }
 
@@ -571,9 +571,9 @@ namespace Ozone.DAL.Repositories
 
                 await _db.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Adding UnitModel Checklist", ex);
+                throw new OzoneException("Error in Adding UnitModel Checklist", ex);
             }
         }
 
@@ -602,9 +602,9 @@ namespace Ozone.DAL.Repositories
 
                 return exist;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Checklist Status", ex);
+                throw new OzoneException("Error in Getting Checklist Status", ex);
             }
         }
 
