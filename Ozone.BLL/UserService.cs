@@ -34,9 +34,9 @@ namespace Ozone.BLL
                 var users = await _repository.GetUsers();
                 return users;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -48,9 +48,9 @@ namespace Ozone.BLL
                 var str = _repository.GetUserFullNameByUserAndId(UserId, user);
                 return str;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -62,9 +62,9 @@ namespace Ozone.BLL
                 var str = await _repository.GetUserUnitName(UserId, user);
                 return str;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -76,9 +76,9 @@ namespace Ozone.BLL
                 var userId = await _repository.GetUserUnitId(UserId, user);
                 return userId;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -89,9 +89,9 @@ namespace Ozone.BLL
                 var userRole = _repository.GetUserRoleByUser(user, role);
                 return userRole;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 

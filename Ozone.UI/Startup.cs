@@ -52,6 +52,12 @@ namespace Ozone.UI
             services.AddTransient<IChecklistRepository, ChecklistRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IVendorRepository, VendorRepository>();
+            services.AddTransient<ICourseRepository, CourseRepository>();
+            services.AddTransient<ITraineeRepository, TraineeRepository>();
+            services.AddTransient<ITrainingRepository, TrainingRepository>();
+            services.AddTransient<ITrainerRepository, TrainerRepository>();
+            services.AddTransient<IGenderRepository, GenderRepository>();
+            services.AddTransient<IGradeRepository, GradeRepository>();
             #endregion
 
             #region Register Services
@@ -59,6 +65,13 @@ namespace Ozone.UI
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IUnitService, UnitService>();
             services.AddTransient<IChecklistService, ChecklistService>();
+
+            services.AddTransient<ICourseService, CourseService>();
+            services.AddTransient<ITraineeService, TraineeService>();
+            services.AddTransient<ITrainingService, TrainingService>();
+            services.AddTransient<ITrainerService, TrainerService>();
+            services.AddTransient<IGenderService, GenderService>();
+            services.AddTransient<IGradeService, GradeService>();
             #endregion
 
             services.AddScoped<UserWidgetsDetails>();

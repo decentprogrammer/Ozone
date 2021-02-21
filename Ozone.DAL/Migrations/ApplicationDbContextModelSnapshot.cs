@@ -431,6 +431,177 @@ namespace Ozone.DAL.Migrations
                     b.ToTable("ChecklistElementsTable");
                 });
 
+            modelBuilder.Entity("Ozone.Models.Course", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CourseName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("CourseId");
+
+                    b.ToTable("Course", "Trainings");
+                });
+
+            modelBuilder.Entity("Ozone.Models.Gender", b =>
+                {
+                    b.Property<int>("GenderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("GenderId");
+
+                    b.ToTable("Gender", "Catalogue");
+                });
+
+            modelBuilder.Entity("Ozone.Models.Grade", b =>
+                {
+                    b.Property<int>("GradeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("GradeId");
+
+                    b.ToTable("Grade", "Catalogue");
+                });
+
+            modelBuilder.Entity("Ozone.Models.Trainee", b =>
+                {
+                    b.Property<int>("TraineeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address1")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Address2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DoB")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("GenderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GradeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TraineeId");
+
+                    b.HasIndex("GenderId");
+
+                    b.HasIndex("GradeId");
+
+                    b.ToTable("Trainee", "Trainings");
+                });
+
+            modelBuilder.Entity("Ozone.Models.TraineeTraining", b =>
+                {
+                    b.Property<int>("TraineeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TrainingId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TraineeId", "TrainingId");
+
+                    b.HasIndex("TrainingId");
+
+                    b.ToTable("TraineeTraining", "Trainings");
+                });
+
+            modelBuilder.Entity("Ozone.Models.Trainer", b =>
+                {
+                    b.Property<int>("TrainerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address1")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Address2")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("CellNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("SkillDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TrainingId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TrainerId");
+
+                    b.HasIndex("TrainingId");
+
+                    b.ToTable("Trainer", "Trainings");
+                });
+
+            modelBuilder.Entity("Ozone.Models.Training", b =>
+                {
+                    b.Property<int>("TrainingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("TrainingId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Training", "Trainings");
+                });
+
             modelBuilder.Entity("Ozone.Models.UnitCategoryModel", b =>
                 {
                     b.Property<int>("Id")
@@ -748,6 +919,66 @@ namespace Ozone.DAL.Migrations
                     b.Navigation("ChecklistCategoryModel");
                 });
 
+            modelBuilder.Entity("Ozone.Models.Trainee", b =>
+                {
+                    b.HasOne("Ozone.Models.Gender", "Gender")
+                        .WithMany("Trainees")
+                        .HasForeignKey("GenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ozone.Models.Grade", "Grade")
+                        .WithMany("Trainees")
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Gender");
+
+                    b.Navigation("Grade");
+                });
+
+            modelBuilder.Entity("Ozone.Models.TraineeTraining", b =>
+                {
+                    b.HasOne("Ozone.Models.Trainee", "Trainee")
+                        .WithMany("TraineeTrainings")
+                        .HasForeignKey("TraineeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ozone.Models.Training", "Training")
+                        .WithMany("TraineeTrainings")
+                        .HasForeignKey("TrainingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Trainee");
+
+                    b.Navigation("Training");
+                });
+
+            modelBuilder.Entity("Ozone.Models.Trainer", b =>
+                {
+                    b.HasOne("Ozone.Models.Training", "Training")
+                        .WithMany("Trainers")
+                        .HasForeignKey("TrainingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Training");
+                });
+
+            modelBuilder.Entity("Ozone.Models.Training", b =>
+                {
+                    b.HasOne("Ozone.Models.Course", "Course")
+                        .WithMany("Trainings")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
             modelBuilder.Entity("Ozone.Models.UnitCategoryModel", b =>
                 {
                     b.HasOne("Ozone.Models.UnitModel", null)
@@ -772,6 +1003,33 @@ namespace Ozone.DAL.Migrations
             modelBuilder.Entity("Ozone.Models.ChecklistElementModel", b =>
                 {
                     b.Navigation("ChecklistElementDetailsModel");
+                });
+
+            modelBuilder.Entity("Ozone.Models.Course", b =>
+                {
+                    b.Navigation("Trainings");
+                });
+
+            modelBuilder.Entity("Ozone.Models.Gender", b =>
+                {
+                    b.Navigation("Trainees");
+                });
+
+            modelBuilder.Entity("Ozone.Models.Grade", b =>
+                {
+                    b.Navigation("Trainees");
+                });
+
+            modelBuilder.Entity("Ozone.Models.Trainee", b =>
+                {
+                    b.Navigation("TraineeTrainings");
+                });
+
+            modelBuilder.Entity("Ozone.Models.Training", b =>
+                {
+                    b.Navigation("TraineeTrainings");
+
+                    b.Navigation("Trainers");
                 });
 
             modelBuilder.Entity("Ozone.Models.UnitChecklistModel", b =>

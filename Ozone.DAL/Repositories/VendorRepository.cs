@@ -30,9 +30,9 @@ namespace Ozone.DAL.Repositories
                 var vendorNamesList = await _db.VendorsDictionaryTable.ToListAsync();
                 return vendorNamesList;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Vendor Information", ex);
+                throw new OzoneException("Error in Getting Vendor Information", ex);
             }
         }
 
@@ -43,9 +43,9 @@ namespace Ozone.DAL.Repositories
                 var vendorId = (await _db.VendorsDictionaryTable.Where(c => c.VendorName == vendorName).FirstOrDefaultAsync()).Id;
                 return vendorId;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Vendor Information", ex);
+                throw new OzoneException("Error in Getting Vendor Information", ex);
             }
         }
     }

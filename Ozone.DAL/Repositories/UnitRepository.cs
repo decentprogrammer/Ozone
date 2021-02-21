@@ -47,9 +47,9 @@ namespace Ozone.DAL.Repositories
                 await _db.UnitsTable.AddAsync(unitModel);
                 return await _db.SaveChangesAsync() > 0;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in New UnitModel Creation", ex);
+                throw new OzoneException("Error in New UnitModel Creation", ex);
             }
         }
 
@@ -61,9 +61,9 @@ namespace Ozone.DAL.Repositories
                 _db.UnitsTable.Remove(unit);
                 return await _db.SaveChangesAsync() > 0;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in New UnitModel Creation", ex);
+                throw new OzoneException("Error in New UnitModel Creation", ex);
             }
         }
 
@@ -80,9 +80,9 @@ namespace Ozone.DAL.Repositories
 
                 return UnitListModel;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Units Information", ex);
+                throw new OzoneException("Error in Getting Units Information", ex);
             }
         }
 
@@ -99,9 +99,9 @@ namespace Ozone.DAL.Repositories
 
                 return UnitListModel;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Units Information", ex);
+                throw new OzoneException("Error in Getting Units Information", ex);
             }
         }
 
@@ -114,9 +114,9 @@ namespace Ozone.DAL.Repositories
                 var unit = await _db.UnitsTable.FirstOrDefaultAsync(c => c.Id == Id);
                 return unit;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting UnitModel Information", ex);
+                throw new OzoneException("Error in Getting UnitModel Information", ex);
             }
         }
 
@@ -127,9 +127,9 @@ namespace Ozone.DAL.Repositories
                 var unitCategory = await _db.UnitCategoryTable.FirstOrDefaultAsync(c => c.Id == Id);
                 return unitCategory;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Data", ex);
+                throw new OzoneException("Error in Getting Data", ex);
             }
         }
 
@@ -140,9 +140,9 @@ namespace Ozone.DAL.Repositories
                 UnitCategories = await _db.UnitCategoryTable.ToListAsync();
                 return UnitCategories;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Data", ex);
+                throw new OzoneException("Error in Getting Data", ex);
             }
         }
 
@@ -153,9 +153,9 @@ namespace Ozone.DAL.Repositories
                 UnitCategories = await _db.UnitCategoryTable.ToListAsync();
                 return UnitCategories;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Data", ex);
+                throw new OzoneException("Error in Getting Data", ex);
             }
         }
 
@@ -187,9 +187,9 @@ namespace Ozone.DAL.Repositories
                 status = (await _db.SaveChangesAsync() > 0);
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Updating UnitModel Data", ex);
+                throw new OzoneException("Error in Updating UnitModel Data", ex);
             }
 
             
@@ -202,9 +202,9 @@ namespace Ozone.DAL.Repositories
             {
                 return (await _db.UnitsTable.AnyAsync(e => e.Id == id));
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting UnitModel Information", ex);
+                throw new OzoneException("Error in Getting UnitModel Information", ex);
             }
         }
 
@@ -215,9 +215,9 @@ namespace Ozone.DAL.Repositories
                 var units = await _db.UnitsTable.Where(c => c.Category == categoryName).ToListAsync();
                 return units;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Data", ex);
+                throw new OzoneException("Error in Getting Data", ex);
             }
         }
 
@@ -228,9 +228,9 @@ namespace Ozone.DAL.Repositories
                 var units = await _db.UnitsTable.Where(u => u.ParentName == parentName).ToListAsync();
                 return units;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception("Error in Getting Data", ex);
+                throw new OzoneException("Error in Getting Data", ex);
             }
         }
     }

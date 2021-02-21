@@ -40,9 +40,9 @@ namespace Ozone.BLL
                 return status;
 
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -54,9 +54,9 @@ namespace Ozone.BLL
                 return status;
 
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -68,9 +68,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetUnits();
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -81,9 +81,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllUnits();
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -94,9 +94,9 @@ namespace Ozone.BLL
                 var item = await _repository.GetUnitById(Id);
                 return item;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -108,9 +108,9 @@ namespace Ozone.BLL
 
                 return unitCategory;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -121,9 +121,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllUnitCategoriesAsync();
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -134,9 +134,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllUnitCategories();
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -147,9 +147,9 @@ namespace Ozone.BLL
                 var status = await _repository.UnitUpdateAsync(Id, unitModel);
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
 
         }
@@ -161,9 +161,9 @@ namespace Ozone.BLL
                 var status = await _repository.UnitModelExists(id);
                 return status;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -174,9 +174,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllUnitByCategoryNameAsync(categoryName);
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
@@ -187,9 +187,9 @@ namespace Ozone.BLL
                 var items = await _repository.GetAllUnitsByParentNameAsync(parentName);
                 return items;
             }
-            catch (Exception ex)
+            catch (OzoneException ex)
             {
-                throw new Exception(ex.Message, ex.InnerException);
+                throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
 
