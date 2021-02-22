@@ -1,0 +1,71 @@
+﻿@page
+@model Ozone.UI.Areas.Trainings.Pages.Courses.IndexModel
+
+<div class="row form-group" style="margin-top:50px">
+    <div class="col-md-12">
+        <h3 class="page-header">
+            List of Existing Courses
+        </h3>
+        <hr />
+    </div>
+</div>
+
+<div style="height: 160vh">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">   
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <div class="col-md-3 float-right">                        
+                        <a asp-area="Trainings" asp-page="/Courses/Create" class="btn btn-secondary"><i class="fa fa-plus"></i> Add Course</a>
+                    </div>
+                </div>
+            </div>
+            <table id="dtUsers" class="table table-striped" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th class="th-sm">
+                            S.No
+                        </th>
+                        <th class="th-sm">
+                            Course Name
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 0;
+                        if (Model.listCourses.Count > 0)
+                        {
+                            foreach (var item in Model.listCourses)
+                            {
+                                i++;
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => i)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CourseName)
+                                    </td>
+                                    <td>
+                                        <div class="dropdown float-right">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu dropdown-secondary">
+                                                <input type="button" onclick="openDetails(@item.CourseId)" value="Details" class="dropdown-item" data-toggle="modal" data-target="#modalDetails" />
+                                                <a class="dropdown-item" id="editCourse" asp-area="Trainings" asp-page="/Courses/Edit" asp-route-id="@item.CourseId">Edit</a>
+                                                <a class="dropdown-item" asp-page="./Delete" asp-route-id="@item.CourseId">Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>

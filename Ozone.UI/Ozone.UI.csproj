@@ -20,4 +20,12 @@
     <ProjectReference Include="..\Ozone.Models\Ozone.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Pages\Gender\" />
+    <Folder Include="Areas\Admin\Pages\Grade\" />
+    <Folder Include="Areas\Trainings\Pages\Trainee\" />
+    <Folder Include="Areas\Trainings\Pages\Trainer\" />
+    <Folder Include="Areas\Trainings\Pages\Training\" />
+  </ItemGroup>
+
 </Project>
