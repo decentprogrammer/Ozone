@@ -47,7 +47,7 @@ namespace Ozone.UI.Areas.Trainings.Pages.Courses
 
                     var status = await _courseService.Insert(entry);
                 }                                
-                return Page();
+                return new RedirectToPageResult("Index");
             }
             catch (OzoneException ex)
             {

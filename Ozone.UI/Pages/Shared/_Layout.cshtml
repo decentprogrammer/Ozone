@@ -16,12 +16,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link href="~/js/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="~/js/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" />
     <!-- Material Design Bootstrap -->
     <link rel="stylesheet" href="~/css/mdb.min.css">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="~/css/style.css">
     <!-- MDBootstrap Datatables  -->
     <link href="~/css/addons/datatables.min.css" rel="stylesheet">
+    @RenderSection("Styles", required: false)
 </head>
 <body>
     <header>
@@ -52,20 +55,15 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-page="/Dashboard/Index">Dashboard</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Trainings" asp-page="/Courses/Create">Add Course</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="Trainings" asp-page="/Courses/Index">Courses</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-555" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             Dropdown
                         </a>
                         <div class="dropdown-menu dropdown-secondary" aria-labelledby="navbarDropdownMenuLink-555">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" asp-area="Trainings" asp-page="/Courses/Index">Courses</a>
+                            <a class="dropdown-item" asp-area="Trainings" asp-page="/Trainings/Index">Trainings</a>
+                            <a class="dropdown-item" asp-area="Trainings" asp-page="/Trainees/Index">Trainees</a>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>
@@ -138,6 +136,7 @@
     <script type="text/javascript" src="~/js/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="~/js/mdb.min.js"></script>
     <!-- MDBootstrap Datatables  -->
@@ -148,7 +147,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
-
+    
 
     @RenderSection("Scripts", required: false)
 

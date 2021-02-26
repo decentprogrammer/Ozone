@@ -15,5 +15,7 @@ namespace Ozone.Models
         public string CourseName { get; set; }
 
         public ICollection<Training> Trainings { get; set; }
+
+        public int IsDeleted { get; set; }
     }
 }

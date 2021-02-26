@@ -24,12 +24,12 @@ namespace Ozone.Models
         public Gender Gender { get; set; }
 
         [Required]
-        [StringLength(250)]
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
+        [StringLength(500)]
+        public string Address { get; set; }
 
         public int GradeId { get; set; }
         public Grade Grade { get; set; }
+        public int IsDeleted { get; set; }
 
         public ICollection<TraineeTraining> TraineeTrainings { get; set; }
 

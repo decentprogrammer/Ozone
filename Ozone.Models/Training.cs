@@ -23,5 +23,8 @@ namespace Ozone.Models
 
         public ICollection<TraineeTraining> TraineeTrainings { get; set; }
         public ICollection<Trainer> Trainers { get; set; }
+
+        public int IsDeleted { get; set; }
+
     }
 }

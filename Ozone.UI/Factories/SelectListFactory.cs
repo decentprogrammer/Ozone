@@ -13,13 +13,21 @@ namespace Ozone.UI.Factories
         {
 
         }
-
         public static SelectListItem Create(Gender entity)
         {
             return new SelectListItem()
             {
                 Value = entity.GenderId.ToString(),
                 Text = entity.Description
+            };
+        }
+
+        public static SelectListItem Create(Course entity)
+        {
+            return new SelectListItem()
+            {
+                Value = entity.CourseId.ToString(),
+                Text = entity.CourseName
             };
         }
     }

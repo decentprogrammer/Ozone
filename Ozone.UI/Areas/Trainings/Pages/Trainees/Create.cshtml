@@ -1,0 +1,53 @@
+﻿@page
+@model Ozone.UI.Areas.Trainings.Pages.Trainees.CreateModel
+
+<div class="row form-group" style="margin-top:50px">
+    <div class="col-md-8 offset-md-2">
+        <h3 class="page-header">
+            Add Trainee
+        </h3>
+        <hr />
+    </div>
+
+</div>
+
+<div class="row form-group">
+    <div class="col-md-4 offset-md-4">
+        <form id="addtraining" method="post">
+            @Html.AntiForgeryToken()
+            @*<div class="row form-group">
+                <label asp-for="Input.CourseId" class="font-weight-normal">Course Name</label>
+                <select asp-for="Input.CourseId" asp-items="@Model.Input.Courses" class="form-control">
+                    <option selected disabled>Select Course</option>
+                </select>
+            </div>
+            <div class="row form-group">
+                <label asp-for="Input.StartDate" class="font-weight-normal">Training Start Date</label>
+                <input asp-for="Input.StartDate" type='text' class='form-control datepicker' placeholder="Start Date" style="padding-left:10px" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
+            </div>
+            <div class="row form-group">
+                <label asp-for="Input.EndDate" class="font-weight-normal">Training End Date</label>
+                <input asp-for="Input.EndDate" type='text' class='form-control datepicker' placeholder="End Date" style="padding-left:10px" value="@DateTime.Now.AddYears(1).ToString("dd/MM/yyyy")" />
+            </div>*@
+            <div class="row form-group">
+                <button type="submit" id="Submit" class="btn btn-secondary float-right">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy'
+            });
+        });
+    </script>
+}
+
+
+

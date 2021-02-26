@@ -1,0 +1,85 @@
+﻿@page
+@model Ozone.UI.Areas.Trainings.Pages.Trainings.IndexModel
+
+
+<div class="row form-group" style="margin-top:50px">
+    <div class="col-md-12">
+        <h3 class="page-header">
+            List of Trainings
+        </h3>
+        <hr />
+    </div>
+</div>
+
+<div style="height: 160vh">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <div class="float-right">
+                        <a asp-area="Trainings" asp-page="/Trainings/Create" class="btn btn-secondary"><i class="fa fa-plus"></i> Add Training</a>
+                    </div>
+                </div>
+            </div>
+            <table id="dtTrainings" class="table table-striped" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th class="th-sm">
+                            S.No
+                        </th>
+                        <th class="th-sm">
+                            Course Name
+                        </th>
+                        <th class="th-sm">
+                            Start Date
+                        </th>
+                        <th class="th-sm">
+                            End Date
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 0;
+                        if (Model.listTrainingViewModel.Count > 0)
+                        {
+                            foreach (var item in Model.listTrainingViewModel)
+                            {
+                                i++;
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => i)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CourseName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.StartDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EndDate)
+                                    </td>
+                                    <td>
+                                        <div class="dropdown float-right">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu dropdown-secondary">
+                                                @*<input type="button" onclick="openDetails(@item.CourseId)" value="Details" class="dropdown-item" data-toggle="modal" data-target="#modalDetails" />*@
+                                                <a class="dropdown-item" id="editCourse" asp-area="Trainings" asp-page="/Trainings/Details" asp-route-id="@item.TrainingId">Details</a>
+                                                <a class="dropdown-item" id="editCourse" asp-area="Trainings" asp-page="/Trainings/Edit" asp-route-id="@item.TrainingId">Edit</a>
+                                                <a class="dropdown-item" asp-page="./Delete" asp-route-id="@item.TrainingId">Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

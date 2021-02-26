@@ -4,7 +4,7 @@
 <div class="row form-group" style="margin-top:50px">
     <div class="col-md-8 offset-md-2">
         <h3 class="page-header">
-            <i class="fa fa-plus"></i>
+            <i class="fa fa-edit"></i>
             Edit Course
         </h3>
         <hr />
@@ -16,14 +16,13 @@
     <div class="col-md-6 offset-md-3">
         <form id="addcourse" method="post">
             @Html.AntiForgeryToken()
-            @Html.ValidationSummary(false, "", new { @class = "text-warning" })
             <input type="hidden" asp-for="Input.CourseId" />
             <div class="form-group">
                 <label asp-for="Input.CourseName"></label>
                 <input asp-for="Input.CourseName" class="form-control" />
                 <span asp-validation-for="Input.CourseName" class="text-danger"></span>
             </div>
-            <button type="submit" id="Submit" class="btn btn-success pull-right">
+            <button type="submit" id="Submit" class="btn btn-secondary pull-right">
                 <i class="fa fa-edit"></i>
                 Edit
             </button>

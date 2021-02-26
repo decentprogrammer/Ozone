@@ -15,7 +15,7 @@
         <div class="col-md-10 offset-md-1">   
             <div class="row form-group">
                 <div class="col-md-12">
-                    <div class="col-md-3 float-right">                        
+                    <div class="float-right">                        
                         <a asp-area="Trainings" asp-page="/Courses/Create" class="btn btn-secondary"><i class="fa fa-plus"></i> Add Course</a>
                     </div>
                 </div>
@@ -53,7 +53,8 @@
                                                 Action
                                             </button>
                                             <div class="dropdown-menu dropdown-secondary">
-                                                <input type="button" onclick="openDetails(@item.CourseId)" value="Details" class="dropdown-item" data-toggle="modal" data-target="#modalDetails" />
+                                                @*<input type="button" onclick="openDetails(@item.CourseId)" value="Details" class="dropdown-item" data-toggle="modal" data-target="#modalDetails" />*@
+                                                <a class="dropdown-item" id="editCourse" asp-area="Trainings" asp-page="/Courses/Details" asp-route-id="@item.CourseId">Details</a>
                                                 <a class="dropdown-item" id="editCourse" asp-area="Trainings" asp-page="/Courses/Edit" asp-route-id="@item.CourseId">Edit</a>
                                                 <a class="dropdown-item" asp-page="./Delete" asp-route-id="@item.CourseId">Delete</a>
                                             </div>
