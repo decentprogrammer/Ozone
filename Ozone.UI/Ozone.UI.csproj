@@ -23,9 +23,12 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Pages\Gender\" />
     <Folder Include="Areas\Admin\Pages\Grade\" />
-    <Folder Include="Areas\Trainings\Pages\Trainee\" />
     <Folder Include="Areas\Trainings\Pages\Trainer\" />
-    <Folder Include="Areas\Trainings\Pages\Training\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\bootstrap-datepicker\.github\ISSUE_TEMPLATE.md" />
+    <None Include="wwwroot\js\bootstrap-datepicker\.github\PULL_REQUEST_TEMPLATE.md" />
   </ItemGroup>
 
 </Project>

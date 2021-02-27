@@ -443,6 +443,9 @@ namespace Ozone.DAL.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
+                    b.Property<int>("IsDeleted")
+                        .HasColumnType("int");
+
                     b.HasKey("CourseId");
 
                     b.ToTable("Course", "Trainings");
@@ -511,6 +514,9 @@ namespace Ozone.DAL.Migrations
                     b.Property<int>("GradeId")
                         .HasColumnType("int");
 
+                    b.Property<int>("IsDeleted")
+                        .HasColumnType("int");
+
                     b.HasKey("TraineeId");
 
                     b.HasIndex("GenderId");
@@ -565,6 +571,9 @@ namespace Ozone.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int>("IsDeleted")
+                        .HasColumnType("int");
+
                     b.Property<string>("SkillDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -591,6 +600,9 @@ namespace Ozone.DAL.Migrations
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("IsDeleted")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");

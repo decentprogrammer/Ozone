@@ -76,7 +76,7 @@ namespace Ozone.DAL.Repositories
         {
             try
             {
-                var items = await _db.Trainings.ToListAsync();
+                var items = await _db.Trainings.Where(x => x.IsDeleted == 0).ToListAsync();
                 return items;
             }
             catch (OzoneException ex)
