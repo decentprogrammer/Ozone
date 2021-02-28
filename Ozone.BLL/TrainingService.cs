@@ -9,8 +9,8 @@ namespace Ozone.BLL
 {
     public interface ITrainingService
     {
-        Task<Training> GetTrainingById(int id);
-        Task<List<Training>> GetTrainings();
+        Task<Training> GetTrainingById(int id, bool includeDetails = false);
+        Task<List<Training>> GetTrainings(bool includeDetails = false);
         Task<bool> Insert(Training training);
         Task<bool> Remove(Training training);
         Task<bool> Update(Training training);
@@ -67,11 +67,11 @@ namespace Ozone.BLL
             }
         }
 
-        public async Task<List<Training>> GetTrainings()
+        public async Task<List<Training>> GetTrainings(bool includeDetails = false)
         {
             try
             {
-                var items = await _repository.GetTrainings();
+                var items = await _repository.GetTrainings(includeDetails);
                 return items;
 
             }
@@ -81,11 +81,11 @@ namespace Ozone.BLL
             }
         }
 
-        public async Task<Training> GetTrainingById(int id)
+        public async Task<Training> GetTrainingById(int id, bool includeDetails = false)
         {
             try
             {
-                var item = await _repository.GetTrainingById(id);
+                var item = await _repository.GetTrainingById(id, includeDetails);
                 return item;
 
             }

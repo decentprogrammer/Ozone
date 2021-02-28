@@ -54,5 +54,21 @@ namespace Ozone.UI.Areas.Trainings.Pages.Trainings
             }
             return Page();
         }
+
+
+        public async Task<IActionResult> OnGetDelete(int id)
+        {
+            var training = await _trainingService.GetTrainingById(id);
+            if (training == null)
+            {
+                return NotFound();
+
+            }
+            training.IsDeleted = 1;
+
+            var status = await _trainingService.Update(training);
+
+            return RedirectToPage("Index");
+        }
     }
 }
