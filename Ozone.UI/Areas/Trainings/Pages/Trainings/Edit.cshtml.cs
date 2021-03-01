@@ -46,20 +46,33 @@ namespace Ozone.UI.Areas.Trainings.Pages.Trainings
         }
         public async Task<IActionResult> OnGet(int id)
         {
-            var training = await _trainingService.GetTrainingById(id);
-
-            Input = new InputModel()
+            try
             {
-                TrainingId = training.TrainingId,
-                Courses = (await _courseService.GetCourses()).Select(p => SelectListFactory.Create(p)),
-                CourseId = training.CourseId,
-                StartDate = training.StartDate,
-                EndDate = training.EndDate
-            };
-            return Page();
+                var training = await _trainingService.GetTrainingById(id);
+
+                if (training == null)
+                {
+                    return NotFound();
+                }
+
+                Input = new InputModel()
+                {
+                    TrainingId = training.TrainingId,
+                    Courses = (await _courseService.GetCourses()).Select(p => SelectListFactory.Create(p)),
+                    CourseId = training.CourseId,
+                    StartDate = training.StartDate,
+                    EndDate = training.EndDate
+                };
+                return Page();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
         }
 
-        public async Task<IActionResult> OnPostAsync(InputModel input)
+        public async Task<IActionResult> OnPostAsync()
         {
 
             try
