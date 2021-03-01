@@ -24,10 +24,7 @@ namespace Ozone.UI.Areas.Trainings.Pages.Courses
         public class InputModel
         {
             public int CourseId { get; set; }
-
-            [Required]
-            [StringLength(250)]
-            [Display(Name = "Course Name")]
+                       
             public string CourseName { get; set; }
         }
 
