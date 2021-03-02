@@ -2,7 +2,7 @@
 @model Ozone.UI.Areas.Trainings.Pages.Trainees.CreateModel
 
 <div class="row form-group" style="margin-top:50px">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-10 offset-md-1">
         <h3 class="page-header">
             Add Trainee
         </h3>
@@ -12,23 +12,42 @@
 </div>
 
 <div class="row form-group">
-    <div class="col-md-4 offset-md-4">
+    <div class="col-md-8 offset-md-2">
         <form id="addtraining" method="post">
             @Html.AntiForgeryToken()
-            @*<div class="row form-group">
-                <label asp-for="Input.CourseId" class="font-weight-normal">Course Name</label>
-                <select asp-for="Input.CourseId" asp-items="@Model.Input.Courses" class="form-control">
-                    <option selected disabled>Select Course</option>
-                </select>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label asp-for="Input.FullName" class="font-weight-normal">Full Name</label>
+                    <input asp-for="Input.FullName" type='text' class='form-control' placeholder="Full Name" style="padding-left:10px" />
+                    <span asp-validation-for="Input.FullName" class="text-danger text-uppercase small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Input.GenderId" class="font-weight-normal">Course Name</label>
+                    <select asp-for="Input.GenderId" asp-items="@Model.Input.Gender" class="form-control">
+                        <option selected disabled>Select Gender</option>
+                    </select>
+                </div>                
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label asp-for="Input.DoB" class="font-weight-normal">Date of Birth</label>
+                    <input asp-for="Input.DoB" type='text' class='form-control datepicker' placeholder="Start Date" style="padding-left:10px" value="" />
+                    <span asp-validation-for="Input.DoB" class="text-danger text-uppercase small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Input.Email" class="font-weight-normal">Email</label>
+                    <input asp-for="Input.Email" type='text' class='form-control' placeholder="Email" style="padding-left:10px" />
+                    <span asp-validation-for="Input.Email" class="text-danger text-uppercase small"></span>                    
+                </div>
             </div>
             <div class="row form-group">
-                <label asp-for="Input.StartDate" class="font-weight-normal">Training Start Date</label>
-                <input asp-for="Input.StartDate" type='text' class='form-control datepicker' placeholder="Start Date" style="padding-left:10px" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
+                <div class="col-md-12">
+                    <label asp-for="Input.Address" class="font-weight-normal">Address</label>
+                    <input asp-for="Input.Address" type='text' class='form-control' placeholder="Address" style="padding-left:10px" />
+                    <span asp-validation-for="Input.Address" class="text-danger text-uppercase small"></span>
+                </div>
             </div>
-            <div class="row form-group">
-                <label asp-for="Input.EndDate" class="font-weight-normal">Training End Date</label>
-                <input asp-for="Input.EndDate" type='text' class='form-control datepicker' placeholder="End Date" style="padding-left:10px" value="@DateTime.Now.AddYears(1).ToString("dd/MM/yyyy")" />
-            </div>*@
             <div class="row form-group">
                 <button type="submit" id="Submit" class="btn btn-secondary float-right">
                     Save

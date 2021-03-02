@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ozone.DAL;
 
 namespace Ozone.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210301204542_EmailAddedTraineeTable")]
+    partial class EmailAddedTraineeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -512,7 +514,7 @@ namespace Ozone.DAL.Migrations
                     b.Property<int>("GenderId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("GradeId")
+                    b.Property<int>("GradeId")
                         .HasColumnType("int");
 
                     b.Property<int>("IsDeleted")
@@ -940,11 +942,15 @@ namespace Ozone.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Ozone.Models.Grade", null)
+                    b.HasOne("Ozone.Models.Grade", "Grade")
                         .WithMany("Trainees")
-                        .HasForeignKey("GradeId");
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Gender");
+
+                    b.Navigation("Grade");
                 });
 
             modelBuilder.Entity("Ozone.Models.TraineeTraining", b =>

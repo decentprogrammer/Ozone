@@ -16,7 +16,7 @@
             <div class="row form-group">
                 <div class="col-md-12">
                     <div class="float-right">
-                        <a asp-area="Trainings" asp-page="/Courses/Create" class="btn btn-secondary"><i class="fa fa-plus"></i> Add Trainee</a>
+                        <a asp-area="Trainings" asp-page="/Trainees/Create" class="btn btn-secondary"><i class="fa fa-plus"></i> Add Trainee</a>
                     </div>
                 </div>
             </div>
@@ -29,15 +29,21 @@
                         <th class="th-sm">
                             Name
                         </th>
+                        <th class="th-sm">
+                            Email
+                        </th>
+                        <th class="th-sm">
+                            Address
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @{
                         int i = 0;
-                        //if (Model.listTrainees.Count > 0)
+                        if (Model.listTrainees.Count > 0)
                         {
-                            //foreach (var item in Model.listTrainees)
+                            foreach (var item in Model.listTrainees)
                             {
                                 i++;
                                 <tr>
@@ -45,7 +51,13 @@
                                         @Html.DisplayFor(modelItem => i)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => i)
+                                        @Html.DisplayFor(modelItem => item.FullName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Address)
                                     </td>
                                     <td>
                                         <div class="dropdown float-right">
@@ -54,8 +66,8 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-secondary">
                                                 @*<input type="button" onclick="openDetails(@item.CourseId)" value="Details" class="dropdown-item" data-toggle="modal" data-target="#modalDetails" />*@
-                                                <a class="dropdown-item" id="editCourse" asp-area="Trainings" asp-page="/Trainees/Details" asp-route-id="">Details</a>
-                                                <a class="dropdown-item" id="editCourse" asp-area="Trainings" asp-page="/Trainees/Edit" asp-route-id="">Edit</a>
+                                                <a class="dropdown-item" id="traineedetail" asp-area="Trainings" asp-page="/Trainees/Details" asp-route-id="@item.TraineeId">Details</a>
+                                                <a class="dropdown-item" id="edittrainee" asp-area="Trainings" asp-page="/Trainees/Edit" asp-route-id="@item.TraineeId">Edit</a>
                                                 <a class="dropdown-item" asp-page="./Delete" asp-route-id="">Delete</a>
                                             </div>
                                         </div>

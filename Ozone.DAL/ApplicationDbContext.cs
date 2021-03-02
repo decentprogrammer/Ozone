@@ -18,10 +18,10 @@ namespace Ozone.DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Trainee>()
-                .HasOne<Grade>(s => s.Grade)
-                .WithMany(g => g.Trainees)
-                .HasForeignKey(s => s.GradeId);
+            //modelBuilder.Entity<Trainee>()
+            //    .HasOne<Grade>(s => s.Grade)
+            //    .WithMany(g => g.Trainees)
+            //    .HasForeignKey(s => s.GradeId);
 
 
             modelBuilder.Entity<TraineeTraining>().HasKey(tt => new { tt.TraineeId, tt.TrainingId });
