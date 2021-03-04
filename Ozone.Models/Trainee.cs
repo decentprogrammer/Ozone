@@ -29,6 +29,14 @@ namespace Ozone.Models
         [Required]
         [StringLength(500)]
         public string Address { get; set; }
+        
+        [Required]
+        [StringLength(50)]
+        public string PhoneHome { get; set; }
+        
+        [Required]
+        [StringLength(500)]
+        public string PhoneMobile { get; set; }
 
         //public int GradeId { get; set; }
         //public Grade Grade { get; set; }

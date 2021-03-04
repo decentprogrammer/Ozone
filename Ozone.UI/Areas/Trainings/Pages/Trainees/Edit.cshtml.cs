@@ -45,6 +45,17 @@ namespace Ozone.UI.Areas.Trainings.Pages.Trainees
             public string Email { get; set; }
 
             [Required]
+            [StringLength(50)]
+            [Display(Name = "Home Phone")]
+            public string PhoneHome { get; set; }
+
+            [Required]
+            [StringLength(50)]
+            [Display(Name = "Cell Number")]
+            public string PhoneMobile { get; set; }
+
+
+            [Required]
             [Display(Name = "Date of Birth")]
             public DateTime DoB { get; set; }
 
@@ -72,6 +83,8 @@ namespace Ozone.UI.Areas.Trainings.Pages.Trainees
                     Address = trainee.Address,
                     DoB = trainee.DoB,
                     Email = trainee.Email,
+                    PhoneHome = trainee.PhoneHome,
+                    PhoneMobile = trainee.PhoneMobile,
                     FullName = trainee.FullName,
                     GenderId = trainee.GenderId,
                     Gender = (await _genderService.GetGenders()).Select(p => SelectListFactory.Create(p))
@@ -102,6 +115,8 @@ namespace Ozone.UI.Areas.Trainings.Pages.Trainees
                         Address = Input.Address,
                         DoB = Input.DoB,
                         Email = Input.Email,
+                        PhoneHome = Input.PhoneHome,
+                        PhoneMobile = Input.PhoneMobile,
                         FullName = Input.FullName
                     };
 

@@ -11,8 +11,8 @@ namespace Ozone.DAL.Repositories
     public interface ITraineeRepository
     {
         Task<bool> Add(object entity);
-        Task<Trainee> GetTraineeById(int id);
-        Task<List<Trainee>> GetTrainees();
+        Task<Trainee> GetTraineeById(int id, bool includeDetails = false);
+        Task<List<Trainee>> GetTrainees(bool includeDetails = false);
         Task<bool> Remove(object entity);
         Task<bool> SaveChanges();
         Task<bool> Update(object entity);
@@ -72,11 +72,23 @@ namespace Ozone.DAL.Repositories
         }
 
 
-        public async Task<List<Trainee>> GetTrainees()
+        public async Task<List<Trainee>> GetTrainees(bool includeDetails = false)
         {
             try
             {
-                var items = await _db.Trainees.ToListAsync();
+                List<Trainee> items = null;
+                if (includeDetails)
+                {
+                    items = await _db.Trainees
+                                     .Include(p => p.Gender)
+                                     .Where(x => x.IsDeleted == 0)
+                                     .ToListAsync();
+                    return items;
+                }
+
+                items = await _db.Trainees
+                                 .Where(x => x.IsDeleted == 0)
+                                 .ToListAsync();
                 return items;
             }
             catch (OzoneException ex)
@@ -85,11 +97,20 @@ namespace Ozone.DAL.Repositories
             }
         }
 
-        public async Task<Trainee> GetTraineeById(int id)
+        public async Task<Trainee> GetTraineeById(int id, bool includeDetails = false)
         {
             try
             {
-                var item = await _db.Trainees.FirstOrDefaultAsync(x => x.TraineeId == id);
+                Trainee item = null;
+                if (includeDetails)
+                {
+                    item = await _db.Trainees
+                                    .Include(p => p.Gender)
+                                    .FirstOrDefaultAsync(x => x.TraineeId == id);
+                    return item;
+                }
+
+                item = await _db.Trainees.FirstOrDefaultAsync(x => x.TraineeId == id);
                 return item;
             }
             catch (OzoneException ex)

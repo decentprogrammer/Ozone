@@ -19,10 +19,14 @@ namespace Ozone.Models
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-        
+
         [Required]
         [StringLength(50)]
-        public string CellNumber { get; set; }
+        public string PhoneHome { get; set; }
+
+        [Required]
+        [StringLength(500)]
+        public string PhoneMobile { get; set; }
 
         [Required]
         public string SkillDescription { get; set; }        

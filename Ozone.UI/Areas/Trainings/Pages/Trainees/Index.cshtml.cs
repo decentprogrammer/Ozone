@@ -28,5 +28,21 @@ namespace Ozone.UI.Areas.Trainings.Pages.Trainees
 
             return Page();
         }
+
+
+        public async Task<IActionResult> OnGetDelete(int id)
+        {
+            var trainee = await _traineeService.GetTraineeById(id);
+            if (trainee == null)
+            {
+                return NotFound();
+
+            }
+            trainee.IsDeleted = 1;
+
+            var status = await _traineeService.Update(trainee);
+
+            return RedirectToPage("Index");
+        }
     }
 }

@@ -42,6 +42,18 @@ namespace Ozone.UI.Areas.Trainings.Pages.Trainees
             [StringLength(50)]
             [Display(Name = "Email")]
             public string Email { get; set; }
+            
+
+            [Required]
+            [StringLength(50)]
+            [Display(Name = "Home Phone")]
+            public string PhoneHome { get; set; }
+            
+
+            [Required]
+            [StringLength(50)]
+            [Display(Name = "Cell Number")]
+            public string PhoneMobile { get; set; }
 
             [Required]
             [Display(Name = "Date of Birth")]
@@ -77,6 +89,8 @@ namespace Ozone.UI.Areas.Trainings.Pages.Trainees
                         Email = Input.Email,
                         DoB = Input.DoB,
                         GenderId = Input.GenderId,
+                        PhoneHome = Input.PhoneHome,
+                        PhoneMobile = Input.PhoneMobile,                        
                         Address = Input.Address,
                         IsDeleted = 0,
                         Gender = await _genderService.GetGenderById(Input.GenderId)
