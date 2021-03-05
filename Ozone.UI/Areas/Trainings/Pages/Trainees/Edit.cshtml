@@ -15,6 +15,7 @@
     <div class="col-md-8 offset-md-2">
         <form id="addtraining" method="post">
             @Html.AntiForgeryToken()
+            <input asp-for="Input.TraineeId" type="hidden" />
             <div class="row form-group">
                 <div class="col-md-6">
                     <label asp-for="Input.FullName" class="font-weight-normal">Full Name</label>
@@ -39,6 +40,18 @@
                     <label asp-for="Input.Email" class="font-weight-normal">Email</label>
                     <input asp-for="Input.Email" type='text' class='form-control' placeholder="Email" style="padding-left:10px" />
                     <span asp-validation-for="Input.Email" class="text-danger text-uppercase small"></span>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label asp-for="Input.PhoneHome" class="font-weight-normal">Email</label>
+                    <input asp-for="Input.PhoneHome" type='text' class='form-control' placeholder="Phone Home" style="padding-left:10px" />
+                    <span asp-validation-for="Input.PhoneHome" class="text-danger text-uppercase small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Input.PhoneMobile" class="font-weight-normal">Email</label>
+                    <input asp-for="Input.PhoneMobile" type='text' class='form-control' placeholder="Cell Number" style="padding-left:10px" />
+                    <span asp-validation-for="Input.PhoneMobile" class="text-danger text-uppercase small"></span>
                 </div>
             </div>
             <div class="row form-group">

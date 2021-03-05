@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
     <link href="~/js/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet" />
     <link href="~/js/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" />
+    <link href="~/lib/jquery-ui/css/jquery-ui.css" rel="stylesheet" />
     <!-- Material Design Bootstrap -->
     <link rel="stylesheet" href="~/css/mdb.min.css">
     <!-- Your custom styles (optional) -->
@@ -64,6 +65,7 @@
                             <a class="dropdown-item" asp-area="Trainings" asp-page="/Courses/Index">Courses</a>
                             <a class="dropdown-item" asp-area="Trainings" asp-page="/Trainings/Index">Trainings</a>
                             <a class="dropdown-item" asp-area="Trainings" asp-page="/Trainees/Index">Trainees</a>
+                            <a class="dropdown-item" asp-area="Trainings" asp-page="/Trainers/Index">Trainers</a>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>
@@ -137,6 +139,7 @@
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
     <script src="~/js/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+    <script src="~/lib/jquery-ui/js/jquery-ui.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="~/js/mdb.min.js"></script>
     <!-- MDBootstrap Datatables  -->
@@ -147,7 +150,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
-    
+
 
     @RenderSection("Scripts", required: false)
 

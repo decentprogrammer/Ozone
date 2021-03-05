@@ -28,17 +28,28 @@
                     </select>
                 </div>                
             </div>
-
             <div class="row form-group">
                 <div class="col-md-6">
                     <label asp-for="Input.DoB" class="font-weight-normal">Date of Birth</label>
-                    <input asp-for="Input.DoB" type='text' class='form-control datepicker' placeholder="Start Date" style="padding-left:10px" value="" />
+                    <input asp-for="Input.DoB" type='text' class='form-control' id="datepickerDoB" placeholder="Start Date" style="padding-left:10px" value="" />
                     <span asp-validation-for="Input.DoB" class="text-danger text-uppercase small"></span>
                 </div>
                 <div class="col-md-6">
                     <label asp-for="Input.Email" class="font-weight-normal">Email</label>
                     <input asp-for="Input.Email" type='text' class='form-control' placeholder="Email" style="padding-left:10px" />
                     <span asp-validation-for="Input.Email" class="text-danger text-uppercase small"></span>                    
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label asp-for="Input.PhoneHome" class="font-weight-normal">Home Phone</label>
+                    <input asp-for="Input.PhoneHome" type='text' class='form-control' placeholder="Home Phone" style="padding-left:10px" value="" />
+                    <span asp-validation-for="Input.PhoneHome" class="text-danger text-uppercase small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="Input.PhoneMobile" class="font-weight-normal">Cell Number</label>
+                    <input asp-for="Input.PhoneMobile" type='text' class='form-control' placeholder="Cell Number" style="padding-left:10px" />
+                    <span asp-validation-for="Input.PhoneMobile" class="text-danger text-uppercase small"></span>                    
                 </div>
             </div>
             <div class="row form-group">
@@ -60,9 +71,13 @@
 
 @section Scripts{
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('.datepicker').datepicker({
-                format: 'dd/mm/yyyy'
+
+        $(function () {
+            $("#datepickerDoB").datepicker({
+                autoclose: true,
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: "dd/mm/yy"
             });
         });
     </script>

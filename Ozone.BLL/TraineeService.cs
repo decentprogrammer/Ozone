@@ -9,8 +9,8 @@ namespace Ozone.BLL
 {
     public interface ITraineeService
     {
-        Task<Trainee> GetTraineeById(int id);
-        Task<List<Trainee>> GetTrainees();
+        Task<Trainee> GetTraineeById(int id, bool includeDetails = false);
+        Task<List<Trainee>> GetTrainees(bool includeDetails = false);
         Task<bool> Insert(Trainee trainee);
         Task<bool> Remove(Trainee trainee);
         Task<bool> Update(Trainee trainee);
@@ -67,7 +67,7 @@ namespace Ozone.BLL
             }
         }
 
-        public async Task<List<Trainee>> GetTrainees()
+        public async Task<List<Trainee>> GetTrainees(bool includeDetails = false)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace Ozone.BLL
             }
         }
 
-        public async Task<Trainee> GetTraineeById(int id)
+        public async Task<Trainee> GetTraineeById(int id, bool includeDetails = false)
         {
             try
             {

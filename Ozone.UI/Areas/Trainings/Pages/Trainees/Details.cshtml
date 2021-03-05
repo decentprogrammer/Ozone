@@ -1,0 +1,76 @@
+﻿@page
+@model Ozone.UI.Areas.Trainings.Pages.Trainees.DetailsModel
+
+
+<div class="row form-group" style="margin-top:50px">
+    <div class="col-md-12">
+        <h3 class="page-header">
+            <i class="fa fa-sign-in"></i>
+            Trainee Details
+        </h3>
+        <hr />
+    </div>
+
+</div>
+
+<div class="row formgroup">
+    <div class="col-md-8 offset-md-2">
+        <div class="row">
+            <div class="col-md-3">
+                <p>Trainee Name: </p>
+            </div>
+            <div class="col-md-9">
+                @Model.Input.FullName
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Gender: </p>
+            </div>
+            <div class="col-md-9">
+                @Model.Input.Gender
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Date of Birth: </p>
+            </div>
+            <div class="col-md-9">
+                @Model.Input.DoB
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Email: </p>
+            </div>
+            <div class="col-md-9">
+                @Model.Input.Email
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Phone Home: </p>
+            </div>
+            <div class="col-md-9">
+                @Model.Input.PhoneHome
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Cell Number: </p>
+            </div>
+            <div class="col-md-9">
+                @Model.Input.PhoneMobile
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Address: </p>
+            </div>
+            <div class="col-md-9">
+                @Model.Input.Address
+            </div>            
+        </div>
+    </div>
+
+</div>
