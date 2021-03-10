@@ -10,8 +10,8 @@ using Ozone.DAL;
 namespace Ozone.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210301213141_GradeRemovedTrainee")]
-    partial class GradeRemovedTrainee
+    [Migration("20210305070143_PhoneNumbersAdded")]
+    partial class PhoneNumbersAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -520,6 +520,16 @@ namespace Ozone.DAL.Migrations
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
+                    b.Property<string>("PhoneHome")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PhoneMobile")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.HasKey("TraineeId");
 
                     b.HasIndex("GenderId");
@@ -560,11 +570,6 @@ namespace Ozone.DAL.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("CellNumber")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -576,6 +581,16 @@ namespace Ozone.DAL.Migrations
 
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
+
+                    b.Property<string>("PhoneHome")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PhoneMobile")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Specialization")
                         .IsRequired()

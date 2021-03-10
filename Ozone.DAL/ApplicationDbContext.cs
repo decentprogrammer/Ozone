@@ -36,11 +36,21 @@ namespace Ozone.DAL
                 .HasOne<Training>(c => c.Training)
                 .WithMany(tc => tc.TraineeTrainings)
                 .HasForeignKey(c => c.TrainingId);
+            
 
-            modelBuilder.Entity<Trainer>()
-               .HasOne<Training>(s => s.Training)
-               .WithMany(g => g.Trainers)
-               .HasForeignKey(s => s.TrainingId);
+            modelBuilder.Entity<TrainerTraining>().HasKey(tt => new { tt.TrainerId, tt.TrainingId });
+
+            modelBuilder.Entity<TrainerTraining>()
+                .HasOne<Trainer>(t => t.Trainer)
+                .WithMany(tc => tc.TrainerTrainings)
+                .HasForeignKey(t => t.TrainerId);
+
+
+            modelBuilder.Entity<TrainerTraining>()
+                .HasOne<Training>(c => c.Training)
+                .WithMany(tc => tc.TrainerTrainings)
+                .HasForeignKey(c => c.TrainingId);
+
         }
 
         public DbSet<Course> Courses { get; set; }
@@ -48,6 +58,8 @@ namespace Ozone.DAL
         public DbSet<Trainee> Trainees { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<Grade> Grades { get; set; }
+        public DbSet<Division> Divisions { get; set; }
+        public DbSet<TrainerTraining> TrainerTrainings { get; set; }
         public DbSet<TraineeTraining> TraineeTrainings { get; set; }
         public DbSet<Training> Trainings { get; set; }
 

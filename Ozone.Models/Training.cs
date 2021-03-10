@@ -22,7 +22,7 @@ namespace Ozone.Models
         public DateTime EndDate { get; set; }
 
         public ICollection<TraineeTraining> TraineeTrainings { get; set; }
-        public ICollection<Trainer> Trainers { get; set; }
+        public ICollection<TrainerTraining> TrainerTrainings { get; set; }
 
         public int IsDeleted { get; set; }
 

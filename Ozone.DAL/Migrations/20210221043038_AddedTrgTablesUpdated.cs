@@ -64,7 +64,7 @@ namespace Ozone.DAL.Migrations
                     FullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CellNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    SkillDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Specialization = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address1 = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Address2 = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     CourseId = table.Column<int>(type: "int", nullable: false)

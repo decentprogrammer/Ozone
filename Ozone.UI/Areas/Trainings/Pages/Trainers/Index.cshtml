@@ -1,0 +1,93 @@
+﻿@page
+@model Ozone.UI.Areas.Trainings.Pages.Trainers.IndexModel
+
+
+<div class="row form-group" style="margin-top:50px">
+    <div class="col-md-12">
+        <h3 class="page-header">
+            List of Trainers
+        </h3>
+        <hr />
+    </div>
+</div>
+
+<div style="height: 160vh">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="row form-group">
+                <div class="col-md-12">
+                    <div class="float-right">
+                        <a asp-area="Trainings" asp-page="/Trainers/Create" class="btn btn-secondary"><i class="fa fa-plus"></i> Add Trainer</a>
+                    </div>
+                </div>
+            </div>
+            <table id="dtUsers" class="table table-striped" cellspacing="0" width="100%">
+                <thead>
+                    <tr style="background-color:lightgray">
+                        <th class="">
+                            S.No
+                        </th>
+                        <th class="">
+                            Name
+                        </th>
+                        <th class="th-sm">
+                            Email
+                        </th>
+                        <th class="th-sm">
+                            Contact
+                        </th>
+                        <th class="th-sm">
+                            Specialization
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 0;
+                        if (Model.listTrainerViewModel.Count > 0)
+                        {
+                            foreach (var item in Model.listTrainerViewModel)
+                            {
+                                i++;
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => i)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FullName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PhoneMobile)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Specialization)
+                                    </td>
+                                    <td>
+                                        <div class="dropdown float-right">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" style="width:130px" aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu dropdown-secondary">
+                                                <a class="dropdown-item" id="traineedetail" asp-area="Trainings" asp-page="/Trainers/Details" asp-route-id="@item.TrainerId">Details</a>
+                                                <a class="dropdown-item" id="edittrainee" asp-area="Trainings" asp-page="/Trainers/Edit" asp-route-id="@item.TrainerId">Edit</a>
+                                                <a class="dropdown-item" id="deletetrainee" data-id="@item.TrainerId" data-toggle="modal" data-target="#myModal">Delete</a>
+                                                <input type="hidden" id="deltraineeid" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
