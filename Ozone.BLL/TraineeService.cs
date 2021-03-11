@@ -24,7 +24,6 @@ namespace Ozone.BLL
         {
             _repository = repository;
         }
-
         public async Task<bool> Insert(Trainee trainee)
         {
             try
@@ -38,7 +37,6 @@ namespace Ozone.BLL
                 throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
-
         public async Task<bool> Update(Trainee trainee)
         {
             try
@@ -52,7 +50,6 @@ namespace Ozone.BLL
                 throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
-
         public async Task<bool> Remove(Trainee trainee)
         {
             try
@@ -66,7 +63,6 @@ namespace Ozone.BLL
                 throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
-
         public async Task<List<Trainee>> GetTrainees(bool includeDetails = false)
         {
             try
@@ -80,7 +76,6 @@ namespace Ozone.BLL
                 throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
-
         public async Task<Trainee> GetTraineeById(int id, bool includeDetails = false)
         {
             try

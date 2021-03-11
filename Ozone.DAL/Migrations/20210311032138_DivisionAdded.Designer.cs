@@ -10,8 +10,8 @@ using Ozone.DAL;
 namespace Ozone.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210301213141_GradeRemovedTrainee")]
-    partial class GradeRemovedTrainee
+    [Migration("20210311032138_DivisionAdded")]
+    partial class DivisionAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -453,6 +453,23 @@ namespace Ozone.DAL.Migrations
                     b.ToTable("Course", "Trainings");
                 });
 
+            modelBuilder.Entity("Ozone.Models.Division", b =>
+                {
+                    b.Property<int>("DivisionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("DivisionId");
+
+                    b.ToTable("Division", "Catalogue");
+                });
+
             modelBuilder.Entity("Ozone.Models.Gender", b =>
                 {
                     b.Property<int>("GenderId")
@@ -520,6 +537,16 @@ namespace Ozone.DAL.Migrations
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
+                    b.Property<string>("PhoneHome")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PhoneMobile")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.HasKey("TraineeId");
 
                     b.HasIndex("GenderId");
@@ -560,11 +587,6 @@ namespace Ozone.DAL.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("CellNumber")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -577,18 +599,38 @@ namespace Ozone.DAL.Migrations
                     b.Property<int>("IsDeleted")
                         .HasColumnType("int");
 
+                    b.Property<string>("PhoneHome")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PhoneMobile")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<string>("Specialization")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.HasKey("TrainerId");
+
+                    b.ToTable("Trainer", "Trainings");
+                });
+
+            modelBuilder.Entity("Ozone.Models.TrainerTraining", b =>
+                {
+                    b.Property<int>("TrainerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("TrainingId")
                         .HasColumnType("int");
 
-                    b.HasKey("TrainerId");
+                    b.HasKey("TrainerId", "TrainingId");
 
                     b.HasIndex("TrainingId");
 
-                    b.ToTable("Trainer", "Trainings");
+                    b.ToTable("TrainerTraining", "Trainings");
                 });
 
             modelBuilder.Entity("Ozone.Models.Training", b =>
@@ -968,13 +1010,21 @@ namespace Ozone.DAL.Migrations
                     b.Navigation("Training");
                 });
 
-            modelBuilder.Entity("Ozone.Models.Trainer", b =>
+            modelBuilder.Entity("Ozone.Models.TrainerTraining", b =>
                 {
+                    b.HasOne("Ozone.Models.Trainer", "Trainer")
+                        .WithMany("TrainerTrainings")
+                        .HasForeignKey("TrainerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Ozone.Models.Training", "Training")
-                        .WithMany("Trainers")
+                        .WithMany("TrainerTrainings")
                         .HasForeignKey("TrainingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Trainer");
 
                     b.Navigation("Training");
                 });
@@ -1036,11 +1086,16 @@ namespace Ozone.DAL.Migrations
                     b.Navigation("TraineeTrainings");
                 });
 
+            modelBuilder.Entity("Ozone.Models.Trainer", b =>
+                {
+                    b.Navigation("TrainerTrainings");
+                });
+
             modelBuilder.Entity("Ozone.Models.Training", b =>
                 {
                     b.Navigation("TraineeTrainings");
 
-                    b.Navigation("Trainers");
+                    b.Navigation("TrainerTrainings");
                 });
 
             modelBuilder.Entity("Ozone.Models.UnitChecklistModel", b =>

@@ -29,7 +29,7 @@ namespace Ozone.Models
         public string PhoneMobile { get; set; }
 
         [Required]
-        public string SkillDescription { get; set; }        
+        public string Specialization { get; set; }        
 
         [Required]
         [StringLength(250)]
@@ -38,7 +38,8 @@ namespace Ozone.Models
         [StringLength(250)]
         public string Address2 { get; set; }
         public int IsDeleted { get; set; }
-        public int TrainingId { get; set; }
-        public Training Training { get; set; }
+
+        public ICollection<TrainerTraining> TrainerTrainings { get; set; }
+
     }
 }

@@ -9,8 +9,8 @@ namespace Ozone.BLL
 {
     public interface ITrainerService
     {
-        Task<Trainer> GetTrainerById(int id);
-        Task<List<Trainer>> GetTrainers();
+        Task<Trainer> GetTrainerById(int id, bool includeDetails = false);
+        Task<List<Trainer>> GetTrainers(bool includeDetails = false);
         Task<bool> Insert(Trainer trainer);
         Task<bool> Remove(Trainer trainer);
         Task<bool> Update(Trainer trainer);
@@ -24,7 +24,6 @@ namespace Ozone.BLL
         {
             _repository = repository;
         }
-
         public async Task<bool> Insert(Trainer trainer)
         {
             try
@@ -38,7 +37,6 @@ namespace Ozone.BLL
                 throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
-
         public async Task<bool> Update(Trainer trainer)
         {
             try
@@ -52,7 +50,6 @@ namespace Ozone.BLL
                 throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
-
         public async Task<bool> Remove(Trainer trainer)
         {
             try
@@ -66,12 +63,11 @@ namespace Ozone.BLL
                 throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
-
-        public async Task<List<Trainer>> GetTrainers()
+        public async Task<List<Trainer>> GetTrainers(bool includeDetails = false)
         {
             try
             {
-                var items = await _repository.GetTrainers();
+                var items = await _repository.GetTrainers(includeDetails);
                 return items;
 
             }
@@ -80,12 +76,11 @@ namespace Ozone.BLL
                 throw new OzoneException(ex.Message, ex.InnerException);
             }
         }
-
-        public async Task<Trainer> GetTrainerById(int id)
+        public async Task<Trainer> GetTrainerById(int id, bool includeDetails = false)
         {
             try
             {
-                var item = await _repository.GetTrainerById(id);
+                var item = await _repository.GetTrainerById(id, includeDetails);
                 return item;
 
             }

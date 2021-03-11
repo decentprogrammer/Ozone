@@ -11,8 +11,8 @@ namespace Ozone.DAL.Repositories
     public interface ITrainerRepository
     {
         Task<bool> Add(object entity);
-        Task<Trainer> GetTrainerById(int id);
-        Task<List<Trainer>> GetTrainers();
+        Task<Trainer> GetTrainerById(int id, bool includeDetails = false);
+        Task<List<Trainer>> GetTrainers(bool includeDetails = false);
         Task<bool> Remove(object entity);
         Task<bool> SaveChanges();
         Task<bool> Update(object entity);
@@ -72,11 +72,21 @@ namespace Ozone.DAL.Repositories
         }
 
 
-        public async Task<List<Trainer>> GetTrainers()
+        public async Task<List<Trainer>> GetTrainers(bool includeDetails = false)
         {
             try
             {
-                var items = await _db.Trainers.ToListAsync();
+                List<Trainer> items = null;
+
+                if (includeDetails)
+                {
+                    items = await _db.Trainers
+                                     .Include(p => p.TrainerTrainings)
+                                     .ToListAsync();
+                    return items;
+                }
+
+                items = await _db.Trainers.ToListAsync();
                 return items;
             }
             catch (OzoneException ex)
@@ -85,11 +95,18 @@ namespace Ozone.DAL.Repositories
             }
         }
 
-        public async Task<Trainer> GetTrainerById(int id)
+        public async Task<Trainer> GetTrainerById(int id, bool includeDetails = false)
         {
             try
             {
-                var item = await _db.Trainers.FirstOrDefaultAsync(x => x.TrainerId == id);
+                Trainer item = null;
+                if (includeDetails)
+                {
+                    item = await _db.Trainers.Include(p => p.TrainerTrainings).FirstOrDefaultAsync(x => x.TrainerId == id);
+                    return item;
+                }
+
+                item = await _db.Trainers.FirstOrDefaultAsync(x => x.TrainerId == id);
                 return item;
             }
             catch (OzoneException ex)
