@@ -18,45 +18,45 @@
                 <div class="col-md-6">
                     <label asp-for="Input.FullName" class="font-weight-normal">Full Name</label>
                     <input asp-for="Input.FullName" type='text' class='form-control' placeholder="Full Name" style="padding-left:10px" />
-                    <span asp-validation-for="Input.FullName" class="text-danger text-uppercase small"></span>
+                    <span asp-validation-for="Input.FullName" class="text-danger text-capitalize" style="color:red"></span>
                 </div>
                 <div class="col-md-6">
                     <label asp-for="Input.Email" class="font-weight-normal">Email</label>
                     <input asp-for="Input.Email" type='text' class='form-control' placeholder="Email" style="padding-left:10px" />
-                    <span asp-validation-for="Input.Email" class="text-danger text-uppercase small"></span>
+                    <span asp-validation-for="Input.Email" class="text-danger text-capitalize"></span>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-md-6">
                     <label asp-for="Input.PhoneHome" class="font-weight-normal">Phone Home</label>
                     <input asp-for="Input.PhoneHome" type='text' class='form-control' placeholder="Phone Home" style="padding-left:10px" />
-                    <span asp-validation-for="Input.PhoneHome" class="text-danger text-uppercase small"></span>
+                    <span asp-validation-for="Input.PhoneHome" class="text-danger text-capitalize"></span>
                 </div>
                 <div class="col-md-6">
                     <label asp-for="Input.PhoneMobile" class="font-weight-normal">Phone Mobile</label>
                     <input asp-for="Input.PhoneMobile" type='text' class='form-control' placeholder="Phone Mobile" style="padding-left:10px" />
-                    <span asp-validation-for="Input.PhoneMobile" class="text-danger text-uppercase small"></span>
+                    <span asp-validation-for="Input.PhoneMobile" class="text-danger text-capitalize"></span>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-md-12">
                     <label asp-for="Input.Address1" class="font-weight-normal">Address 1</label>
                     <input asp-for="Input.Address1" type='text' class='form-control' placeholder="Primary Address" style="padding-left:10px" />
-                    <span asp-validation-for="Input.Address1" class="text-danger text-uppercase small"></span>
+                    <span asp-validation-for="Input.Address1" class="text-danger text-capitalize"></span>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-md-12">
                     <label asp-for="Input.Address2" class="font-weight-normal">Address 2</label>
                     <input asp-for="Input.Address2" type='text' class='form-control' placeholder="Secondary Address" style="padding-left:10px" />
-                    <span asp-validation-for="Input.Address2" class="text-danger text-uppercase small"></span>
+                    <span asp-validation-for="Input.Address2" class="text-danger text-capitalize"></span>
                 </div>
             </div>
             <div class="row form-group">
                 <div class="col-md-12">
                     <label asp-for="Input.Specialization" class="font-weight-normal">Specialized Areas</label>
                     <input asp-for="Input.Specialization" type='text' class='form-control' placeholder="Specialized Areas" style="padding-left:10px" />
-                    <span asp-validation-for="Input.Specialization" class="text-danger text-uppercase small"></span>
+                    <span asp-validation-for="Input.Specialization" class="text-danger text-capitalize"></span>
                 </div>
             </div>
             <div class="row form-group">
@@ -68,13 +68,12 @@
     </div>
 
 </div>
-
+<script src="~/js/jquery.js"></script>
+<script src="~/js/jquery.validate.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.js"></script>
 @section Scripts{
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.datepicker').datepicker({
-                format: 'dd/mm/yyyy'
-            });
-        });
-    </script>
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/jquery.validate.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
+
 }
