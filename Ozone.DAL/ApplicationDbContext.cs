@@ -23,7 +23,6 @@ namespace Ozone.DAL
             //    .WithMany(g => g.Trainees)
             //    .HasForeignKey(s => s.GradeId);
 
-
             modelBuilder.Entity<TraineeTraining>().HasKey(tt => new { tt.TraineeId, tt.TrainingId });
 
             modelBuilder.Entity<TraineeTraining>()
@@ -35,8 +34,7 @@ namespace Ozone.DAL
             modelBuilder.Entity<TraineeTraining>()
                 .HasOne<Training>(c => c.Training)
                 .WithMany(tc => tc.TraineeTrainings)
-                .HasForeignKey(c => c.TrainingId);
-            
+                .HasForeignKey(c => c.TrainingId);            
 
             modelBuilder.Entity<TrainerTraining>().HasKey(tt => new { tt.TrainerId, tt.TrainingId });
 
@@ -45,12 +43,10 @@ namespace Ozone.DAL
                 .WithMany(tc => tc.TrainerTrainings)
                 .HasForeignKey(t => t.TrainerId);
 
-
             modelBuilder.Entity<TrainerTraining>()
                 .HasOne<Training>(c => c.Training)
                 .WithMany(tc => tc.TrainerTrainings)
                 .HasForeignKey(c => c.TrainingId);
-
         }
 
         public DbSet<Course> Courses { get; set; }
@@ -62,7 +58,6 @@ namespace Ozone.DAL
         public DbSet<TrainerTraining> TrainerTrainings { get; set; }
         public DbSet<TraineeTraining> TraineeTrainings { get; set; }
         public DbSet<Training> Trainings { get; set; }
-
         public DbSet<UnitModel> UnitsTable { get; set; }
         public DbSet<UnitChecklistModel> UnitChecklistTable { get; set; }
         public DbSet<ChecklistCategoryModel> ChecklistCategoriesTable { get; set; }

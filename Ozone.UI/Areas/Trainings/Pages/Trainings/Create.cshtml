@@ -20,17 +20,17 @@
                 <select asp-for="Input.CourseId" asp-items="@Model.Input.Courses" class="form-control">
                     <option selected disabled>Select Course</option>
                 </select>
-                <span asp-validation-for="Input.CourseId" class="text-danger text-uppercase small"></span>
+                <span asp-validation-for="Input.CourseId" class="text-danger text-capitalize"></span>
             </div>
             <div class="row form-group">
                 <label asp-for="Input.StartDate" class="font-weight-normal">Training Start Date</label>
                 <input asp-for="Input.StartDate" type='text' class='form-control datepicker' placeholder="Start Date" style="padding-left:10px" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
-                <span asp-validation-for="Input.StartDate" class="text-danger text-uppercase small"></span>
+                <span asp-validation-for="Input.StartDate" class="text-danger text-capitalize"></span>
             </div>
             <div class="row form-group">
                 <label asp-for="Input.EndDate" class="font-weight-normal">Training End Date</label>
                 <input asp-for="Input.EndDate" type='text' class='form-control datepicker' placeholder="End Date" style="padding-left:10px" value="@DateTime.Now.AddYears(1).ToString("dd/MM/yyyy")" />
-                <span asp-validation-for="Input.EndDate" class="text-danger text-uppercase small"></span>
+                <span asp-validation-for="Input.EndDate" class="text-danger text-capitalize"></span>
             </div>
             <div class="row form-group">
                 <button type="submit" id="Submit" class="btn btn-secondary float-right">
