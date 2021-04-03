@@ -1,36 +1,6 @@
 ﻿@page
 @model Ozone.UI.Areas.Trainings.Pages.Courses.AddVideoModel
 
-
-@section Styles{ 
-    <style>
-        [type="file"] {
-            border: 0;
-            clip: rect(0, 0, 0, 0);
-            height: 1px;
-            overflow: hidden;
-            padding: 0;
-            position: absolute !important;
-            white-space: nowrap;
-            width: 1px;
-            background-color:grey;
-        }
-
-            [type="file"] + label {
-                /* File upload button styles */
-            }
-
-                [type="file"]:focus + label,
-                [type="file"] + label:hover {
-                    /* File upload hover state button styles */
-                }
-
-            [type="file"]:focus + label {
-                /* File upload focus state button styles */
-            }
-    </style>
-}
-
 <ul class="breadcrumb">
     <li>
         <a asp-area="Trainings" asp-page="/Courses/Index">
@@ -51,15 +21,9 @@
 <div class="row">
     <span id="Status" data-status="@ViewBag.Message"></span>
     <div class="col-md-8 col-md-offset-2">
-        <form method="post" id="browseVideo" enctype="multipart/form-data">
+        <form  method="post" id="browseVideo" enctype="multipart/form-data">
             @Html.AntiForgeryToken()
-
-
-            <input type="file" id="file" />
-            <label for="file">Upload</label>
-
-
-
+            <input type="file" name="file" id="file" class="form-control" />
             <hr />
             <button type="submit" class="btn btn-secondary pull-right">Upload</button>
         </form>

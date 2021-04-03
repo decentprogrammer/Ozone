@@ -6,13 +6,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Ozone.BLL;
+using Ozone.Models;
 
 namespace Ozone.UI.Areas.Trainings.Pages.Courses
 {
     public class AddVideoModel : PageModel
     {
-        public IActionResult OnGet()
+        private ICourseService _courseService;
+        private IVideoService _videoService;
+
+        public AddVideoModel(ICourseService courseService, IVideoService videoService)
         {
+            _courseService = courseService;
+            _videoService = videoService;
+        }
+        public async Task<IActionResult> OnGet(int id)
+        {
+            HttpContext.Session.SetInt32("CourseId", id);
             return Page();
         }
 
@@ -28,7 +39,7 @@ namespace Ozone.UI.Areas.Trainings.Pages.Courses
                 //var path = Path.Combine(
                 //            Directory.GetCurrentDirectory(), "wwwroot",
                 //            file.FileName.ToString());
-
+                int CourseId = (int)HttpContext.Session.GetInt32("CourseId");
                 var path = Path.Combine(
                             Directory.GetCurrentDirectory(), "wwwroot", "videos",
                             file.FileName.ToString());
@@ -39,15 +50,23 @@ namespace Ozone.UI.Areas.Trainings.Pages.Courses
                 }
                 FileInfo fileName = new FileInfo(path);
 
+                var course = await _courseService.GetCourseById(CourseId);
+                Video video = new Video()
+                {
+                    Course = course,
+                    Duration = "00:15:30",
+                    IsDeleted = 0,
+                    Title = file.FileName.ToString(),
+                    URL = @"~\Ozone.UI\wwwroot\videos\",
+                    CourseId = CourseId
+                };
 
-                //ViewBag.Message = "File Imported Successfully";
+                var status = await _videoService.Insert(video);
 
                 return Page();
             }
             catch (Exception ex)
             {
-
-
                 return Page();
             }
 
