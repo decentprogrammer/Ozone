@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Ozone.DAL;
 
 namespace Ozone.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210327164637_CoursesTableUpdated")]
+    partial class CoursesTableUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -857,35 +859,6 @@ namespace Ozone.DAL.Migrations
                     b.ToTable("VendorsDictionaryTable");
                 });
 
-            modelBuilder.Entity("Ozone.Models.Video", b =>
-                {
-                    b.Property<int>("VideoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Duration")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IsDeleted")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("URL")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("VideoId");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("Video", "Trainings");
-                });
-
             modelBuilder.Entity("Ozone.Models.ApplicationUserModel", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
@@ -1086,17 +1059,6 @@ namespace Ozone.DAL.Migrations
                     b.Navigation("UnitModel");
                 });
 
-            modelBuilder.Entity("Ozone.Models.Video", b =>
-                {
-                    b.HasOne("Ozone.Models.Course", "Course")
-                        .WithMany("Videos")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-                });
-
             modelBuilder.Entity("Ozone.Models.ChecklistCategoryModel", b =>
                 {
                     b.Navigation("ChecklistElementsModel");
@@ -1110,8 +1072,6 @@ namespace Ozone.DAL.Migrations
             modelBuilder.Entity("Ozone.Models.Course", b =>
                 {
                     b.Navigation("Trainings");
-
-                    b.Navigation("Videos");
                 });
 
             modelBuilder.Entity("Ozone.Models.Gender", b =>

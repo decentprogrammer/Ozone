@@ -18,10 +18,10 @@ namespace Ozone.DAL
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Entity<Trainee>()
-            //    .HasOne<Grade>(s => s.Grade)
-            //    .WithMany(g => g.Trainees)
-            //    .HasForeignKey(s => s.GradeId);
+            modelBuilder.Entity<Video>()
+                .HasOne<Course>(s => s.Course)
+                .WithMany(g => g.Videos)
+                .HasForeignKey(s => s.CourseId);
 
             modelBuilder.Entity<TraineeTraining>().HasKey(tt => new { tt.TraineeId, tt.TrainingId });
 
@@ -50,6 +50,7 @@ namespace Ozone.DAL
         }
 
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Video> Videos { get; set; }
         public DbSet<Gender> Gender { get; set; }
         public DbSet<Trainee> Trainees { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
