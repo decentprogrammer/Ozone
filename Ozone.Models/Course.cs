@@ -13,9 +13,9 @@ namespace Ozone.Models
         [Required]
         [StringLength(250)]
         public string CourseName { get; set; }
-
-        public ICollection<Training> Trainings { get; set; }
-
         public int IsDeleted { get; set; }
+        public int VideosCount { get; set; }
+        public ICollection<Training> Trainings { get; set; }
+        public ICollection<Video> Videos { get; set; }
     }
 }

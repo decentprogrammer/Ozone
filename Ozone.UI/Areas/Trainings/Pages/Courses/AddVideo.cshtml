@@ -1,0 +1,82 @@
+﻿@page
+@model Ozone.UI.Areas.Trainings.Pages.Courses.AddVideoModel
+
+
+@section Styles{ 
+    <style>
+        [type="file"] {
+            border: 0;
+            clip: rect(0, 0, 0, 0);
+            height: 1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute !important;
+            white-space: nowrap;
+            width: 1px;
+            background-color:grey;
+        }
+
+            [type="file"] + label {
+                /* File upload button styles */
+            }
+
+                [type="file"]:focus + label,
+                [type="file"] + label:hover {
+                    /* File upload hover state button styles */
+                }
+
+            [type="file"]:focus + label {
+                /* File upload focus state button styles */
+            }
+    </style>
+}
+
+<ul class="breadcrumb">
+    <li>
+        <a asp-area="Trainings" asp-page="/Courses/Index">
+            Courses
+        </a>
+    </li>
+</ul>
+
+
+<div class="row" style="margin:50px 0px 20px 0px">
+    <div class="col-md-8 col-md-offset-2">
+        <h2 class="page-header">
+            Upload Course Video
+        </h2>
+    </div>
+</div>
+
+<div class="row">
+    <span id="Status" data-status="@ViewBag.Message"></span>
+    <div class="col-md-8 col-md-offset-2">
+        <form method="post" id="browseVideo" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+
+            <input type="file" id="file" />
+            <label for="file">Upload</label>
+
+
+
+            <hr />
+            <button type="submit" class="btn btn-secondary pull-right">Upload</button>
+        </form>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+<script src="~/js/notify.js"></script>
+
+<script type="text/javascript">
+    //alert('PassportInfo');
+    $(function () {
+
+        let status = $("#Status").attr('data-status');
+        if (status == "File Imported Successfully") {
+            $.notify(status, "success");
+        }
+    });
+</script>

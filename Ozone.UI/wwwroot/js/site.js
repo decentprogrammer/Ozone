@@ -6,6 +6,10 @@ $(document).ready(function () {
     //$('.dataTables_length').addClass('bs-select');
 
     $('#dtUnits').DataTable();
+    $('#dtCourses').DataTable();
+    $('#dtTrainees').DataTable();
+    $('#dtTrainers').DataTable();
+    $('#dtTrainings').DataTable();
     $('#dtUnits_wrapper').find('label').each(function () {
         $(this).parent().append($(this).children());
     });
