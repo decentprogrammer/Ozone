@@ -1,0 +1,49 @@
+﻿@page
+@model Ozone.UI.Areas.Trainings.Pages.Courses.VideoLecturesModel
+<ul class="breadcrumb">
+    <li>
+        <a asp-area="Trainings" asp-page="/Courses/Index">
+            Courses
+        </a>
+    </li>
+</ul>
+
+<div class="row form-group" style="margin-top:30px">
+    <div class="col-md-12">
+        <div class="col-md-8 offset-md-2">
+            <h3 class="text-center">
+                Video Lectures for Course @Model.CourseName
+            </h3>
+        </div>
+    </div>
+    <hr />
+</div>
+<div class="row form-group">
+    <div class="col-md-12">
+        <a class="btn btn-secondary float-right" asp-area="Trainings" asp-page="/Courses/AddVideo" asp-route-id="@Model.CourseId"><i class="fa fa-plus"></i> Add Video Lecture</a>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-md-12">
+        @if (Model.listCourseVideos.Count > 0)
+        {
+            foreach (var item in Model.listCourseVideos)
+            {
+                <div class="col-md-6 offset-md-3">
+                    <video width="600" height="400" controls="controls">
+                        <source src="~/videos/@item.Title" type="video/mp4" />
+                    </video>
+                    <div class="col-md-6 offset-md-3">
+                        <h4><b>@item.Title</b></h4>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-danger alert-dismissible text-center text-capitalize">
+                Video Lectures Are Not Available For This Course, Click <a asp-area="Trainings" asp-page="/Courses/AddVideo" asp-route-id="@Model.CourseId">here</a> to Add Course Videos
+            </div>
+        }
+    </div>
+</div>

@@ -23,7 +23,7 @@
     <div class="col-md-8 col-md-offset-2">
         <form  method="post" id="browseVideo" enctype="multipart/form-data">
             @Html.AntiForgeryToken()
-            <input type="file" name="file" id="file" class="form-control" />
+            <input type="file" name="files" id="files" class="form-control" multiple />
             <hr />
             <button type="submit" class="btn btn-secondary pull-right">Upload</button>
         </form>

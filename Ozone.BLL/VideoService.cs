@@ -14,6 +14,7 @@ namespace Ozone.BLL
         Task<bool> Insert(Video video);
         Task<bool> Remove(Video video);
         Task<bool> Update(Video video);
+        Task<List<Video>> GetVideosByCourseId(int id, bool includeDetails = false);
     }
 
     public class VideoService : IVideoService
@@ -82,6 +83,19 @@ namespace Ozone.BLL
             {
                 var item = await _repository.GetVideoById(id, includeDetails);
                 return item;
+
+            }
+            catch (OzoneException ex)
+            {
+                throw new OzoneException(ex.Message, ex.InnerException);
+            }
+        }
+        public async Task<List<Video>> GetVideosByCourseId(int id, bool includeDetails = false)
+        {
+            try
+            {
+                var items = await _repository.GetVideosByCourseId(id, includeDetails);
+                return items;
 
             }
             catch (OzoneException ex)
