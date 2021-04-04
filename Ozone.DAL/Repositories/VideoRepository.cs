@@ -16,6 +16,7 @@ namespace Ozone.DAL.Repositories
         Task<bool> Remove(object entity);
         Task<bool> SaveChanges();
         Task<bool> Update(object entity);
+        Task<List<Video>> GetVideosByCourseId(int id, bool includeDetails = false);
     }
 
     public class VideoRepository : IVideoRepository
@@ -108,6 +109,26 @@ namespace Ozone.DAL.Repositories
 
                 item = await _db.Videos.FirstOrDefaultAsync(x => x.VideoId == id);
                 return item;
+            }
+            catch (OzoneException ex)
+            {
+                throw new OzoneException("Error in Getting Single Video from Database", ex);
+            }
+        }
+
+        public async Task<List<Video>> GetVideosByCourseId(int id, bool includeDetails = false)
+        {
+            try
+            {
+                List<Video> items = null;
+                if (includeDetails)
+                {
+                    items = await _db.Videos.Include(p => p.Course).Where(x => x.CourseId == id).ToListAsync();
+                    return items;
+                }
+
+                items = await _db.Videos.Where(x => x.CourseId == id).ToListAsync();
+                return items;
             }
             catch (OzoneException ex)
             {

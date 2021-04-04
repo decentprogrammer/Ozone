@@ -29,39 +29,43 @@ namespace Ozone.UI.Areas.Trainings.Pages.Courses
 
         [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
         [RequestSizeLimit(209715200)]
-        public async Task<IActionResult> OnPostAsync(IFormFile file)
+        public async Task<IActionResult> OnPostAsync(List<IFormFile> files)
         {
             try
             {
-                if (file == null || file.Length == 0)
-                    return Content("file not selected");
-
-                //var path = Path.Combine(
-                //            Directory.GetCurrentDirectory(), "wwwroot",
-                //            file.FileName.ToString());
                 int CourseId = (int)HttpContext.Session.GetInt32("CourseId");
-                var path = Path.Combine(
-                            Directory.GetCurrentDirectory(), "wwwroot", "videos",
-                            file.FileName.ToString());
-
-                using (var stream = new FileStream(path, FileMode.Create))
+                if (files != null || files.Count != 0)
                 {
-                    await file.CopyToAsync(stream);
+                    foreach (IFormFile file in files)
+                    {
+                        if (file == null || file.Length == 0)
+                            throw new Exception("file not selected");
+
+                        
+                        var path = Path.Combine(
+                                    Directory.GetCurrentDirectory(), "wwwroot", "videos",
+                                    file.FileName.ToString());
+
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            await file.CopyToAsync(stream);
+                        }
+                        FileInfo fileName = new FileInfo(path);
+
+                        var course = await _courseService.GetCourseById(CourseId);
+                        Video video = new Video()
+                        {
+                            Course = course,
+                            Duration = "00:15:30",
+                            IsDeleted = 0,
+                            Title = file.FileName.ToString(),
+                            URL = @"~\Ozone.UI\wwwroot\videos\",
+                            CourseId = CourseId
+                        };
+
+                        var status = await _videoService.Insert(video);
+                    }
                 }
-                FileInfo fileName = new FileInfo(path);
-
-                var course = await _courseService.GetCourseById(CourseId);
-                Video video = new Video()
-                {
-                    Course = course,
-                    Duration = "00:15:30",
-                    IsDeleted = 0,
-                    Title = file.FileName.ToString(),
-                    URL = @"~\Ozone.UI\wwwroot\videos\",
-                    CourseId = CourseId
-                };
-
-                var status = await _videoService.Insert(video);
 
                 return Page();
             }
