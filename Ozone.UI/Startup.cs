@@ -46,7 +46,7 @@ namespace Ozone.UI
             })
             .AddRazorRuntimeCompilation();
             services.AddSignalR();
-
+            services.AddSession();
             #region Register Repositories
             services.AddTransient<IUnitRepository, UnitRepository>();
             services.AddTransient<IChecklistRepository, ChecklistRepository>();
@@ -58,6 +58,7 @@ namespace Ozone.UI
             services.AddTransient<ITrainerRepository, TrainerRepository>();
             services.AddTransient<IGenderRepository, GenderRepository>();
             services.AddTransient<IGradeRepository, GradeRepository>();
+            services.AddTransient<IVideoRepository, VideoRepository>();
             #endregion
 
             #region Register Services
@@ -72,6 +73,7 @@ namespace Ozone.UI
             services.AddTransient<ITrainerService, TrainerService>();
             services.AddTransient<IGenderService, GenderService>();
             services.AddTransient<IGradeService, GradeService>();
+            services.AddTransient<IVideoService, VideoService>();
             #endregion
 
             services.AddScoped<UserWidgetsDetails>();
@@ -98,7 +100,7 @@ namespace Ozone.UI
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthentication();
